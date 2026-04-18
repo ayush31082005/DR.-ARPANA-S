@@ -5,7 +5,7 @@ import { fadeUp } from "../../utils/motion";
 
 export default function AppointmentCTA() {
   return (
-    <section className="section-space">
+    <section className="pt-4 pb-8 md:pt-6 md:pb-12">
       <div className="container-padded">
         <motion.div
           variants={fadeUp}

@@ -14,7 +14,7 @@ const aboutImage =
 
 export default function ClinicIntro() {
   return (
-    <section className="py-10 md:py-14">
+    <section className="pt-10 pb-5 md:pt-14 md:pb-8">
       <div className="container-padded grid items-stretch gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-[1fr_0.95fr]">
         <motion.div
           variants={fadeUp}

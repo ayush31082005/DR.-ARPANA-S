@@ -19,7 +19,7 @@ export default function FeaturedProducts() {
   };
 
   return (
-    <section className="bg-white py-10 md:py-14">
+    <section className="bg-white pt-4 pb-10 md:pt-6 md:pb-14">
       <div className="container-padded">
         <MotionSection>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">

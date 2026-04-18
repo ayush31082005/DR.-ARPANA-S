@@ -6,7 +6,7 @@ import ServiceCard from "../services/ServiceCard";
 
 export default function FeaturedServices() {
   return (
-    <section className="section-space bg-white">
+    <section className="bg-white pt-6 pb-8 md:pt-10 md:pb-10">
       <div className="container-padded">
         <MotionSection>
           <SectionTitle
