@@ -6,7 +6,9 @@ const items = [
   "Experienced doctors and trusted consultation",
   "Fast appointment request process",
   "Structured product shopping experience",
-  "Future-ready scalable frontend architecture"
+  "Future-ready scalable frontend architecture",
+  "Simple and clean navigation for every visitor",
+  "Mobile-friendly design that works smoothly on all screens"
 ];
 
 const whyChooseImage =
@@ -14,14 +16,14 @@ const whyChooseImage =
 
 export default function WhyChooseUs() {
   return (
-    <section className="pt-10 pb-5 md:pt-14 md:pb-8">
-      <div className="container-padded grid items-stretch gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-[1fr_0.95fr]">
+    <section className="pt-4 pb-2 md:pt-6 md:pb-4">
+      <div className="container-padded grid items-stretch gap-5 md:auto-rows-fr md:grid-cols-2 md:gap-6 lg:grid-cols-[1fr_0.95fr]">
         <motion.div
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="flex min-h-[340px] h-full flex-col justify-center"
+          className="flex min-h-[280px] h-full flex-col justify-center md:justify-between"
         >
           <SectionTitle
             eyebrow="Why Us"
@@ -34,7 +36,7 @@ export default function WhyChooseUs() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="mt-5 space-y-3"
+            className="mt-4 space-y-3"
           >
             {items.map((item) => (
               <motion.div
@@ -54,12 +56,12 @@ export default function WhyChooseUs() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="min-h-[340px] h-full md:order-2"
+          className="flex min-h-[280px] h-full md:order-2"
         >
           <img
             src={whyChooseImage}
             alt="Doctor speaking with a patient during consultation"
-            className="h-full min-h-[340px] w-full rounded-[28px] object-cover shadow-card"
+            className="block h-full min-h-[280px] w-full flex-1 rounded-[28px] object-cover shadow-card"
           />
         </motion.div>
       </div>

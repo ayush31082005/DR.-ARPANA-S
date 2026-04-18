@@ -4,7 +4,7 @@ import { policyLinks } from "../../data/policyLinks";
 
 export default function Footer() {
   return (
-    <footer className="mt-20 bg-slate-950 py-14 text-slate-300">
+    <footer className="mt-0 bg-slate-950 py-14 text-slate-300">
       <div className="container-padded">
         <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-[1.2fr_1.1fr_1fr]">
           <div>
