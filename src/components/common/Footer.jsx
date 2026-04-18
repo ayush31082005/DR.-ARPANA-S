@@ -1,4 +1,4 @@
-import { Heart, Mail, MapPin, Phone, ShieldAlert } from "lucide-react";
+import { Mail, MapPin, Phone, ShieldAlert } from "lucide-react";
 import { Link } from "react-router-dom";
 import { policyLinks } from "../../data/policyLinks";
 
@@ -9,8 +9,12 @@ export default function Footer() {
         <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-[1.2fr_1.1fr_1fr]">
           <div>
             <div className="flex items-center gap-3">
-              <div className="grid h-11 w-11 place-items-center rounded-2xl bg-blue-600 text-white">
-                <Heart size={18} />
+              <div className="flex h-14 w-14 items-center justify-center">
+                <img
+                  src="/images/logo.png"
+                  alt="Dr. Arpana's Homeo Care"
+                  className="h-full w-full object-contain"
+                />
               </div>
               <h3 className="text-3xl font-bold text-white">DR. ARPANA'S</h3>
             </div>
