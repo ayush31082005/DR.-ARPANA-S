@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="mt-20 bg-slate-950 py-14 text-slate-300">
       <div className="container-padded">
-        <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-[1.2fr_1.1fr_1fr]">
           <div>
             <div className="flex items-center gap-3">
               <div className="grid h-11 w-11 place-items-center rounded-2xl bg-blue-600 text-white">
@@ -35,25 +35,27 @@ export default function Footer() {
             </div>
           </div>
 
-          <div>
-            <h4 className="text-2xl font-bold text-white">Quick Links</h4>
-            <div className="mt-6 flex flex-col gap-3 text-[15px]">
-              <Link to="/" className="transition hover:text-white">Home</Link>
-              <Link to="/about" className="transition hover:text-white">About Us</Link>
-              <Link to="/services" className="transition hover:text-white">Services</Link>
-              <Link to="/shop" className="transition hover:text-white">Shop</Link>
-              <Link to="/appointment" className="transition hover:text-white">Book Appointment</Link>
+          <div className="grid grid-cols-2 gap-6 sm:gap-10">
+            <div>
+              <h4 className="text-2xl font-bold text-white">Quick Links</h4>
+              <div className="mt-6 flex flex-col gap-3 text-[15px]">
+                <Link to="/" className="transition hover:text-white">Home</Link>
+                <Link to="/about" className="transition hover:text-white">About Us</Link>
+                <Link to="/services" className="transition hover:text-white">Services</Link>
+                <Link to="/shop" className="transition hover:text-white">Shop</Link>
+                <Link to="/appointment" className="transition hover:text-white">Book Appointment</Link>
+              </div>
             </div>
-          </div>
 
-          <div>
-            <h4 className="text-2xl font-bold text-white">Our Policy</h4>
-            <div className="mt-6 flex flex-col gap-3 text-[15px]">
-              {policyLinks.map((link) => (
-                <Link key={link.path} to={link.path} className="transition hover:text-white">
-                  {link.label}
-                </Link>
-              ))}
+            <div>
+              <h4 className="text-2xl font-bold text-white">Our Policy</h4>
+              <div className="mt-6 flex flex-col gap-3 text-[15px]">
+                {policyLinks.map((link) => (
+                  <Link key={link.path} to={link.path} className="transition hover:text-white">
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
 
