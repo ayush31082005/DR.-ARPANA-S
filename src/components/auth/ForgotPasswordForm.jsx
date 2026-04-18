@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, ShieldCheck } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function ForgotPasswordForm() {
+  const navigate = useNavigate();
   const [step, setStep] = useState(1);
 
   const [form, setForm] = useState({
@@ -40,7 +42,14 @@ export default function ForgotPasswordForm() {
     }
 
     alert("Password Reset Successful (demo)");
+    setForm({
+      email: "",
+      otp: "",
+      password: "",
+      confirmPassword: "",
+    });
     setStep(1);
+    navigate("/login");
   };
 
   return (
