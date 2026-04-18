@@ -23,9 +23,8 @@ export default function ProductCard({ product }) {
       <div className="flex h-[calc(100%-7rem)] flex-col p-3 sm:h-[calc(100%-8rem)]">
         <h3 className="text-sm font-semibold text-slate-900 sm:text-base">{product.name}</h3>
         <p className="mt-1 text-xs leading-5 text-slate-600">{product.description}</p>
-        <div className="mt-2 flex items-center justify-between">
+        <div className="mt-2">
           <span className="text-sm font-bold text-primary sm:text-base">{formatPrice(product.price)}</span>
-          <span className="text-xs text-amber-600">{product.rating} / 5</span>
         </div>
         <Button className="mt-3 w-full px-3 py-2 text-xs sm:text-sm" onClick={() => addToCart(product)}>
           Add to Cart
