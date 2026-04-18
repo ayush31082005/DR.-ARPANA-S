@@ -13,6 +13,10 @@ const stats = [
 export default function HeroSection() {
   const heroRef = useRef(null);
   const countRefs = useRef([]);
+  const eyebrowRef = useRef(null);
+  const titleRef = useRef(null);
+  const descriptionRef = useRef(null);
+  const actionsRef = useRef(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -20,11 +24,23 @@ export default function HeroSection() {
         defaults: { ease: "power3.out" }
       });
 
+      if (eyebrowRef.current) {
+        timeline.from(eyebrowRef.current, { y: 24, opacity: 0, duration: 0.45 });
+      }
+
+      if (titleRef.current) {
+        timeline.from(titleRef.current, { y: 36, opacity: 0, duration: 0.7 }, "-=0.15");
+      }
+
+      if (descriptionRef.current) {
+        timeline.from(descriptionRef.current, { y: 24, opacity: 0, duration: 0.55 }, "-=0.35");
+      }
+
+      if (actionsRef.current) {
+        timeline.from(actionsRef.current, { y: 20, opacity: 0, duration: 0.45 }, "-=0.25");
+      }
+
       timeline
-        .from("[data-hero='eyebrow']", { y: 24, opacity: 0, duration: 0.45 })
-        .from("[data-hero='title']", { y: 36, opacity: 0, duration: 0.7 }, "-=0.15")
-        .from("[data-hero='description']", { y: 24, opacity: 0, duration: 0.55 }, "-=0.35")
-        .from("[data-hero='actions']", { y: 20, opacity: 0, duration: 0.45 }, "-=0.25")
         .from("[data-hero-card]", {
           y: 28,
           opacity: 0,
@@ -63,6 +79,7 @@ export default function HeroSection() {
           className="mx-auto flex w-full max-w-5xl flex-col items-center text-center"
         >
           {/* <p
+            ref={eyebrowRef}
             data-hero="eyebrow"
             className="mb-4 text-sm font-semibold uppercase tracking-[0.28em] text-teal-200"
           >
@@ -70,6 +87,7 @@ export default function HeroSection() {
           </p> */}
 
           <h1
+            ref={titleRef}
             data-hero="title"
             className="max-w-4xl text-4xl font-bold leading-tight md:text-6xl xl:text-7xl"
           >
@@ -79,6 +97,7 @@ export default function HeroSection() {
           </h1>
 
           <p
+            ref={descriptionRef}
             data-hero="description"
             className="mt-6 max-w-3xl text-base leading-8 text-slate-200 md:text-lg"
           >
@@ -86,6 +105,7 @@ export default function HeroSection() {
           </p>
 
           <div
+            ref={actionsRef}
             data-hero="actions"
             className="mt-8 flex flex-wrap items-center justify-center gap-4"
           >

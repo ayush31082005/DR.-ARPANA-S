@@ -86,11 +86,12 @@ export default function MyAppointments() {
 
       <section className="rounded-[32px] border border-slate-200 bg-white px-5 py-8 shadow-card sm:px-8">
         <div className="mx-auto max-w-3xl">
-          <div className="mb-10 flex items-center justify-center gap-0 overflow-x-auto">
+          <div className="mb-10 w-full overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="inline-flex min-w-max items-center px-1">
             {steps.map((label, index) => (
               <div key={label} className="flex items-center">
                 <div
-                  className={`flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                  className={`flex items-center gap-2 rounded-full px-3 py-2 text-xs font-medium transition-colors sm:px-4 sm:text-sm ${
                     step > index + 1
                       ? "bg-green-100 text-green-700"
                       : step === index + 1
@@ -101,17 +102,18 @@ export default function MyAppointments() {
                   <span className="flex h-5 w-5 items-center justify-center rounded-full border border-current text-xs font-bold">
                     {step > index + 1 ? "OK" : index + 1}
                   </span>
-                  <span className="hidden sm:block">{label}</span>
+                  <span className="whitespace-nowrap">{label}</span>
                 </div>
                 {index < steps.length - 1 ? (
                   <div
-                    className={`h-0.5 w-8 ${
+                    className={`h-0.5 w-6 sm:w-8 ${
                       step > index + 1 ? "bg-green-300" : "bg-gray-200"
                     }`}
                   />
                 ) : null}
               </div>
             ))}
+            </div>
           </div>
 
           {submitted ? (

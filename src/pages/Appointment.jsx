@@ -79,17 +79,17 @@ export default function Appointment() {
     <section className="bg-slate-50 py-10 md:py-14">
       <div className="container-padded">
         <div className="mx-auto max-w-6xl space-y-8">
-          <div className="flex justify-center overflow-x-auto">
-            <div className="flex min-w-max items-center gap-4 px-2">
+          <div className="w-full overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="inline-flex min-w-max items-center gap-3 px-1 sm:gap-4 sm:px-2">
               {steps.map((label, index) => {
                 const current = index + 1;
                 const isDone = step > current;
                 const isActive = step === current;
 
                 return (
-                  <div key={label} className="flex items-center gap-4">
+                  <div key={label} className="flex items-center gap-3 sm:gap-4">
                     <div
-                      className={`flex items-center gap-3 rounded-full px-5 py-3 text-sm font-semibold transition-colors ${
+                      className={`flex items-center gap-2 rounded-full px-3 py-2.5 text-xs font-semibold transition-colors sm:gap-3 sm:px-5 sm:py-3 sm:text-sm ${
                         isDone
                           ? "bg-emerald-100 text-emerald-700"
                           : isActive
@@ -104,10 +104,10 @@ export default function Appointment() {
                       >
                         {isDone ? "OK" : current}
                       </span>
-                      <span>{label}</span>
+                      <span className="whitespace-nowrap">{label}</span>
                     </div>
                     {index < steps.length - 1 ? (
-                      <div className={`h-0.5 w-8 ${step > current ? "bg-emerald-300" : "bg-slate-200"}`} />
+                      <div className={`h-0.5 w-6 sm:w-8 ${step > current ? "bg-emerald-300" : "bg-slate-200"}`} />
                     ) : null}
                   </div>
                 );

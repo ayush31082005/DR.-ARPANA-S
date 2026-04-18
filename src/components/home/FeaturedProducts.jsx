@@ -11,7 +11,7 @@ export default function FeaturedProducts() {
   const scrollSlider = (direction) => {
     if (!sliderRef.current) return;
 
-    const cardWidth = sliderRef.current.clientWidth * 0.78;
+    const cardWidth = sliderRef.current.clientWidth * 0.52;
     sliderRef.current.scrollBy({
       left: direction === "next" ? cardWidth : -cardWidth,
       behavior: "smooth"
@@ -50,12 +50,12 @@ export default function FeaturedProducts() {
 
         <div
           ref={sliderRef}
-          className="mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="mt-6 flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-4"
         >
           {productsData.map((product) => (
             <div
               key={product.id}
-              className="min-w-[240px] snap-start sm:min-w-[255px] lg:min-w-[270px]"
+              className="min-w-[calc((100%-0.75rem)/2)] snap-start sm:min-w-[255px] lg:min-w-[270px]"
             >
               <ProductCard product={product} />
             </div>
