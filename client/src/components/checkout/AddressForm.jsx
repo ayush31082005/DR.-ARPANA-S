@@ -16,16 +16,54 @@ export default function AddressForm({
   selectedAddressId,
   onSelectAddress,
   onAddAddress,
+  onUpdateAddress,
   onContinue,
+  isSubmitting = false,
+  isLoading = false,
 }) {
   const [isAdding, setIsAdding] = useState(false);
   const [form, setForm] = useState(initialForm);
+  const [editingAddressId, setEditingAddressId] = useState("");
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    onAddAddress(form);
-    setForm(initialForm);
-    setIsAdding(false);
+
+    try {
+      if (editingAddressId) {
+        await onUpdateAddress(editingAddressId, form);
+      } else {
+        await onAddAddress(form);
+      }
+
+      setForm(initialForm);
+      setIsAdding(false);
+      setEditingAddressId("");
+    } catch (error) {
+      // Parent feedback handles request errors.
+    }
+  };
+
+  const handleEdit = (event, address) => {
+    event.stopPropagation();
+    setForm({
+      fullName: address.fullName || "",
+      phone: address.phone || "",
+      address: address.address || "",
+      city: address.city || "",
+      state: address.state || "",
+      pincode: address.pincode || "",
+    });
+    setEditingAddressId(address.id);
+    setIsAdding(true);
+  };
+
+  const handleToggleForm = () => {
+    if (isAdding) {
+      setForm(initialForm);
+      setEditingAddressId("");
+    }
+
+    setIsAdding((prev) => !prev);
   };
 
   return (
@@ -39,7 +77,8 @@ export default function AddressForm({
 
         <button
           type="button"
-          onClick={() => setIsAdding((prev) => !prev)}
+          onClick={handleToggleForm}
+          disabled={isSubmitting}
           className="inline-flex items-center gap-2 self-start text-sm font-semibold text-primary transition hover:text-teal-700"
         >
           <Plus size={16} />
@@ -113,12 +152,30 @@ export default function AddressForm({
             />
           </div>
           <button type="submit" className="btn-primary w-full sm:w-auto">
-            Save Address
+            {isSubmitting
+              ? editingAddressId
+                ? "Updating..."
+                : "Saving..."
+              : editingAddressId
+                ? "Update Address"
+                : "Save Address"}
           </button>
         </motion.form>
       ) : null}
 
       <div className="grid gap-4">
+        {isLoading ? (
+          <div className="border border-slate-200 bg-white px-5 py-6 text-sm text-slate-500 shadow-sm">
+            Loading saved addresses...
+          </div>
+        ) : null}
+
+        {!isLoading && !addresses.length ? (
+          <div className="border border-dashed border-slate-300 bg-white px-5 py-6 text-sm text-slate-500 shadow-sm">
+            No saved address found. Add a new delivery address to continue.
+          </div>
+        ) : null}
+
         {addresses.map((address, index) => {
           const isSelected = selectedAddressId === address.id;
 
@@ -163,10 +220,15 @@ export default function AddressForm({
                   </div>
                 </div>
 
-                <span className="inline-flex items-center gap-2 text-sm font-semibold text-primary">
+                <button
+                  type="button"
+                  onClick={(event) => handleEdit(event, address)}
+                  disabled={isSubmitting}
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-primary transition hover:text-teal-700"
+                >
                   <PencilLine size={15} />
                   Edit
-                </span>
+                </button>
               </div>
 
               {isSelected ? (
@@ -176,6 +238,7 @@ export default function AddressForm({
                     event.stopPropagation();
                     onContinue();
                   }}
+                  disabled={isSubmitting}
                   className="mt-5 w-full rounded-2xl bg-primary px-5 py-4 text-sm font-semibold text-white transition hover:bg-teal-700"
                 >
                   Deliver to this Address

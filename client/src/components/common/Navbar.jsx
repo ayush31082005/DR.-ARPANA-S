@@ -15,7 +15,7 @@ export default function Navbar() {
   }, [location.pathname]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 w-full border-b border-slate-200/80 bg-white/95 backdrop-blur-xl sm:sticky sm:bg-white/80">
+    <header className="fixed inset-x-0 top-0 z-50 w-full border-b border-slate-200/80 bg-white/95 backdrop-blur-xl xl:top-8">
       <div className="container-padded flex h-[72px] items-center justify-between gap-3 sm:h-20 sm:gap-4">
         <Link to="/" className="flex shrink-0 items-center">
           <img

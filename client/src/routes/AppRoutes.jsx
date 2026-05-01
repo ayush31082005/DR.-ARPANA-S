@@ -14,8 +14,7 @@ import ProductDetails from "../pages/ProductDetails";
 import Cart from "../pages/Cart";
 import Checkout from "../pages/Checkout";
 import OrderSuccess from "../pages/OrderSuccess";
-import MyOrders from "../pages/MyOrders";
-import Wishlist from "../pages/Wishlist";
+
 import MyAppointments from "../pages/MyAppointments";
 import Contact from "../pages/Contact";
 import Gallery from "../pages/Gallery";
@@ -24,14 +23,17 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import ForgotPassword from "../pages/ForgotPassword";
 import Appointment from "../pages/Appointment";
-import Profile from "../pages/Profile";
+
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 import ShippingPolicy from "../pages/ShippingPolicy";
 import TermsConditions from "../pages/TermsConditions";
 import MyPrescription from "../pages/Prescription";
 import NotFound from "../pages/NotFound";
 
+import UserDashboard from "../pages/UserDashboard";
+
 import AdminLayout from "../pages/admin/AdminLayout";
+import AdminAppointments from "../pages/admin/AdminAppointments";
 import AdminDashboard from "../pages/admin/AdminDashboard";
 import AdminContacts from "../pages/admin/AdminContact";
 import AdminPrescriptions from "../pages/admin/AdminPrescription";
@@ -66,14 +68,12 @@ export default function AppRoutes() {
         <Route path="/register" element={<AuthLayout><Register /></AuthLayout>} />
         <Route path="/forgot-password" element={<AuthLayout><ForgotPassword /></AuthLayout>} />
 
-        <Route path="/my-orders" element={<DashboardLayout><MyOrders /></DashboardLayout>} />
-        <Route path="/wishlist" element={<DashboardLayout><Wishlist /></DashboardLayout>} />
-        <Route path="/my-appointments" element={<DashboardLayout><MyAppointments /></DashboardLayout>} />
-        <Route path="/profile" element={<DashboardLayout><Profile /></DashboardLayout>} />
+        <Route path="/user-dashboard" element={<DashboardLayout><UserDashboard /></DashboardLayout>} />
 
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<AdminDashboard />} />
           <Route path="contacts" element={<AdminContacts />} />
+          <Route path="appointments" element={<AdminAppointments />} />
           <Route path="prescriptions" element={<AdminPrescriptions />} />
           <Route path="orders" element={<AdminOrders />} />
           <Route path="products" element={<AdminProducts />} />

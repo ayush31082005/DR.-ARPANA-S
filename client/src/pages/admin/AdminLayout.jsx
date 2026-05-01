@@ -1,5 +1,6 @@
 import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import {
+    CalendarCheck,
     FileText,
     LayoutDashboard,
     LogOut,
@@ -43,6 +44,7 @@ export default function AdminLayout() {
     const links = [
         { name: "Dashboard", path: "/admin", icon: LayoutDashboard },
         { name: "Contacts", path: "/admin/contacts", icon: MessageSquare },
+        { name: "Appointments", path: "/admin/appointments", icon: CalendarCheck },
         { name: "Prescriptions", path: "/admin/prescriptions", icon: FileText },
         { name: "Orders", path: "/admin/orders", icon: ShoppingBag },
         { name: "Products", path: "/admin/products", icon: Package },

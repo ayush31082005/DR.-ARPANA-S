@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import AddressForm from "../components/checkout/AddressForm";
@@ -8,6 +8,11 @@ import OrderSummary from "../components/checkout/OrderSummary";
 import PaymentMethod from "../components/checkout/PaymentMethod";
 import useAuth from "../hooks/useAuth";
 import useCart from "../hooks/useCart";
+import {
+  addMyAddress,
+  getMyAddresses,
+  updateMyAddress,
+} from "../services/addressService";
 import {
   createCashOnDeliveryOrder,
   createRazorpayOrder,
@@ -40,27 +45,52 @@ export default function Checkout() {
   const { user } = useAuth();
   const { items, clearCart, totalPrice, totalItems } = useCart();
   const [currentStep, setCurrentStep] = useState(2);
-  const [addresses, setAddresses] = useState(() => {
-    if (!user) return defaultAddresses;
-
-    return [
-      {
-        id: "addr-user",
-        fullName: user.name || defaultAddresses[0].fullName,
-        phone: user.phone || defaultAddresses[0].phone,
-        address: "Health Plaza, Civil Lines",
-        city: "Lucknow",
-        state: "Uttar Pradesh",
-        pincode: "226001",
-      },
-      ...defaultAddresses,
-    ];
-  });
-  const [selectedAddressId, setSelectedAddressId] = useState(addresses[0]?.id || "");
+  const [addresses, setAddresses] = useState(() => (user ? [] : defaultAddresses));
+  const [selectedAddressId, setSelectedAddressId] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("cod");
   const [expandedPanel, setExpandedPanel] = useState("upi");
   const [isPlacingOrder, setIsPlacingOrder] = useState(false);
+  const [isAddressLoading, setIsAddressLoading] = useState(Boolean(user));
+  const [isSavingAddress, setIsSavingAddress] = useState(false);
   const [feedback, setFeedback] = useState({ type: "", message: "" });
+
+  useEffect(() => {
+    const loadAddresses = async () => {
+      if (!user || !localStorage.getItem("token")) {
+        setAddresses(defaultAddresses);
+        setSelectedAddressId((prev) => prev || defaultAddresses[0]?.id || "");
+        setIsAddressLoading(false);
+        return;
+      }
+
+      try {
+        setIsAddressLoading(true);
+        const response = await getMyAddresses();
+        const nextAddresses = response.addresses || [];
+
+        setAddresses(nextAddresses);
+        setSelectedAddressId((prev) => {
+          if (prev && nextAddresses.some((address) => address.id === prev)) {
+            return prev;
+          }
+
+          return nextAddresses[0]?.id || "";
+        });
+      } catch (error) {
+        setAddresses([]);
+        setSelectedAddressId("");
+        setFeedback({
+          type: "error",
+          message:
+            error.response?.data?.message || "Unable to load saved addresses right now.",
+        });
+      } finally {
+        setIsAddressLoading(false);
+      }
+    };
+
+    loadAddresses();
+  }, [user]);
 
   const selectedAddress = useMemo(
     () => addresses.find((address) => address.id === selectedAddressId),
@@ -115,14 +145,76 @@ export default function Checkout() {
     ]
   );
 
-  const handleAddAddress = (address) => {
-    const nextAddress = {
-      id: `addr-${Date.now()}`,
-      ...address,
-    };
+  const handleAddAddress = async (address) => {
+    if (!user || !localStorage.getItem("token")) {
+      const nextAddress = {
+        id: `addr-${Date.now()}`,
+        ...address,
+      };
 
-    setAddresses((prev) => [nextAddress, ...prev]);
-    setSelectedAddressId(nextAddress.id);
+      setAddresses((prev) => [nextAddress, ...prev]);
+      setSelectedAddressId(nextAddress.id);
+      return;
+    }
+
+    try {
+      setIsSavingAddress(true);
+      const response = await addMyAddress(address);
+      const nextAddress = response.address;
+
+      if (nextAddress) {
+        setAddresses((prev) => [nextAddress, ...prev]);
+        setSelectedAddressId(nextAddress.id);
+      }
+
+      setFeedback({
+        type: "success",
+        message: "Address saved successfully.",
+      });
+    } catch (error) {
+      setFeedback({
+        type: "error",
+        message: error.response?.data?.message || "Unable to save address right now.",
+      });
+      throw error;
+    } finally {
+      setIsSavingAddress(false);
+    }
+  };
+
+  const handleUpdateAddress = async (addressId, updatedAddress) => {
+    if (!user || !localStorage.getItem("token")) {
+      setAddresses((prev) =>
+        prev.map((address) =>
+          address.id === addressId ? { ...address, ...updatedAddress } : address
+        )
+      );
+      setSelectedAddressId(addressId);
+      return;
+    }
+
+    try {
+      setIsSavingAddress(true);
+      const response = await updateMyAddress(addressId, updatedAddress);
+      const nextAddress = response.address;
+
+      setAddresses((prev) =>
+        prev.map((address) => (address.id === addressId ? nextAddress : address))
+      );
+      setSelectedAddressId(addressId);
+      setFeedback({
+        type: "success",
+        message: "Address updated successfully.",
+      });
+    } catch (error) {
+      setFeedback({
+        type: "error",
+        message: error.response?.data?.message || "Unable to update address right now.",
+      });
+      throw error;
+    } finally {
+      setIsSavingAddress(false);
+    }
   };
 
   const finalizeOrder = (order) => {
@@ -300,7 +392,10 @@ export default function Checkout() {
                       selectedAddressId={selectedAddressId}
                       onSelectAddress={setSelectedAddressId}
                       onAddAddress={handleAddAddress}
+                      onUpdateAddress={handleUpdateAddress}
                       onContinue={() => setCurrentStep(3)}
+                      isLoading={isAddressLoading}
+                      isSubmitting={isSavingAddress}
                     />
                   ) : null}
 

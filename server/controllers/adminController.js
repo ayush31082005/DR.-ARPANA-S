@@ -1,3 +1,4 @@
+import Appointment from "../models/Appointment.js";
 import Contact from "../models/Contact.js";
 import Order from "../models/Order.js";
 import Prescription from "../models/Prescription.js";
@@ -43,6 +44,62 @@ export const getAdminOrders = async (req, res) => {
         return res.status(500).json({
             success: false,
             message: "Failed to fetch admin orders",
+        });
+    }
+};
+
+export const getAdminAppointments = async (req, res) => {
+    try {
+        const appointments = await Appointment.find().sort({ createdAt: -1 });
+
+        return res.status(200).json({
+            success: true,
+            appointments,
+        });
+    } catch (error) {
+        console.error("Admin appointments error:", error);
+        return res.status(500).json({
+            success: false,
+            message: "Failed to fetch appointments",
+        });
+    }
+};
+
+export const updateAdminAppointmentStatus = async (req, res) => {
+    try {
+        const { status } = req.body;
+        const allowedStatuses = ["pending", "confirmed", "cancelled", "completed"];
+
+        if (!allowedStatuses.includes(status)) {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid appointment status",
+            });
+        }
+
+        const appointment = await Appointment.findByIdAndUpdate(
+            req.params.id,
+            { status },
+            { new: true }
+        );
+
+        if (!appointment) {
+            return res.status(404).json({
+                success: false,
+                message: "Appointment not found",
+            });
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: "Appointment status updated",
+            appointment,
+        });
+    } catch (error) {
+        console.error("Admin appointment status error:", error);
+        return res.status(500).json({
+            success: false,
+            message: "Failed to update appointment status",
         });
     }
 };

@@ -2,9 +2,9 @@ import MainLayout from "./MainLayout";
 
 export default function DashboardLayout({ children }) {
   return (
-    <MainLayout>
-      <section className="section-space">
-        <div className="container-padded">{children}</div>
+    <MainLayout showFooter={false}>
+      <section className="pb-14 md:pb-20">
+        <div className="w-full">{children}</div>
       </section>
     </MainLayout>
   );

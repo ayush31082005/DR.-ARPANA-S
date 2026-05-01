@@ -8,6 +8,7 @@ import prescriptionRoutes from "./routes/prescriptionRoutes.js";
 import contactRoutes from "./routes/contactRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
+import addressRoutes from "./routes/addressRoutes.js";
 
 
 
@@ -41,5 +42,6 @@ app.use("/api/prescriptions", prescriptionRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/addresses", addressRoutes);
 
 export default app;
