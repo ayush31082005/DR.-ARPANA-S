@@ -9,7 +9,7 @@ import Pagination from "../../components/ui/Pagination";
 const statusClasses = {
     pending: "bg-amber-100 text-amber-700",
     approved: "bg-emerald-100 text-emerald-700",
-    rejected: "bg-red-100 text-red-700",
+    rejected: "bg-orange-100 text-orange-700",
 };
 const ITEMS_PER_PAGE = 10;
 
@@ -66,23 +66,23 @@ export default function AdminPrescriptions() {
             <h1 className="text-3xl font-black text-slate-900 mb-6">Prescriptions</h1>
 
             {error ? (
-                <div className="mb-6 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                <div className="mb-6 border border-orange-200 bg-orange-50 px-4 py-3 text-sm text-orange-700">
                     {error}
                 </div>
             ) : null}
 
-            <div className="bg-white rounded-2xl border shadow-sm overflow-hidden">
+            <div className="overflow-hidden border border-orange-200 bg-white shadow-sm">
                 <div className="overflow-x-auto">
-                    <table className="w-full text-sm">
-                        <thead className="bg-slate-50 text-slate-600">
+                    <table className="w-full border-separate border-spacing-0 text-sm">
+                        <thead className="bg-orange-500 text-white">
                             <tr>
-                                <th className="p-4 text-left">Patient</th>
-                                <th className="p-4 text-left">Mobile</th>
-                                <th className="p-4 text-left">Email</th>
-                                <th className="p-4 text-left">Days</th>
-                                <th className="p-4 text-left">Address</th>
-                                <th className="p-4 text-left">File</th>
-                                <th className="p-4 text-left">Status</th>
+                                <th className="border-b border-r border-orange-200 p-4 text-left">Patient</th>
+                                <th className="border-b border-r border-orange-200 p-4 text-left">Mobile</th>
+                                <th className="border-b border-r border-orange-200 p-4 text-left">Email</th>
+                                <th className="border-b border-r border-orange-200 p-4 text-left">Days</th>
+                                <th className="border-b border-r border-orange-200 p-4 text-left">Address</th>
+                                <th className="border-b border-r border-orange-200 p-4 text-left">File</th>
+                                <th className="border-b border-orange-200 p-4 text-left">Status</th>
                             </tr>
                         </thead>
 
@@ -101,18 +101,18 @@ export default function AdminPrescriptions() {
                                 </tr>
                             ) : (
                                 paginatedPrescriptions.map((item) => (
-                                    <tr key={item._id} className="border-t">
-                                        <td className="p-4">{item.fullName}</td>
-                                        <td className="p-4">{item.mobileNumber}</td>
-                                        <td className="p-4">{item.email}</td>
-                                        <td className="p-4">{item.daysRequired}</td>
-                                        <td className="p-4 max-w-xs text-slate-600">{item.address}</td>
-                                        <td className="p-4">
+                                    <tr key={item._id} className="even:bg-orange-50/40">
+                                        <td className="border-t border-r border-orange-100 p-4">{item.fullName}</td>
+                                        <td className="border-t border-r border-orange-100 p-4">{item.mobileNumber}</td>
+                                        <td className="border-t border-r border-orange-100 p-4">{item.email}</td>
+                                        <td className="border-t border-r border-orange-100 p-4">{item.daysRequired}</td>
+                                        <td className="border-t border-r border-orange-100 p-4 max-w-xs text-slate-600">{item.address}</td>
+                                        <td className="border-t border-r border-orange-100 p-4">
                                             <a href={item.prescriptionFile?.url} target="_blank" rel="noreferrer" className="text-teal-600 font-semibold inline-flex gap-1">
                                                 View <ExternalLink size={15} />
                                             </a>
                                         </td>
-                                        <td className="p-4">
+                                        <td className="border-t border-orange-100 p-4">
                                             <select
                                                 value={item.status}
                                                 onChange={(event) =>

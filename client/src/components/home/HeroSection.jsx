@@ -11,9 +11,8 @@ const stats = [
 ];
 
 const heroVideoSources = [
-  "/images/144015-784164329_medium.mp4",
   "/images/144006-784164313_medium.mp4",
-  "/images/39136-420274318_medium.mp4"
+  "/images/39136-420274318_medium.mp4",
 ];
 
 export default function HeroSection() {
@@ -25,13 +24,13 @@ export default function HeroSection() {
   const actionsRef = useRef(null);
   const videoRef = useRef(null);
   const [activeSlide, setActiveSlide] = useState(0);
-  const [isVideoReady, setIsVideoReady] = useState(false);
+  const [hasVideoError, setHasVideoError] = useState(false);
   const currentVideoSrc = heroVideoSources[activeSlide];
 
   useEffect(() => {
     if (!videoRef.current) return;
 
-    setIsVideoReady(false);
+    setHasVideoError(false);
     videoRef.current.load();
 
     const playPromise = videoRef.current.play();
@@ -102,49 +101,42 @@ export default function HeroSection() {
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div data-hero-media className="relative h-full w-full">
           <video
-            key={`blur-${currentVideoSrc}`}
-            className={`absolute inset-0 h-full w-full scale-110 object-cover blur-xl transition-opacity duration-300 ${
-              isVideoReady ? "opacity-35" : "opacity-0"
-            }`}
-            autoPlay
-            muted
-            playsInline
-            preload="auto"
-            aria-hidden="true"
-          >
-            <source src={currentVideoSrc} type="video/mp4" />
-          </video>
-          <video
             ref={videoRef}
             key={currentVideoSrc}
             className={`h-full w-full object-cover object-center transition-opacity duration-300 ${
-              isVideoReady ? "opacity-100" : "opacity-0"
+              hasVideoError ? "opacity-0" : "opacity-100"
             }`}
             autoPlay
             muted
             playsInline
             preload="auto"
-            onLoadedData={() => setIsVideoReady(true)}
+            onCanPlay={() => {}}
+            onError={() => setHasVideoError(true)}
             onEnded={() => setActiveSlide((prev) => (prev + 1) % heroVideoSources.length)}
           >
             <source src={currentVideoSrc} type="video/mp4" />
           </video>
         </div>
 
-        <div className={`absolute inset-0 transition-opacity duration-300 ${isVideoReady ? "bg-slate-950/42 opacity-100" : "bg-slate-950 opacity-100"}`} />
         <div
-          className={`absolute inset-0 bg-gradient-to-r from-slate-950/78 via-slate-900/52 to-teal-950/45 transition-opacity duration-300 ${
-            isVideoReady ? "opacity-100" : "opacity-0"
+          className={`absolute inset-0 transition-opacity duration-300 ${
+            hasVideoError
+              ? "bg-slate-950/75 opacity-100"
+              : "bg-transparent opacity-100"
           }`}
         />
         <div
-          className={`absolute inset-0 bg-gradient-to-t from-slate-950/72 via-transparent to-slate-950/28 transition-opacity duration-300 ${
-            isVideoReady ? "opacity-100" : "opacity-0"
+          className={`absolute inset-0 bg-transparent transition-opacity duration-300 ${
+            hasVideoError ? "opacity-0" : "opacity-100"
+          }`}
+        />
+        <div
+          className={`absolute inset-0 bg-transparent transition-opacity duration-300 ${
+            hasVideoError ? "opacity-0" : "opacity-100"
           }`}
         />
       </div>
 
-      <div className="hero-orb absolute inset-0 z-10" />
       <div className="container-padded relative z-20 flex min-h-[calc(100vh-112px)] items-center justify-center py-8 sm:py-10 lg:py-12">
         <div
           ref={heroRef}
@@ -171,7 +163,7 @@ export default function HeroSection() {
           <p
             ref={descriptionRef}
             data-hero="description"
-            className="mt-6 max-w-3xl text-base leading-8 text-slate-200 md:text-lg"
+            className="mt-6 max-w-3xl text-base leading-8 text-white/90 md:text-lg"
           >
             Premium clinic website with doctor appointments, service showcases, and a polished online wellness shop in one responsive experience.
           </p>

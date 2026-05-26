@@ -190,6 +190,7 @@ function Sidebar({ activeTab, onSelect, onLogout, showClose, onClose }) {
 
 export default function UserDashboard() {
   const navigate = useNavigate();
+  const { logoutUser } = useAuth();
   const [searchParams, setSearchParams] = useSearchParams();
   const [openSidebar, setOpenSidebar] = useState(false);
   const [isDesktop, setIsDesktop] = useState(() =>
@@ -221,6 +222,12 @@ export default function UserDashboard() {
     setSearchParams(tabId === "dashboard" ? {} : { tab: tabId }, { replace: true });
   };
 
+  const handleLogout = () => {
+    logoutUser();
+    setOpenSidebar(false);
+    navigate("/login", { replace: true });
+  };
+
   return (
     <div className="isolate min-h-screen overflow-x-hidden bg-slate-100">
       <aside
@@ -231,7 +238,7 @@ export default function UserDashboard() {
         <Sidebar
           activeTab={activeTab}
           onSelect={handleSelect}
-          onLogout={() => setOpenSidebar(false)}
+          onLogout={handleLogout}
           showClose={!isDesktop}
           onClose={() => setOpenSidebar(false)}
         />

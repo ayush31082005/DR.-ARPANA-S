@@ -16,13 +16,13 @@ export default function FeaturedServices() {
           />
         </MotionSection>
 
-        <div className="mt-10 flex gap-5 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {servicesData.slice(0, 4).map((service) => (
             <div
               key={service.id}
-              className="min-w-[280px] flex-1 sm:min-w-[320px] lg:min-w-[340px] xl:min-w-[300px]"
+              className="min-w-0"
             >
-              <ServiceCard service={service} variant="imageOverlay" />
+              <ServiceCard service={service} variant="imageOverlay" mobileImageOnly />
             </div>
           ))}
         </div>

@@ -36,15 +36,15 @@ export default function WhatsAppChatBox() {
   return (
     <div className="pointer-events-none fixed bottom-5 right-4 z-50 flex max-w-[calc(100vw-2rem)] flex-col items-end gap-3 sm:bottom-6 sm:right-6">
       {isOpen && (
-        <div className="pointer-events-auto w-[320px] max-w-full overflow-hidden rounded-[28px] border border-emerald-100 bg-white shadow-[0_20px_55px_rgba(15,23,42,0.18)]">
-          <div className="flex items-start justify-between bg-gradient-to-r from-emerald-500 to-green-600 px-5 py-4 text-white">
+        <div className="pointer-events-auto w-[320px] max-w-full overflow-hidden rounded-[28px] border border-[#b9ea7f] bg-[#fbfff4] shadow-[0_20px_55px_rgba(96,140,26,0.22)]">
+          <div className="flex items-start justify-between bg-gradient-to-r from-[#7BEA18] to-[#66cf11] px-5 py-4 text-white">
             <div className="flex items-center gap-3">
-              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/20">
+              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#f6a04a] text-white shadow-[0_10px_24px_rgba(246,160,74,0.32)]">
                 <WhatsAppIcon />
               </div>
               <div>
                 <p className="text-sm font-semibold">WhatsApp Support</p>
-                <p className="text-xs text-emerald-50">Typically replies quickly</p>
+                <p className="text-xs text-[#fdf6ec]">Typically replies quickly</p>
               </div>
             </div>
 
@@ -52,14 +52,14 @@ export default function WhatsAppChatBox() {
               type="button"
               aria-label="Close WhatsApp chat box"
               onClick={() => setIsOpen(false)}
-              className="rounded-full p-1.5 text-white/90 transition hover:bg-white/15 hover:text-white"
+              className="rounded-full p-1.5 text-white/90 transition hover:bg-[#f6a04a] hover:text-white"
             >
               <X size={18} />
             </button>
           </div>
 
-          <div className="space-y-4 bg-[linear-gradient(180deg,#f7fef9_0%,#ffffff_100%)] px-5 py-5">
-            <div className="max-w-[240px] rounded-[22px] rounded-tl-md bg-white px-4 py-3 text-sm leading-6 text-slate-700 shadow-sm ring-1 ring-slate-100">
+          <div className="space-y-4 bg-[linear-gradient(180deg,#f7ffe9_0%,#fbfff4_100%)] px-5 py-5">
+            <div className="max-w-[240px] rounded-[22px] rounded-tl-md bg-white px-4 py-3 text-sm leading-6 text-slate-700 shadow-sm ring-1 ring-[#d9f3b5]">
               Hello, welcome to {APP_NAME}. Need help with appointments, orders,
               or products? Chat with us on WhatsApp.
             </div>
@@ -68,7 +68,7 @@ export default function WhatsAppChatBox() {
               href={whatsappUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-500 to-green-600 px-5 py-3.5 text-sm font-semibold text-white shadow-[0_14px_30px_rgba(34,197,94,0.28)] transition duration-300 hover:-translate-y-0.5 hover:from-emerald-600 hover:to-green-700"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#f6a04a] to-[#ee973f] px-5 py-3.5 text-sm font-semibold text-white shadow-[0_14px_30px_rgba(246,160,74,0.34)] transition duration-300 hover:-translate-y-0.5 hover:from-[#ee973f] hover:to-[#e48931]"
             >
               <MessageCircle size={18} />
               Start WhatsApp Chat
@@ -80,7 +80,7 @@ export default function WhatsAppChatBox() {
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
-        className="pointer-events-auto inline-flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-emerald-500 to-green-600 text-white shadow-[0_18px_40px_rgba(34,197,94,0.38)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_48px_rgba(34,197,94,0.42)]"
+        className="pointer-events-auto inline-flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-[#f6a04a] to-[#ee973f] text-white shadow-[0_18px_40px_rgba(246,160,74,0.4)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_48px_rgba(246,160,74,0.46)]"
         aria-label={isOpen ? "Minimize WhatsApp chat" : "Open WhatsApp chat"}
       >
         <WhatsAppIcon />

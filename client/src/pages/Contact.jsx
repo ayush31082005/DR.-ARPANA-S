@@ -123,16 +123,16 @@ export default function Contact() {
               })}
             </div>
 
-            <div className="rounded-[24px] border border-red-200 bg-red-50 px-5 py-4">
+            <div className="rounded-[24px] border border-[#f6b26b] bg-[#fff2e2] px-5 py-4">
               <div className="flex items-start gap-4">
-                <div className="grid h-10 w-10 place-items-center rounded-xl bg-white text-red-500">
+                <div className="grid h-10 w-10 place-items-center rounded-xl bg-[#fce1bf] text-[#f28c28]">
                   <ShieldAlert size={20} />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-red-600">
+                  <h3 className="font-semibold text-[#d97706]">
                     Emergency Services
                   </h3>
-                  <p className="mt-1 text-sm text-red-500">
+                  <p className="mt-1 text-sm text-[#ea8c2f]">
                     24/7 available - Ambulance: 1800-XXX-XXXX
                   </p>
                 </div>
@@ -169,7 +169,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     placeholder="Ramesh Kumar"
-                    className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-blue-300 focus:ring-4 focus:ring-blue-100"
+                    className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-[#f6b26b] focus:ring-4 focus:ring-[#fde6c7]"
                   />
                 </div>
 
@@ -183,7 +183,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     placeholder="+91 9XXXXXXXXX"
-                    className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-blue-300 focus:ring-4 focus:ring-blue-100"
+                    className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-[#f6b26b] focus:ring-4 focus:ring-[#fde6c7]"
                   />
                 </div>
               </div>
@@ -198,7 +198,7 @@ export default function Contact() {
                   onChange={handleChange}
                   type="email"
                   placeholder="your@email.com"
-                  className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-blue-300 focus:ring-4 focus:ring-blue-100"
+                  className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-[#f6b26b] focus:ring-4 focus:ring-[#fde6c7]"
                 />
               </div>
 
@@ -213,14 +213,14 @@ export default function Contact() {
                   required
                   rows={6}
                   placeholder="Write your message here..."
-                  className="w-full resize-none rounded-2xl border border-slate-200 bg-white px-4 py-4 text-sm outline-none transition focus:border-blue-300 focus:ring-4 focus:ring-blue-100"
+                  className="w-full resize-none rounded-2xl border border-slate-200 bg-white px-4 py-4 text-sm outline-none transition focus:border-[#f6b26b] focus:ring-4 focus:ring-[#fde6c7]"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full rounded-2xl bg-blue-600 px-6 py-4 text-base font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-70"
+                className="w-full rounded-2xl bg-[#f6a04a] px-6 py-4 text-base font-semibold text-white transition hover:bg-[#ee973f] disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {isSubmitting ? "Sending..." : "Send Message"}
               </button>

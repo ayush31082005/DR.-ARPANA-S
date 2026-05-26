@@ -183,7 +183,7 @@ export default function AdminProducts() {
       {isFormOpen || editingProductId ? (
         <form
           onSubmit={handleSubmit}
-          className="mb-8 grid gap-5 rounded-2xl border bg-white p-6 shadow-sm lg:grid-cols-2"
+          className="mb-8 grid gap-5 border bg-white p-6 shadow-sm lg:grid-cols-2"
         >
           <div className="lg:col-span-2">
             <h2 className="text-xl font-bold text-slate-900">
@@ -198,10 +198,10 @@ export default function AdminProducts() {
 
           {feedback.message ? (
             <div
-              className={`lg:col-span-2 rounded-2xl px-4 py-3 text-sm ${
+              className={`lg:col-span-2 px-4 py-3 text-sm ${
                 feedback.type === "success"
                   ? "border border-emerald-200 bg-emerald-50 text-emerald-700"
-                  : "border border-red-200 bg-red-50 text-red-700"
+                  : "border border-orange-200 bg-orange-50 text-orange-700"
               }`}
             >
               {feedback.message}
@@ -362,25 +362,25 @@ export default function AdminProducts() {
         </form>
       ) : null}
 
-      <div className="overflow-hidden rounded-2xl border bg-white shadow-sm">
+      <div className="overflow-hidden border border-orange-200 bg-white shadow-sm">
         <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead className="bg-slate-50 text-slate-600">
+          <table className="w-full border-separate border-spacing-0 text-sm">
+            <thead className="bg-orange-500 text-white">
               <tr>
-                <th className="p-4 text-left">Product</th>
-                <th className="p-4 text-left">Category</th>
-                <th className="p-4 text-left">Price</th>
-                <th className="p-4 text-left">Discount</th>
-                <th className="p-4 text-left">Real Amount</th>
-                <th className="p-4 text-left">Stock</th>
-                <th className="p-4 text-left">Actions</th>
+                <th className="border-b border-r border-orange-200 p-4 text-left">Product</th>
+                <th className="border-b border-r border-orange-200 p-4 text-left">Category</th>
+                <th className="border-b border-r border-orange-200 p-4 text-left">Price</th>
+                <th className="border-b border-r border-orange-200 p-4 text-left">Discount</th>
+                <th className="border-b border-r border-orange-200 p-4 text-left">Real Amount</th>
+                <th className="border-b border-r border-orange-200 p-4 text-left">Stock</th>
+                <th className="border-b border-orange-200 p-4 text-left">Actions</th>
               </tr>
             </thead>
 
             <tbody>
               {paginatedProducts.map((item) => (
-                <tr key={item.id} className="border-t">
-                  <td className="p-4">
+                <tr key={item.id} className="even:bg-orange-50/40">
+                  <td className="border-t border-r border-orange-100 p-4">
                     <div className="flex items-center gap-3">
                       <img
                         src={item.image}
@@ -406,12 +406,12 @@ export default function AdminProducts() {
                       </div>
                     </div>
                   </td>
-                  <td className="p-4 text-slate-600">{item.category}</td>
-                  <td className="p-4 font-semibold text-slate-800">Rs. {item.originalPrice}</td>
-                  <td className="p-4 text-slate-600">{item.discountPercent}%</td>
-                  <td className="p-4 font-semibold text-emerald-700">Rs. {item.price}</td>
-                  <td className="p-4 text-slate-600">{item.stock}</td>
-                  <td className="p-4">
+                  <td className="border-t border-r border-orange-100 p-4 text-slate-600">{item.category}</td>
+                  <td className="border-t border-r border-orange-100 p-4 font-semibold text-slate-800">Rs. {item.originalPrice}</td>
+                  <td className="border-t border-r border-orange-100 p-4 text-slate-600">{item.discountPercent}%</td>
+                  <td className="border-t border-r border-orange-100 p-4 font-semibold text-emerald-700">Rs. {item.price}</td>
+                  <td className="border-t border-r border-orange-100 p-4 text-slate-600">{item.stock}</td>
+                  <td className="border-t border-orange-100 p-4">
                     <div className="flex flex-wrap gap-2">
                       <button
                         type="button"
@@ -423,7 +423,7 @@ export default function AdminProducts() {
                       <button
                         type="button"
                         onClick={() => handleDelete(item.id)}
-                        className="rounded-xl border border-red-200 bg-red-50 px-3 py-1.5 text-xs font-semibold text-red-700 transition hover:bg-red-100"
+                        className="rounded-xl border border-orange-200 bg-orange-50 px-3 py-1.5 text-xs font-semibold text-orange-700 transition hover:bg-orange-100"
                       >
                         Delete
                       </button>
@@ -446,7 +446,7 @@ export default function AdminProducts() {
 
       {activeDescriptionProduct ? (
         <div className="fixed inset-0 z-50 bg-slate-950/45 px-4 py-4 md:px-6 md:py-6">
-          <div className="mx-auto grid h-[calc(100dvh-2rem)] min-h-0 w-full max-w-2xl grid-rows-[auto,minmax(0,1fr)] overflow-hidden rounded-3xl bg-white shadow-2xl md:h-[85vh]">
+          <div className="mx-auto grid h-[calc(100dvh-2rem)] min-h-0 w-full max-w-2xl grid-rows-[auto,minmax(0,1fr)] overflow-hidden bg-white shadow-2xl md:h-[85vh]">
             <div className="flex items-start justify-between gap-4 border-b border-slate-200 bg-white px-6 py-5">
               <div className="min-w-0">
                 <h3 className="text-xl font-bold text-slate-900">
@@ -466,7 +466,7 @@ export default function AdminProducts() {
             </div>
 
             <div className="min-h-0 overflow-hidden px-6 py-5">
-              <div className="h-full overflow-y-auto overscroll-contain rounded-2xl bg-slate-50 px-4 py-4 pr-3 text-sm leading-7 text-slate-600 [scrollbar-gutter:stable]">
+              <div className="h-full overflow-y-auto overscroll-contain bg-slate-50 px-4 py-4 pr-3 text-sm leading-7 text-slate-600 [scrollbar-gutter:stable]">
                 <div className="min-h-max">
                   {activeDescriptionProduct.description}
                 </div>

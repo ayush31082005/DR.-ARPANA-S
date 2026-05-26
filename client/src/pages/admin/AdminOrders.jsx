@@ -7,7 +7,7 @@ const statusClasses = {
   processing: "bg-sky-100 text-sky-700",
   shipped: "bg-violet-100 text-violet-700",
   delivered: "bg-emerald-100 text-emerald-700",
-  cancelled: "bg-red-100 text-red-700",
+  cancelled: "bg-orange-100 text-orange-700",
 };
 const ITEMS_PER_PAGE = 10;
 
@@ -64,23 +64,23 @@ export default function AdminOrders() {
       <h1 className="mb-6 text-3xl font-black text-slate-900">Orders</h1>
 
       {error ? (
-        <div className="mb-6 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+        <div className="mb-6 border border-orange-200 bg-orange-50 px-4 py-3 text-sm text-orange-700">
           {error}
         </div>
       ) : null}
 
-      <div className="overflow-hidden rounded-2xl border bg-white shadow-sm">
+      <div className="overflow-hidden border border-orange-200 bg-white shadow-sm">
         <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead className="bg-slate-50 text-slate-600">
+          <table className="w-full border-separate border-spacing-0 text-sm">
+            <thead className="bg-orange-500 text-white">
               <tr>
-                <th className="p-4 text-left">Customer</th>
-                <th className="p-4 text-left">Address</th>
-                <th className="p-4 text-left">Items</th>
-                <th className="p-4 text-left">Payment</th>
-                <th className="p-4 text-left">Total</th>
-                <th className="p-4 text-left">Placed On</th>
-                <th className="p-4 text-left">Status</th>
+                <th className="border-b border-r border-orange-200 p-4 text-left">Customer</th>
+                <th className="border-b border-r border-orange-200 p-4 text-left">Address</th>
+                <th className="border-b border-r border-orange-200 p-4 text-left">Items</th>
+                <th className="border-b border-r border-orange-200 p-4 text-left">Payment</th>
+                <th className="border-b border-r border-orange-200 p-4 text-left">Total</th>
+                <th className="border-b border-r border-orange-200 p-4 text-left">Placed On</th>
+                <th className="border-b border-orange-200 p-4 text-left">Status</th>
               </tr>
             </thead>
 
@@ -99,8 +99,8 @@ export default function AdminOrders() {
                 </tr>
               ) : (
                 paginatedOrders.map((item) => (
-                  <tr key={item._id} className="border-t">
-                    <td className="p-4">
+                  <tr key={item._id} className="even:bg-orange-50/40">
+                    <td className="border-t border-r border-orange-100 p-4">
                       <div className="font-semibold text-slate-800">
                         {item.shippingInfo?.fullName || "Customer"}
                       </div>
@@ -108,7 +108,7 @@ export default function AdminOrders() {
                         {item.shippingInfo?.phone || item.shippingInfo?.email || "No contact"}
                       </div>
                     </td>
-                    <td className="p-4 text-slate-600">
+                    <td className="border-t border-r border-orange-100 p-4 text-slate-600">
                       <div className="max-w-[260px]">
                         <div>{item.shippingInfo?.address || "No address"}</div>
                         <div className="text-xs text-slate-500">
@@ -118,23 +118,23 @@ export default function AdminOrders() {
                         </div>
                       </div>
                     </td>
-                    <td className="p-4 text-slate-600">
+                    <td className="border-t border-r border-orange-100 p-4 text-slate-600">
                       {item.items?.length || 0} item(s)
                     </td>
-                    <td className="p-4 uppercase text-slate-600">
+                    <td className="border-t border-r border-orange-100 p-4 uppercase text-slate-600">
                       {item.paymentMethod || "cod"}
                     </td>
-                    <td className="p-4 font-semibold text-slate-800">
+                    <td className="border-t border-r border-orange-100 p-4 font-semibold text-slate-800">
                       Rs. {item.total}
                     </td>
-                    <td className="p-4 text-slate-600">
+                    <td className="border-t border-r border-orange-100 p-4 text-slate-600">
                       {new Intl.DateTimeFormat("en-GB", {
                         day: "2-digit",
                         month: "short",
                         year: "numeric",
                       }).format(new Date(item.createdAt))}
                     </td>
-                    <td className="p-4">
+                    <td className="border-t border-orange-100 p-4">
                       <select
                         value={item.orderStatus}
                         onChange={(event) =>

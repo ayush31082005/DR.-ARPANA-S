@@ -72,8 +72,11 @@ export default function Shop() {
         description="Browse health, wellness, and personal care products."
         center
         image="https://images.unsplash.com/photo-1576602976047-174e57a47881?auto=format&fit=crop&w=1600&q=80"
+        imageOverlayClassName="bg-[#4f8f16]/70"
+        imageGradientClassName="bg-gradient-to-r from-[#365f10]/90 via-[#5ea918]/75 to-[#7BEA18]/60"
+        descriptionClassName="text-lime-50"
       />
-      <section className="section-space">
+      <section className="section-space bg-gradient-to-b from-[#dff8bf] via-[#eefddb] to-[#d5f6a8]">
         <div className="container-padded">
           <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-end">
             <ProductSort
@@ -82,23 +85,29 @@ export default function Shop() {
               filterValue={filterValue}
               onFilterChange={setFilterValue}
               filterOptions={filterOptions}
+              labelClassName="text-[#35690d]"
+              selectClassName="border-[#a9df6a] bg-[#efffe0] text-slate-900 focus:border-[#4f8f16] focus:ring-[#7BEA18]/20"
             />
           </div>
-          <div className="mb-4 text-sm text-slate-500">
+          <div className="mb-4 text-sm text-[#35690d]">
             Showing {startProduct}-{endProduct} of {visibleProducts.length} products
           </div>
           {paginatedProducts.length ? (
-            <ProductGrid products={paginatedProducts} />
+            <ProductGrid products={paginatedProducts} cardTheme="shop-lime" />
           ) : (
             <EmptyState
               title="No products found"
               description="Admin panel se product add karne ke baad wahi products yahan show honge."
+              className="border-[#a9df6a] bg-[#efffe0]"
+              titleClassName="text-[#35690d]"
+              descriptionClassName="text-[#4f8f16]"
             />
           )}
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
             onPageChange={setCurrentPage}
+            theme="shop-lime"
           />
         </div>
       </section>

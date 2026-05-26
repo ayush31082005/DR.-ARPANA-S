@@ -19,13 +19,28 @@ export default function ProductDetailsInfo({ product }) {
   const quantityText = product.quantityLabel || (product.stock ? `${product.stock} in stock` : "");
   const shortDetailsText = product.shortDetails || product.description || "";
 
+  const handleAddToCart = () => {
+    if (!isAuthenticated || !localStorage.getItem("token")) {
+      navigate("/login");
+      return false;
+    }
+
+    addToCart(product);
+    return true;
+  };
+
   const handleBuyNow = () => {
     if (!isAuthenticated || !localStorage.getItem("token")) {
       navigate("/login");
       return;
     }
 
-    addToCart(product);
+    const wasAdded = handleAddToCart();
+
+    if (!wasAdded) {
+      return;
+    }
+
     navigate("/checkout");
   };
 
@@ -46,18 +61,6 @@ export default function ProductDetailsInfo({ product }) {
           </p>
           <h1 className="mt-3 text-2xl font-bold text-slate-900 md:text-3xl">{product.name}</h1>
 
-          {quantityText ? (
-            <div className="mt-3 text-sm text-slate-600">
-              <span className="font-semibold text-slate-900">Quantity:</span> {quantityText}
-            </div>
-          ) : null}
-
-          {shortDetailsText ? (
-            <div className="mt-3 text-sm leading-7 text-slate-600">
-              {shortDetailsText}
-            </div>
-          ) : null}
-
           <div className="mt-4 flex flex-wrap items-end gap-3">
             <p className="text-2xl font-bold text-primary">{formatPrice(product.price)}</p>
             {originalPrice > product.price ? (
@@ -74,8 +77,21 @@ export default function ProductDetailsInfo({ product }) {
             <span className="font-semibold text-slate-900">Stock:</span> {product.stock}
           </div>
 
+          {quantityText ? (
+            <div className="mt-3 text-sm text-slate-600">
+              <span className="font-semibold text-slate-900">Quantity:</span> {quantityText}
+            </div>
+          ) : null}
+
+          {shortDetailsText ? (
+            <div className="mt-4 rounded-2xl bg-slate-50 px-4 py-3 text-sm leading-7 text-slate-600">
+              {/* <span className="font-semibold text-slate-900">Short Description:</span>{" "} */}
+              {shortDetailsText}
+            </div>
+          ) : null}
+
           <div className="mt-6 flex flex-wrap gap-4">
-            <Button onClick={() => addToCart(product)}>Add to Cart</Button>
+            <Button onClick={handleAddToCart}>Add to Cart</Button>
             <Button variant="outline" onClick={handleBuyNow}>Buy Now</Button>
           </div>
         </div>

@@ -4,6 +4,14 @@ import generateOtp from "../utils/generateOtp.js";
 import generateToken from "../utils/generateToken.js";
 import { sendOtpEmail } from "../utils/Email.js";
 
+const buildAuthUserResponse = (user) => ({
+    id: user._id,
+    name: user.name,
+    email: user.email,
+    phone: user.phone,
+    role: user.role || "user",
+});
+
 export const sendRegisterOtp = async (req, res) => {
     try {
         const { name, email, phone, password } = req.body;
@@ -28,15 +36,6 @@ export const sendRegisterOtp = async (req, res) => {
             return res.status(400).json({
                 success: false,
                 message: "Email already registered",
-            });
-        }
-
-        const existingPhone = await User.findOne({ phone });
-
-        if (existingPhone) {
-            return res.status(400).json({
-                success: false,
-                message: "Phone number already registered",
             });
         }
 
@@ -114,9 +113,7 @@ export const verifyOtpAndRegister = async (req, res) => {
             });
         }
 
-        const existingUser = await User.findOne({
-            $or: [{ email: otpData.email }, { phone: otpData.phone }],
-        });
+        const existingUser = await User.findOne({ email: otpData.email });
 
         if (existingUser) {
             await Otp.deleteMany({ email, purpose: "register" });
@@ -142,12 +139,7 @@ export const verifyOtpAndRegister = async (req, res) => {
             success: true,
             message: "Registration successful",
             token,
-            user: {
-                id: user._id,
-                name: user.name,
-                email: user.email,
-                phone: user.phone,
-            },
+            user: buildAuthUserResponse(user),
         });
     } catch (error) {
         console.error("Verify OTP Error:", error);
@@ -193,12 +185,7 @@ export const loginUser = async (req, res) => {
             success: true,
             message: "Login successful",
             token,
-            user: {
-                id: user._id,
-                name: user.name,
-                email: user.email,
-                phone: user.phone,
-            },
+            user: buildAuthUserResponse(user),
         });
     } catch (error) {
         console.error("Login Error:", error);
@@ -254,6 +241,75 @@ export const forgotPassword = async (req, res) => {
         return res.status(500).json({
             success: false,
             message: "Server error",
+        });
+    }
+};
+
+export const createAdminUser = async (req, res) => {
+    try {
+        const providedSecret =
+            req.headers["x-admin-setup-secret"] || req.body.adminSetupSecret;
+
+        if (!process.env.ADMIN_SETUP_SECRET) {
+            return res.status(500).json({
+                success: false,
+                message: "ADMIN_SETUP_SECRET is not configured on the server",
+            });
+        }
+
+        if (providedSecret !== process.env.ADMIN_SETUP_SECRET) {
+            return res.status(403).json({
+                success: false,
+                message: "Invalid admin setup secret",
+            });
+        }
+
+        const { name, email, phone, password } = req.body;
+
+        if (!name || !email || !phone || !password) {
+            return res.status(400).json({
+                success: false,
+                message: "Name, email, phone, and password are required",
+            });
+        }
+
+        if (password.length < 6) {
+            return res.status(400).json({
+                success: false,
+                message: "Password must be at least 6 characters",
+            });
+        }
+
+        const existingUser = await User.findOne({ email });
+
+        if (existingUser) {
+            return res.status(400).json({
+                success: false,
+                message: "Email already registered",
+            });
+        }
+
+        const adminUser = await User.create({
+            name,
+            email,
+            phone,
+            password,
+            role: "admin",
+        });
+
+        const token = generateToken(adminUser._id);
+
+        return res.status(201).json({
+            success: true,
+            message: "Admin created successfully",
+            token,
+            user: buildAuthUserResponse(adminUser),
+        });
+    } catch (error) {
+        console.error("Create Admin Error:", error);
+        return res.status(500).json({
+            success: false,
+            message: error.message || "Server error while creating admin",
         });
     }
 };
@@ -390,6 +446,9 @@ export const resetPassword = async (req, res) => {
 export const getMe = async (req, res) => {
     return res.status(200).json({
         success: true,
-        user: req.user,
+        user: {
+            ...req.user.toObject(),
+            role: req.user.role || "user",
+        },
     });
 };

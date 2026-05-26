@@ -4,6 +4,7 @@ import ShopLayout from "../layouts/ShopLayout";
 import AuthLayout from "../layouts/AuthLayout";
 import DashboardLayout from "../layouts/DashboardLayout";
 import ScrollToTop from "./ScrollToTop";
+import ProtectedRoute from "../components/auth/ProtectedRoute";
 
 import Home from "../pages/Home";
 import About from "../pages/About";
@@ -39,6 +40,7 @@ import AdminContacts from "../pages/admin/AdminContact";
 import AdminPrescriptions from "../pages/admin/AdminPrescription";
 import AdminOrders from "../pages/admin/AdminOrders";
 import AdminProducts from "../pages/admin/AdminProducts";
+import AdminSettings from "../pages/admin/AdminSettings";
 
 export default function AppRoutes() {
   return (
@@ -68,15 +70,30 @@ export default function AppRoutes() {
         <Route path="/register" element={<AuthLayout><Register /></AuthLayout>} />
         <Route path="/forgot-password" element={<AuthLayout><ForgotPassword /></AuthLayout>} />
 
-        <Route path="/user-dashboard" element={<DashboardLayout><UserDashboard /></DashboardLayout>} />
+        <Route
+          path="/user-dashboard"
+          element={
+            <ProtectedRoute>
+              <DashboardLayout><UserDashboard /></DashboardLayout>
+            </ProtectedRoute>
+          }
+        />
 
-        <Route path="/admin" element={<AdminLayout />}>
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute requireAdmin>
+              <AdminLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route index element={<AdminDashboard />} />
           <Route path="contacts" element={<AdminContacts />} />
           <Route path="appointments" element={<AdminAppointments />} />
           <Route path="prescriptions" element={<AdminPrescriptions />} />
           <Route path="orders" element={<AdminOrders />} />
           <Route path="products" element={<AdminProducts />} />
+          <Route path="settings" element={<AdminSettings />} />
         </Route>
 
         <Route path="*" element={<MainLayout><NotFound /></MainLayout>} />

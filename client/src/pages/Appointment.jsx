@@ -99,7 +99,7 @@ export default function Appointment() {
     <section className="bg-slate-50 py-10 md:py-14">
       <div className="container-padded">
         <div className="mx-auto max-w-6xl space-y-8">
-          <div className="w-full overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <div className="flex w-full justify-center overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             <div className="inline-flex min-w-max items-center gap-3 px-1 sm:gap-4 sm:px-2">
               {steps.map((label, index) => {
                 const current = index + 1;
@@ -111,15 +111,15 @@ export default function Appointment() {
                     <div
                       className={`flex items-center gap-2 rounded-full px-3 py-2.5 text-xs font-semibold transition-colors sm:gap-3 sm:px-5 sm:py-3 sm:text-sm ${
                         isDone
-                          ? "bg-emerald-100 text-emerald-700"
+                          ? "bg-[#f6a04a] text-white"
                           : isActive
-                            ? "bg-blue-600 text-white"
-                            : "bg-white text-slate-400 shadow-sm"
+                            ? "bg-[#f6a04a] text-white"
+                            : "bg-[#ffe2bf] text-[#c7781f] shadow-sm"
                       }`}
                     >
                       <span
                         className={`grid h-6 w-6 place-items-center rounded-full border text-xs ${
-                          isDone || isActive ? "border-current" : "border-slate-300"
+                          isDone || isActive ? "border-current" : "border-[#f0b56a]"
                         }`}
                       >
                         {isDone ? "OK" : current}
@@ -127,7 +127,11 @@ export default function Appointment() {
                       <span className="whitespace-nowrap">{label}</span>
                     </div>
                     {index < steps.length - 1 ? (
-                      <div className={`h-0.5 w-6 sm:w-8 ${step > current ? "bg-emerald-300" : "bg-slate-200"}`} />
+                      <div
+                        className={`h-0.5 w-6 sm:w-8 ${
+                          step > current ? "bg-[#f6bf80]" : "bg-[#f8d9b0]"
+                        }`}
+                      />
                     ) : null}
                   </div>
                 );
@@ -174,7 +178,7 @@ export default function Appointment() {
                 <button
                   type="button"
                   onClick={resetForm}
-                  className="mt-8 rounded-2xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"
+                  className="mt-8 rounded-2xl bg-[#f6a04a] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#ee973f]"
                 >
                   Book Another Appointment
                 </button>
@@ -204,7 +208,7 @@ export default function Appointment() {
                           onChange={handleChange}
                           required
                           placeholder="Ramesh Kumar"
-                          className="w-full rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm text-slate-700 outline-none transition focus:border-blue-300 focus:ring-4 focus:ring-blue-100"
+                          className="w-full rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm text-slate-700 outline-none transition focus:border-[#f0b56a] focus:ring-4 focus:ring-[#fce6cc]"
                         />
                       </div>
 
@@ -219,7 +223,7 @@ export default function Appointment() {
                           required
                           type="tel"
                           placeholder="+91 9XXXXXXXXX"
-                          className="w-full rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm text-slate-700 outline-none transition focus:border-blue-300 focus:ring-4 focus:ring-blue-100"
+                          className="w-full rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm text-slate-700 outline-none transition focus:border-[#f0b56a] focus:ring-4 focus:ring-[#fce6cc]"
                         />
                       </div>
 
@@ -233,7 +237,7 @@ export default function Appointment() {
                           onChange={handleChange}
                           type="email"
                           placeholder="name@email.com"
-                          className="w-full rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm text-slate-700 outline-none transition focus:border-blue-300 focus:ring-4 focus:ring-blue-100"
+                          className="w-full rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm text-slate-700 outline-none transition focus:border-[#f0b56a] focus:ring-4 focus:ring-[#fce6cc]"
                         />
                       </div>
 
@@ -246,7 +250,7 @@ export default function Appointment() {
                           value={form.dob}
                           onChange={handleChange}
                           type="date"
-                          className="w-full rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm text-slate-700 outline-none transition focus:border-blue-300 focus:ring-4 focus:ring-blue-100"
+                          className="w-full rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm text-slate-700 outline-none transition focus:border-[#f0b56a] focus:ring-4 focus:ring-[#fce6cc]"
                         />
                       </div>
                     </div>
@@ -255,7 +259,7 @@ export default function Appointment() {
                       type="button"
                       onClick={() => setStep(2)}
                       disabled={!form.name || !form.phone}
-                      className="w-full rounded-2xl bg-blue-600 px-6 py-4 text-base font-semibold text-white transition hover:bg-blue-700 disabled:bg-blue-300"
+                      className="w-full rounded-2xl bg-[#f6a04a] px-6 py-4 text-base font-semibold text-white transition hover:bg-[#ee973f] disabled:bg-[#f7b26a] disabled:text-white"
                     >
                       Continue
                     </button>
@@ -277,7 +281,7 @@ export default function Appointment() {
                         value={form.service}
                         onChange={handleChange}
                         required
-                        className="w-full rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm text-slate-700 outline-none transition focus:border-blue-300 focus:ring-4 focus:ring-blue-100"
+                        className="w-full rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm text-slate-700 outline-none transition focus:border-[#f0b56a] focus:ring-4 focus:ring-[#fce6cc]"
                       >
                         <option value="">Select a service...</option>
                         {services.map((service) => (
@@ -297,7 +301,7 @@ export default function Appointment() {
                         value={form.doctor}
                         onChange={handleChange}
                         required
-                        className="w-full rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm text-slate-700 outline-none transition focus:border-blue-300 focus:ring-4 focus:ring-blue-100"
+                        className="w-full rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm text-slate-700 outline-none transition focus:border-[#f0b56a] focus:ring-4 focus:ring-[#fce6cc]"
                       >
                         <option value="">Select a doctor...</option>
                         {doctors.map((doctor) => (
@@ -318,7 +322,7 @@ export default function Appointment() {
                         onChange={handleChange}
                         rows={4}
                         placeholder="Describe symptoms or any relevant details..."
-                        className="w-full resize-none rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm text-slate-700 outline-none transition focus:border-blue-300 focus:ring-4 focus:ring-blue-100"
+                        className="w-full resize-none rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm text-slate-700 outline-none transition focus:border-[#f0b56a] focus:ring-4 focus:ring-[#fce6cc]"
                       />
                     </div>
 
@@ -334,7 +338,7 @@ export default function Appointment() {
                         type="button"
                         onClick={() => setStep(3)}
                         disabled={!form.service || !form.doctor}
-                        className="rounded-2xl bg-blue-600 px-6 py-4 text-base font-semibold text-white transition hover:bg-blue-700 disabled:bg-blue-300"
+                        className="rounded-2xl bg-[#f6a04a] px-6 py-4 text-base font-semibold text-white transition hover:bg-[#ee973f] disabled:bg-[#f7b26a] disabled:text-white"
                       >
                         Continue
                       </button>
@@ -359,7 +363,7 @@ export default function Appointment() {
                         required
                         type="date"
                         min={new Date().toISOString().split("T")[0]}
-                        className="w-full rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm text-slate-700 outline-none transition focus:border-blue-300 focus:ring-4 focus:ring-blue-100"
+                        className="w-full rounded-2xl border border-slate-200 bg-white px-5 py-4 text-sm text-slate-700 outline-none transition focus:border-[#f0b56a] focus:ring-4 focus:ring-[#fce6cc]"
                       />
                     </div>
 
@@ -375,8 +379,8 @@ export default function Appointment() {
                             onClick={() => setForm((current) => ({ ...current, time: slot }))}
                             className={`rounded-2xl border px-4 py-4 text-sm font-medium transition-colors ${
                               form.time === slot
-                                ? "border-blue-600 bg-blue-600 text-white shadow-md"
-                                : "border-slate-200 bg-white text-slate-700 hover:border-blue-300"
+                                ? "border-[#f6a04a] bg-[#f6a04a] text-white shadow-md"
+                                : "border-slate-200 bg-white text-slate-700 hover:border-[#f0b56a]"
                             }`}
                           >
                             {slot}
@@ -404,7 +408,7 @@ export default function Appointment() {
                         disabled={!canSubmit || isSubmitting}
                         className={`flex-1 rounded-2xl px-6 py-4 text-base font-semibold shadow-sm transition ${
                           canSubmit && !isSubmitting
-                            ? "bg-primary text-white hover:bg-teal-700"
+                            ? "bg-[#f6a04a] text-white hover:bg-[#ee973f]"
                             : "cursor-not-allowed bg-slate-200 text-slate-400"
                         }`}
                       >

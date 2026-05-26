@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 import {
   Activity,
   Accessibility,
@@ -31,7 +32,12 @@ const iconMap = {
   "user-round": UserRound,
 };
 
-export default function ServiceCard({ service, variant = "default" }) {
+export default function ServiceCard({
+  service,
+  variant = "default",
+  mobileImageOnly = false,
+}) {
+  const [isTouchExpanded, setIsTouchExpanded] = useState(false);
   const Icon = iconMap[service.icon] || Stethoscope;
 
   if (variant === "imageOverlay") {
@@ -41,9 +47,15 @@ export default function ServiceCard({ service, variant = "default" }) {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: false, amount: 0.2 }}
-        className="group relative overflow-hidden rounded-[26px] bg-slate-950 shadow-card"
+        className="group relative overflow-hidden rounded-none bg-slate-950 shadow-card"
+        onClick={() => {
+          if (mobileImageOnly || typeof window === "undefined") return;
+          if (window.matchMedia("(hover: none)").matches) {
+            setIsTouchExpanded((current) => !current);
+          }
+        }}
       >
-        <div className="aspect-[16/11] overflow-hidden sm:aspect-[5/4] xl:aspect-[4/5]">
+        <div className="aspect-[16/10] overflow-hidden sm:aspect-[6/5] xl:aspect-[5/6]">
           <img
             src={service.image}
             alt={`${service.title} service`}
@@ -51,36 +63,50 @@ export default function ServiceCard({ service, variant = "default" }) {
           />
         </div>
 
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/35 to-transparent transition duration-500 group-hover:from-slate-950 group-hover:via-slate-950/60" />
+        <div
+          className={`absolute inset-0 transition duration-500 ${
+            mobileImageOnly
+              ? "bg-gradient-to-t from-slate-950/15 via-transparent to-transparent sm:from-slate-950 sm:via-slate-950/35 group-hover:sm:from-slate-950 group-hover:sm:via-slate-950/60"
+              : "bg-gradient-to-t from-slate-950/75 via-slate-950/20 to-transparent group-hover:from-slate-950 group-hover:via-slate-950/50"
+          }`}
+        />
 
-        <div className="absolute inset-x-0 top-0 flex items-center justify-between p-4 sm:p-5">
-          <span className="rounded-full bg-white/90 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-primary shadow-sm sm:text-[11px]">
+        <div className="absolute inset-x-0 top-0 flex items-center justify-between p-3.5 sm:p-4">
+          <span className="rounded-full bg-white/90 px-3 py-1 text-[9px] font-semibold uppercase tracking-[0.16em] text-primary shadow-sm sm:text-[10px]">
             {service.title}
           </span>
-          {service.image ? (
-            <div className="h-10 w-10 overflow-hidden rounded-2xl border border-white/40 bg-white/15 shadow-lg backdrop-blur-md sm:h-12 sm:w-12">
-              <img
-                src={service.image}
-                alt={`${service.title} thumbnail`}
-                className="h-full w-full object-cover"
-              />
-            </div>
-          ) : null}
         </div>
 
-        <div className="absolute inset-x-0 bottom-0 p-4 text-white sm:p-5">
+        <div
+          className={`absolute inset-x-0 bottom-0 p-4 text-white sm:p-4.5 ${
+            mobileImageOnly ? "hidden sm:block" : "block"
+          }`}
+        >
           <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-teal-200">
             {service.category}
           </p>
           <div className="mt-3 overflow-hidden">
-            <p className="max-w-[26ch] max-h-12 overflow-hidden text-sm leading-6 text-slate-200 transition-all duration-500 group-hover:max-h-32">
+            <p
+              className={`max-w-[29ch] overflow-hidden text-slate-200 transition-all duration-500 group-hover:max-h-56 ${
+                mobileImageOnly
+                  ? "max-h-28 text-[13px] leading-6"
+                  : "max-h-10 text-[12px] leading-5 sm:max-h-28 sm:text-[13px] sm:leading-6"
+              }`}
+            >
               {service.description}
             </p>
 
-            <div className="max-h-0 overflow-hidden opacity-0 transition-all duration-500 group-hover:mt-4 group-hover:max-h-16 group-hover:opacity-100">
+            <div
+              className={`overflow-hidden transition-all duration-500 ${
+                isTouchExpanded
+                  ? "mt-3 max-h-16 opacity-100 sm:mt-0 sm:max-h-0 sm:opacity-0"
+                  : "max-h-0 opacity-0"
+              } sm:block sm:max-h-0 sm:opacity-0 sm:group-hover:mt-3 sm:group-hover:max-h-16 sm:group-hover:opacity-100`}
+            >
               <Link
                 to="/appointment"
-                className="inline-flex items-center text-sm font-semibold text-teal-200 transition hover:text-white"
+                onClick={(event) => event.stopPropagation()}
+                className="inline-flex items-center text-[13px] font-semibold text-teal-200 transition hover:text-white"
               >
                 {"Book Appointment ->"}
               </Link>

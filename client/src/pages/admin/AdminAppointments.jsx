@@ -8,7 +8,7 @@ import {
 const statusClasses = {
   pending: "bg-amber-100 text-amber-700",
   confirmed: "bg-emerald-100 text-emerald-700",
-  cancelled: "bg-red-100 text-red-700",
+  cancelled: "bg-orange-100 text-orange-700",
   completed: "bg-sky-100 text-sky-700",
 };
 
@@ -75,23 +75,23 @@ export default function AdminAppointments() {
       </h1>
 
       {error ? (
-        <div className="mb-6 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+        <div className="mb-6 border border-orange-200 bg-orange-50 px-4 py-3 text-sm text-orange-700">
           {error}
         </div>
       ) : null}
 
-      <div className="overflow-hidden rounded-2xl border bg-white shadow-sm">
+      <div className="overflow-hidden border border-orange-200 bg-white shadow-sm">
         <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead className="bg-slate-50 text-slate-600">
+          <table className="w-full border-separate border-spacing-0 text-sm">
+            <thead className="bg-orange-500 text-white">
               <tr>
-                <th className="p-4 text-left">Patient</th>
-                <th className="p-4 text-left">Contact</th>
-                <th className="p-4 text-left">Service</th>
-                <th className="p-4 text-left">Doctor</th>
-                <th className="p-4 text-left">Date & Time</th>
-                <th className="p-4 text-left">Notes</th>
-                <th className="p-4 text-left">Status</th>
+                <th className="border-b border-r border-orange-200 p-4 text-left">Patient</th>
+                <th className="border-b border-r border-orange-200 p-4 text-left">Contact</th>
+                <th className="border-b border-r border-orange-200 p-4 text-left">Service</th>
+                <th className="border-b border-r border-orange-200 p-4 text-left">Doctor</th>
+                <th className="border-b border-r border-orange-200 p-4 text-left">Date & Time</th>
+                <th className="border-b border-r border-orange-200 p-4 text-left">Notes</th>
+                <th className="border-b border-orange-200 p-4 text-left">Status</th>
               </tr>
             </thead>
 
@@ -110,8 +110,8 @@ export default function AdminAppointments() {
                 </tr>
               ) : (
                 paginatedAppointments.map((item) => (
-                  <tr key={item._id} className="border-t">
-                    <td className="p-4">
+                  <tr key={item._id} className="even:bg-orange-50/40">
+                    <td className="border-t border-r border-orange-100 p-4">
                       <div className="font-semibold text-slate-800">
                         {item.name || "Patient"}
                       </div>
@@ -119,30 +119,30 @@ export default function AdminAppointments() {
                         {item.dob || "DOB not provided"}
                       </div>
                     </td>
-                    <td className="p-4 text-slate-600">
+                    <td className="border-t border-r border-orange-100 p-4 text-slate-600">
                       <div>{item.phone || "No phone"}</div>
                       <div className="text-xs text-slate-500">
                         {item.email || "No email"}
                       </div>
                     </td>
-                    <td className="p-4 text-slate-600">
+                    <td className="border-t border-r border-orange-100 p-4 text-slate-600">
                       {item.service || "Not selected"}
                     </td>
-                    <td className="p-4 text-slate-600">
+                    <td className="border-t border-r border-orange-100 p-4 text-slate-600">
                       {item.doctor || "Not selected"}
                     </td>
-                    <td className="p-4 text-slate-600">
+                    <td className="border-t border-r border-orange-100 p-4 text-slate-600">
                       <div>{formatAppointmentDate(item.date)}</div>
                       <div className="text-xs text-slate-500">
                         {item.time || "Time not selected"}
                       </div>
                     </td>
-                    <td className="p-4 text-slate-600">
+                    <td className="border-t border-r border-orange-100 p-4 text-slate-600">
                       <div className="max-w-[220px] truncate">
                         {item.notes || "No notes"}
                       </div>
                     </td>
-                    <td className="p-4">
+                    <td className="border-t border-orange-100 p-4">
                       <select
                         value={item.status}
                         onChange={(event) =>

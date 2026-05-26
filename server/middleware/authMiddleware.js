@@ -25,6 +25,7 @@ export const protect = async (req, res, next) => {
             });
         }
 
+        user.role = user.role || "user";
         req.user = user;
         next();
     } catch (error) {
@@ -33,4 +34,17 @@ export const protect = async (req, res, next) => {
             message: "Invalid or expired token",
         });
     }
+};
+
+export const authorizeRoles = (...roles) => {
+    return (req, res, next) => {
+        if (!req.user || !roles.includes(req.user.role)) {
+            return res.status(403).json({
+                success: false,
+                message: "Access denied",
+            });
+        }
+
+        next();
+    };
 };

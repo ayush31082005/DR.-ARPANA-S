@@ -45,12 +45,21 @@ export function AuthProvider({ children }) {
     localStorage.removeItem(CART_STORAGE_KEY);
   };
 
+  const updateUser = (userData) => {
+    setUser((current) => ({
+      ...current,
+      ...userData,
+    }));
+  };
+
   const value = useMemo(() => ({
     user,
     isLoading,
     isAuthenticated: Boolean(user),
+    isAdmin: user?.role === "admin",
     loginUser,
-    logoutUser
+    logoutUser,
+    updateUser
   }), [isLoading, user]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

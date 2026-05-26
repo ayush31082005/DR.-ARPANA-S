@@ -1,5 +1,6 @@
 import express from "express";
 import {
+    createAdminUser,
     sendRegisterOtp,
     verifyOtpAndRegister,
     loginUser,
@@ -12,6 +13,7 @@ import { protect } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
+router.post("/create-admin", createAdminUser);
 router.post("/send-otp", sendRegisterOtp);
 router.post("/verify-otp", verifyOtpAndRegister);
 router.post("/login", loginUser);

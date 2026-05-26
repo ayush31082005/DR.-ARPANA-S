@@ -27,7 +27,7 @@ export default function LoginForm() {
 
       const response = await login(form);
       loginUser(response.user, response.token);
-      navigate("/admin");
+      navigate(response.user?.role === "admin" ? "/admin" : "/user-dashboard");
     } catch (error) {
       setFeedback({
         type: "error",
@@ -46,16 +46,16 @@ export default function LoginForm() {
       className="mx-auto w-full max-w-xl"
     >
       <div className="relative overflow-hidden rounded-[32px] border border-white/40 bg-white/80 p-6 shadow-[0_20px_60px_rgba(15,23,42,0.10)] backdrop-blur-xl sm:p-8">
-        <div className="absolute inset-0 bg-gradient-to-br from-sky-50/70 via-white to-teal-50/60" />
-        <div className="absolute -left-16 -top-16 h-40 w-40 rounded-full bg-sky-200/30 blur-3xl" />
-        <div className="absolute -bottom-16 -right-16 h-40 w-40 rounded-full bg-teal-200/30 blur-3xl" />
+        <div className="absolute inset-0 bg-gradient-to-br from-lime-50/80 via-white to-[#eefddb]/80" />
+        <div className="absolute -left-16 -top-16 h-40 w-40 rounded-full bg-lime-200/40 blur-3xl" />
+        <div className="absolute -bottom-16 -right-16 h-40 w-40 rounded-full bg-[#bdf37f]/40 blur-3xl" />
 
         <div className="relative z-10">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.1, duration: 0.45 }}
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-sky-200 bg-sky-50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-sky-700"
+            className="mb-6 inline-flex items-center gap-2 rounded-full border border-lime-200 bg-lime-50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#4f8f16]"
           >
             <LogIn size={14} />
             Welcome Back
@@ -93,7 +93,7 @@ export default function LoginForm() {
                 Email Address
               </label>
               <input
-                className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-slate-800 outline-none transition duration-300 placeholder:text-slate-400 focus:border-primary focus:ring-4 focus:ring-teal-100"
+                className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-slate-800 outline-none transition duration-300 placeholder:text-slate-400 focus:border-primary focus:ring-4 focus:ring-lime-100"
                 placeholder="Enter your email"
                 type="email"
                 name="email"
@@ -112,7 +112,7 @@ export default function LoginForm() {
 
               <div className="relative">
                 <input
-                  className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 pr-12 text-sm text-slate-800 outline-none transition duration-300 placeholder:text-slate-400 focus:border-primary focus:ring-4 focus:ring-teal-100"
+                  className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 pr-12 text-sm text-slate-800 outline-none transition duration-300 placeholder:text-slate-400 focus:border-primary focus:ring-4 focus:ring-lime-100"
                   type={showPassword ? "text" : "password"}
                   name="password"
                   placeholder="Enter your password"
@@ -152,7 +152,7 @@ export default function LoginForm() {
               whileTap={{ scale: 0.99 }}
               type="submit"
               disabled={isSubmitting}
-              className="mt-2 inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-primary to-sky-600 px-5 py-3.5 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(14,165,233,0.22)] transition duration-300 hover:from-teal-700 hover:to-sky-700"
+              className="mt-2 inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-primary to-secondary px-5 py-3.5 text-sm font-semibold text-slate-900 shadow-[0_12px_30px_rgba(123,234,24,0.24)] transition duration-300 hover:from-secondary hover:to-[#4f8f16]"
             >
               {isSubmitting ? "Logging in..." : "Login"}
             </motion.button>

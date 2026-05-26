@@ -1,4 +1,4 @@
-import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Navigate, NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import {
     CalendarCheck,
     FileText,
@@ -7,6 +7,7 @@ import {
     Menu,
     MessageSquare,
     Package,
+    Settings,
     ShoppingBag,
     X
 } from "lucide-react";
@@ -16,7 +17,7 @@ import useAuth from "../../hooks/useAuth";
 export default function AdminLayout() {
     const location = useLocation();
     const navigate = useNavigate();
-    const { logoutUser } = useAuth();
+    const { isLoading, logoutUser, user } = useAuth();
     const [open, setOpen] = useState(false);
     const [isDesktop, setIsDesktop] = useState(() =>
         typeof window !== "undefined" ? window.innerWidth >= 768 : false
@@ -41,6 +42,22 @@ export default function AdminLayout() {
         };
     }, []);
 
+    if (isLoading) {
+        return (
+            <div className="flex min-h-screen items-center justify-center bg-slate-100 text-slate-600">
+                Checking admin access...
+            </div>
+        );
+    }
+
+    if (!user) {
+        return <Navigate to="/login" replace />;
+    }
+
+    if (user.role !== "admin") {
+        return <Navigate to="/user-dashboard" replace />;
+    }
+
     const links = [
         { name: "Dashboard", path: "/admin", icon: LayoutDashboard },
         { name: "Contacts", path: "/admin/contacts", icon: MessageSquare },
@@ -48,6 +65,7 @@ export default function AdminLayout() {
         { name: "Prescriptions", path: "/admin/prescriptions", icon: FileText },
         { name: "Orders", path: "/admin/orders", icon: ShoppingBag },
         { name: "Products", path: "/admin/products", icon: Package },
+        { name: "Settings", path: "/admin/settings", icon: Settings },
     ];
 
     const handleLogout = () => {
@@ -57,11 +75,11 @@ export default function AdminLayout() {
     };
 
     return (
-        <div className="isolate min-h-screen overflow-x-hidden bg-slate-100">
+        <div className="theme-green-page isolate min-h-screen overflow-x-hidden bg-[#dff8bf]">
             <aside className={`fixed inset-y-0 left-0 z-40 flex h-screen w-72 flex-col border-r border-slate-200 bg-white transition ${isDesktop || open ? "translate-x-0" : "-translate-x-full"}`}>
                 <div className="flex h-16 items-center justify-between border-b px-6">
                     <div>
-                        <h1 className="text-xl font-black text-teal-700">Admin Panel</h1>
+                        <h1 className="text-xl font-black text-[#35690d]">Admin Panel</h1>
                         <p className="text-xs text-slate-500">Dr. Aprana&apos;s</p>
                     </div>
                     {!isDesktop ? (
@@ -77,7 +95,7 @@ export default function AdminLayout() {
                             end={path === "/admin"}
                             onClick={() => setOpen(false)}
                             className={({ isActive }) =>
-                                `flex items-center gap-3 px-4 py-3 rounded-xl font-semibold ${isActive ? "bg-teal-600 text-white" : "text-slate-600 hover:bg-slate-100"
+                                `flex items-center gap-3 px-4 py-3 font-semibold ${isActive ? "bg-[#4f8f16] text-white" : "text-slate-600 hover:bg-slate-100"
                                 }`
                             }
                         >
@@ -96,7 +114,7 @@ export default function AdminLayout() {
                 />
             ) : null}
 
-            <main className="min-w-0 bg-slate-100 md:ml-72">
+            <main className="min-w-0 bg-gradient-to-b from-[#dff8bf] via-[#eefddb] to-[#d5f6a8] md:ml-72">
                 <header className="sticky top-0 z-20 flex h-16 items-center justify-between border-b bg-white px-4 md:px-6">
                     {!isDesktop ? (
                         <button onClick={() => setOpen(true)}><Menu /></button>
@@ -105,13 +123,16 @@ export default function AdminLayout() {
                     <button
                         type="button"
                         onClick={handleLogout}
-                        className="flex items-center gap-2 text-red-500 font-semibold"
+                        className="flex items-center gap-2 font-semibold text-orange-500"
                     >
                         <LogOut size={18} /> Logout
                     </button>
                 </header>
 
-                <div key={location.pathname} className="p-4 md:p-6">
+                <div
+                    key={location.pathname}
+                    className="mx-auto w-full max-w-7xl px-3 py-4 md:px-4 md:py-6"
+                >
                     <Outlet />
                 </div>
             </main>

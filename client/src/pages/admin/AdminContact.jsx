@@ -78,22 +78,22 @@ export default function AdminContacts() {
             <h1 className="text-3xl font-black text-slate-900 mb-6">Contact Messages</h1>
 
             {error ? (
-                <div className="mb-6 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                <div className="mb-6 border border-orange-200 bg-orange-50 px-4 py-3 text-sm text-orange-700">
                     {error}
                 </div>
             ) : null}
 
-            <div className="bg-white rounded-2xl border shadow-sm overflow-hidden">
+            <div className="overflow-hidden border border-orange-200 bg-white shadow-sm">
                 <div className="overflow-x-auto">
-                    <table className="w-full text-sm">
-                        <thead className="bg-slate-50 text-slate-600">
+                    <table className="w-full border-separate border-spacing-0 text-sm">
+                        <thead className="bg-orange-500 text-white">
                             <tr>
-                                <th className="p-4 text-left">Name</th>
-                                <th className="p-4 text-left">Phone</th>
-                                <th className="p-4 text-left">Email</th>
-                                <th className="p-4 text-left">Message</th>
-                                <th className="p-4 text-left">Status</th>
-                                <th className="p-4 text-left">Action</th>
+                                <th className="border-b border-r border-orange-200 p-4 text-left">Name</th>
+                                <th className="border-b border-r border-orange-200 p-4 text-left">Phone</th>
+                                <th className="border-b border-r border-orange-200 p-4 text-left">Email</th>
+                                <th className="border-b border-r border-orange-200 p-4 text-left">Message</th>
+                                <th className="border-b border-r border-orange-200 p-4 text-left">Status</th>
+                                <th className="border-b border-orange-200 p-4 text-left">Action</th>
                             </tr>
                         </thead>
 
@@ -112,12 +112,12 @@ export default function AdminContacts() {
                                 </tr>
                             ) : (
                                 paginatedContacts.map((item) => (
-                                    <tr key={item._id} className="border-t">
-                                        <td className="p-4">{item.name}</td>
-                                        <td className="p-4">{item.phone}</td>
-                                        <td className="p-4">{item.email}</td>
-                                        <td className="p-4 max-w-xs text-slate-600">{item.message}</td>
-                                        <td className="p-4">
+                                    <tr key={item._id} className="even:bg-orange-50/40">
+                                        <td className="border-t border-r border-orange-100 p-4">{item.name}</td>
+                                        <td className="border-t border-r border-orange-100 p-4">{item.phone}</td>
+                                        <td className="border-t border-r border-orange-100 p-4">{item.email}</td>
+                                        <td className="border-t border-r border-orange-100 p-4 max-w-xs text-slate-600">{item.message}</td>
+                                        <td className="border-t border-r border-orange-100 p-4">
                                             <select
                                                 value={item.status}
                                                 onChange={(event) =>
@@ -131,11 +131,11 @@ export default function AdminContacts() {
                                                 <option value="replied">Replied</option>
                                             </select>
                                         </td>
-                                        <td className="p-4">
+                                        <td className="border-t border-orange-100 p-4">
                                             <button
                                                 type="button"
                                                 onClick={() => handleDelete(item._id)}
-                                                className="text-red-500"
+                                                className="text-orange-500"
                                             >
                                                 <Trash2 size={18} />
                                             </button>

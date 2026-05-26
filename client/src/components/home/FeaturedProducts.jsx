@@ -63,14 +63,14 @@ export default function FeaturedProducts() {
 
         <div
           ref={sliderRef}
-          className="mt-6 flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-4"
+          className="mt-6 flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {products.slice(0, 10).map((product) => (
             <div
               key={product.id}
-              className="min-w-[calc((100%-0.75rem)/2)] snap-start sm:min-w-[255px] lg:min-w-[270px]"
+              className="min-w-[calc((100%-0.75rem)/2)] snap-start sm:min-w-[210px] lg:min-w-[225px]"
             >
-              <ProductCard product={product} />
+              <ProductCard product={product} compact />
             </div>
           ))}
         </div>

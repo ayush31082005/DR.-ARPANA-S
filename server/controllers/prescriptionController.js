@@ -92,8 +92,12 @@ export const getAllPrescriptions = async (req, res) => {
     try {
         const filter = {};
 
-        if (req.query.email) {
-            filter.email = req.query.email;
+        if (req.user?.role === "admin") {
+            if (req.query.email) {
+                filter.email = req.query.email;
+            }
+        } else {
+            filter.email = req.user.email;
         }
 
         const prescriptions = await Prescription.find(filter).sort({ createdAt: -1 });
@@ -118,6 +122,13 @@ export const getSinglePrescription = async (req, res) => {
             return res.status(404).json({
                 success: false,
                 message: "Prescription not found",
+            });
+        }
+
+        if (req.user?.role !== "admin" && prescription.email !== req.user.email) {
+            return res.status(403).json({
+                success: false,
+                message: "Access denied",
             });
         }
 

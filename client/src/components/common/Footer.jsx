@@ -4,7 +4,7 @@ import { policyLinks } from "../../data/policyLinks";
 
 export default function Footer() {
   return (
-    <footer className="mt-0 bg-slate-950 py-14 text-slate-300">
+    <footer className="mt-0 bg-[#35690d] py-14 text-lime-100">
       <div className="container-padded">
         <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-[1.2fr_1.1fr_1fr]">
           <div>
@@ -19,21 +19,21 @@ export default function Footer() {
               <h3 className="text-3xl font-bold text-white">DR. ARPANA'S</h3>
             </div>
 
-            <p className="mt-6 max-w-sm text-[15px] leading-8 text-slate-400">
+            <p className="mt-6 max-w-sm text-[15px] leading-8 text-lime-100/85">
               Your health is our highest priority. We are available for you 24/7.
             </p>
 
-            <div className="mt-6 space-y-3 text-[15px] text-slate-400">
+            <div className="mt-6 space-y-3 text-[15px] text-lime-100/85">
               <p className="flex items-center gap-3">
-                <MapPin size={16} className="text-red-400" />
+                <MapPin size={16} className="text-[#dff8bf]" />
                 <span>12, Health Street, Delhi - 110001</span>
               </p>
               <p className="flex items-center gap-3">
-                <Phone size={16} className="text-red-400" />
+                <Phone size={16} className="text-[#dff8bf]" />
                 <span>+91 98765 43210</span>
               </p>
               <p className="flex items-center gap-3">
-                <Mail size={16} className="text-slate-200" />
+                <Mail size={16} className="text-[#f7ffef]" />
                 <span>care@lifeclinic.in</span>
               </p>
             </div>
@@ -67,24 +67,24 @@ export default function Footer() {
             <h4 className="text-2xl font-bold text-white">Clinic Timings</h4>
             <div className="mt-6 space-y-3 text-[15px]">
               <div className="flex items-center justify-between gap-4">
-                <span className="text-slate-400">Mon - Fri</span>
+                <span className="text-lime-100/85">Mon - Fri</span>
                 <span className="font-semibold text-white">8am - 8pm</span>
               </div>
               <div className="flex items-center justify-between gap-4">
-                <span className="text-slate-400">Saturday</span>
+                <span className="text-lime-100/85">Saturday</span>
                 <span className="font-semibold text-white">9am - 6pm</span>
               </div>
               <div className="flex items-center justify-between gap-4">
-                <span className="text-slate-400">Sunday</span>
+                <span className="text-lime-100/85">Sunday</span>
                 <span className="font-semibold text-white">10am - 4pm</span>
               </div>
             </div>
 
-            <div className="mt-6 rounded-2xl border border-emerald-700/70 bg-emerald-900/40 px-4 py-4">
+            <div className="mt-6 rounded-2xl border border-[#92ee43] bg-[#4f8f16] px-4 py-4">
               <div className="flex items-start gap-3">
-                <ShieldAlert size={18} className="mt-0.5 text-red-400" />
-                <div className="text-sm leading-6 text-emerald-200">
-                  <p className="font-semibold text-emerald-300">Emergency: 24/7 Available</p>
+                <ShieldAlert size={18} className="mt-0.5 text-[#f7ffef]" />
+                <div className="text-sm leading-6 text-lime-50">
+                  <p className="font-semibold text-white">Emergency: 24/7 Available</p>
                   <p>Helpline: 1800-XXX-XXXX</p>
                 </div>
               </div>
@@ -92,7 +92,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-white/10 pt-6">
+        <div className="mt-12 border-t border-white/15 pt-6">
           <div className="flex items-center justify-center">
             <p className="text-center text-base font-semibold text-white sm:text-lg">
               {"\u00A9 2025 DR. ARPANA'S. All rights reserved."}

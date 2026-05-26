@@ -109,7 +109,7 @@ export default function ForgotPasswordForm() {
       className="mx-auto w-full max-w-md"
     >
       <div className="relative overflow-hidden rounded-[32px] border border-white/40 bg-white/80 p-6 shadow-xl backdrop-blur-xl sm:p-8">
-        <div className="absolute inset-0 bg-gradient-to-br from-sky-50 to-teal-50" />
+        <div className="absolute inset-0 bg-gradient-to-br from-lime-50 via-white to-[#eefddb]" />
 
         <div className="relative z-10">
           <h2 className="text-2xl font-bold text-slate-900">
@@ -221,7 +221,7 @@ export default function ForgotPasswordForm() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-green-500 to-emerald-600 px-5 py-3 text-sm font-semibold text-white hover:opacity-90"
+                className="flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-primary to-secondary px-5 py-3 text-sm font-semibold text-slate-900 hover:opacity-90"
               >
                 <ShieldCheck size={18} />
                 {isSubmitting ? "Resetting..." : "Reset Password"}

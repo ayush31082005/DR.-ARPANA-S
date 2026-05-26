@@ -4,15 +4,17 @@ export default function ProductSort({
   filterValue,
   onFilterChange,
   filterOptions = ["All Products"],
+  labelClassName = "text-slate-500",
+  selectClassName = "",
 }) {
   return (
     <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
       <div className="flex items-center gap-3">
-        <span className="text-sm text-slate-500">All Filter</span>
+        <span className={`text-sm ${labelClassName}`}>All Filter</span>
         <select
           value={filterValue}
           onChange={(event) => onFilterChange(event.target.value)}
-          className="input-base max-w-[240px]"
+          className={`input-base max-w-[240px] ${selectClassName}`}
         >
           {filterOptions.map((option) => (
             <option key={option} value={option}>
@@ -23,11 +25,11 @@ export default function ProductSort({
       </div>
 
       <div className="flex items-center gap-3">
-        <span className="text-sm text-slate-500">Sort by</span>
+        <span className={`text-sm ${labelClassName}`}>Sort by</span>
         <select
           value={sortValue}
           onChange={(event) => onSortChange(event.target.value)}
-          className="input-base max-w-[220px]"
+          className={`input-base max-w-[220px] ${selectClassName}`}
         >
           <option value="latest">Latest</option>
           <option value="price-low-high">Price: Low to High</option>
