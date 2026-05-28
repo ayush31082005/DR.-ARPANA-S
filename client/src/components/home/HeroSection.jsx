@@ -1,23 +1,61 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
+import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Button from "../common/Button";
-
-const stats = [
-  { value: 25, suffix: "K+", label: "Happy Users" },
-  { value: 40, suffix: "+", label: "Care Categories" },
-  { value: 12, suffix: "+", label: "Specialists" },
-  { value: 24, suffix: "/7", label: "Support" }
-];
 
 const heroVideoSources = [
   "/images/144006-784164313_medium.mp4",
   "/images/39136-420274318_medium.mp4",
 ];
 
+const HERO_SLIDE_INTERVAL = 6000;
+
+const heroSlides = [
+  {
+    eyebrow: "Trusted Clinic, Wellness and Guidance",
+    titleTop: "Beautifully Delivered.",
+    accent: "Modern Care",
+    titleBottom: "for Everyday Wellness.",
+    description:
+      "Online appointments, trusted doctor guidance, and a polished wellness shopping experience now come together in one clear and patient-friendly destination.",
+    supportingText:
+      "Explore homeopathy, ayurveda, skin care, and clinic support with a smoother journey that feels calm, modern, and easy to trust from the very first visit.",
+    tags: [
+      "Easy Appointments",
+      "Holistic Treatments",
+      "Wellness Products",
+      "Patient-First Support",
+    ],
+    primaryLabel: "Book Appointment",
+    primaryTo: "/appointment",
+    secondaryLabel: "Shop Products",
+    secondaryTo: "/shop",
+  },
+  {
+    eyebrow: "Care That Moves With Your Day",
+    titleTop: "Simple Access.",
+    accent: "Personal Guidance",
+    titleBottom: "for Every Step Forward.",
+    description:
+      "From first consultation to follow-up support, the experience is designed to feel easier, faster, and more reassuring for patients and families.",
+    supportingText:
+      "Discover expert-led services, clear booking flows, wellness recommendations, and a modern digital clinic journey that keeps everything in one place.",
+    tags: [
+      "Doctor Consultations",
+      "Smooth Follow-Ups",
+      "Trusted Remedies",
+      "Clear Communication",
+    ],
+    primaryLabel: "Explore Services",
+    primaryTo: "/services",
+    secondaryLabel: "Contact Clinic",
+    secondaryTo: "/contact",
+  },
+];
+
 export default function HeroSection() {
   const heroRef = useRef(null);
-  const countRefs = useRef([]);
   const eyebrowRef = useRef(null);
   const titleRef = useRef(null);
   const descriptionRef = useRef(null);
@@ -26,6 +64,17 @@ export default function HeroSection() {
   const [activeSlide, setActiveSlide] = useState(0);
   const [hasVideoError, setHasVideoError] = useState(false);
   const currentVideoSrc = heroVideoSources[activeSlide];
+  const currentSlide = heroSlides[activeSlide % heroSlides.length];
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % heroSlides.length);
+    }, HERO_SLIDE_INTERVAL);
+
+    return () => {
+      window.clearInterval(intervalId);
+    };
+  }, []);
 
   useEffect(() => {
     if (!videoRef.current) return;
@@ -62,34 +111,10 @@ export default function HeroSection() {
       }
 
       timeline
-        .from("[data-hero-card]", {
-          y: 28,
-          opacity: 0,
-          duration: 0.5,
-          stagger: 0.1
-        }, "-=0.2")
         .from("[data-hero-media]", {
           y: 36,
           opacity: 0,
           duration: 0.65
-        }, "-=0.15")
-        .add(() => {
-          countRefs.current.forEach((element, index) => {
-            if (!element) return;
-
-            const stat = stats[index];
-            const counter = { value: 0 };
-
-            gsap.to(counter, {
-              value: stat.value,
-              duration: 1.4,
-              ease: "power2.out",
-              snap: { value: 1 },
-              onUpdate: () => {
-                element.textContent = `${Math.round(counter.value)}${stat.suffix}`;
-              }
-            });
-          });
         }, "-=0.15");
     }, heroRef);
 
@@ -97,113 +122,120 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="relative isolate overflow-hidden bg-slate-950 text-white">
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div data-hero-media className="relative h-full w-full">
-          <video
-            ref={videoRef}
-            key={currentVideoSrc}
-            className={`h-full w-full object-cover object-center transition-opacity duration-300 ${
-              hasVideoError ? "opacity-0" : "opacity-100"
-            }`}
-            autoPlay
-            muted
-            playsInline
-            preload="auto"
-            onCanPlay={() => {}}
-            onError={() => setHasVideoError(true)}
-            onEnded={() => setActiveSlide((prev) => (prev + 1) % heroVideoSources.length)}
-          >
-            <source src={currentVideoSrc} type="video/mp4" />
-          </video>
-        </div>
-
-        <div
-          className={`absolute inset-0 transition-opacity duration-300 ${
-            hasVideoError
-              ? "bg-slate-950/75 opacity-100"
-              : "bg-transparent opacity-100"
-          }`}
-        />
-        <div
-          className={`absolute inset-0 bg-transparent transition-opacity duration-300 ${
-            hasVideoError ? "opacity-0" : "opacity-100"
-          }`}
-        />
-        <div
-          className={`absolute inset-0 bg-transparent transition-opacity duration-300 ${
-            hasVideoError ? "opacity-0" : "opacity-100"
-          }`}
-        />
-      </div>
-
-      <div className="container-padded relative z-20 flex min-h-[calc(100vh-112px)] items-center justify-center py-8 sm:py-10 lg:py-12">
-        <div
-          ref={heroRef}
-          className="mx-auto flex w-full max-w-5xl flex-col items-center text-center"
-        >
-          {/* <p
-            ref={eyebrowRef}
-            data-hero="eyebrow"
-            className="mb-4 text-sm font-semibold uppercase tracking-[0.28em] text-teal-200"
-          >
-            Clinic + Ecommerce
-          </p> */}
-
-          <h1
-            ref={titleRef}
-            data-hero="title"
-            className="max-w-4xl text-4xl font-bold leading-tight md:text-6xl xl:text-7xl"
-          >
-            <span className="gradient-text">Modern Care</span>
-            <br />
-            Beautifully Delivered.
-          </h1>
-
-          <p
-            ref={descriptionRef}
-            data-hero="description"
-            className="mt-6 max-w-3xl text-base leading-8 text-white/90 md:text-lg"
-          >
-            Premium clinic website with doctor appointments, service showcases, and a polished online wellness shop in one responsive experience.
-          </p>
+    <div
+      ref={heroRef}
+      className="relative text-white"
+    >
+      <section className="relative isolate overflow-hidden bg-transparent">
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div data-hero-media className="relative h-full w-full">
+            <video
+              ref={videoRef}
+              key={currentVideoSrc}
+              className={`h-full w-full object-cover object-center transition-opacity duration-300 ${
+                hasVideoError ? "opacity-0" : "opacity-100"
+              }`}
+              autoPlay
+              muted
+              playsInline
+              preload="auto"
+              onCanPlay={() => {}}
+              onError={() => setHasVideoError(true)}
+            >
+              <source src={currentVideoSrc} type="video/mp4" />
+            </video>
+          </div>
 
           <div
-            ref={actionsRef}
-            data-hero="actions"
-            className="mt-8 flex flex-wrap items-center justify-center gap-4"
-          >
-            <Link to="/appointment">
-              <Button>Book Appointment</Button>
-            </Link>
-            <Link to="/shop">
-              <Button variant="outline">Shop Products</Button>
-            </Link>
-          </div>
+            className={`absolute inset-0 transition-opacity duration-300 ${
+              hasVideoError
+                ? "bg-transparent opacity-100"
+                : "bg-[linear-gradient(180deg,rgba(255,255,255,0.06)_0%,rgba(255,255,255,0.04)_100%)] opacity-100"
+            }`}
+          />
+          <div
+            className={`absolute inset-0 transition-opacity duration-300 ${
+              hasVideoError
+                ? "opacity-0"
+                : "bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.08),transparent_38%)] opacity-100"
+            }`}
+          />
+          <div
+            className={`absolute inset-0 transition-opacity duration-300 ${
+              hasVideoError
+                ? "opacity-0"
+                : "bg-transparent opacity-100"
+            }`}
+          />
+        </div>
 
-          <div className="mt-10 grid w-full max-w-4xl grid-cols-2 gap-4 sm:grid-cols-4">
-            {stats.map((stat, index) => (
-              <div
-                key={stat.label}
-                data-hero-card
-                className="rounded-2xl border border-white/10 bg-white/10 p-4 backdrop-blur"
+        <div className="container-padded relative z-20 flex min-h-[calc(100svh-104px)] items-center justify-center py-4 sm:py-5 lg:py-6">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeSlide}
+              initial={{ opacity: 0, x: -40, filter: "blur(6px)" }}
+              animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+              exit={{ opacity: 0, x: 40, filter: "blur(6px)" }}
+              transition={{ duration: 0.55, ease: "easeOut" }}
+              className="mx-auto flex w-full max-w-3xl flex-col items-center px-5 py-6 text-center sm:px-8"
+            >
+              <p
+                ref={eyebrowRef}
+                data-hero="eyebrow"
+                className="mb-4 rounded-full border border-[#a9df6a] bg-[#f6ffe8]/80 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#2f4f12] backdrop-blur-sm sm:text-xs"
               >
-                <p
-                  ref={(element) => {
-                    countRefs.current[index] = element;
-                  }}
-                  className="text-2xl font-bold"
-                >
-                  0{stat.suffix}
-                </p>
-                <p className="mt-1 text-xs uppercase tracking-[0.18em] text-slate-200">
-                  {stat.label}
+                {currentSlide.eyebrow}
+              </p>
+
+              <h1
+                ref={titleRef}
+                data-hero="title"
+                className="max-w-3xl text-[clamp(1.2rem,2.8vw,2.3rem)] font-extrabold leading-[1.02] text-[#11180a]"
+              >
+                {currentSlide.titleTop}
+                <br />
+                <span className="text-[#3f6e10]">{currentSlide.accent}</span>{" "}
+                {currentSlide.titleBottom}
+              </h1>
+
+              <div
+                ref={descriptionRef}
+                data-hero="description"
+                className="mt-5 max-w-3xl space-y-3 text-[16px] leading-7 text-[#1e2d12] sm:text-[18px] md:text-[20px]"
+              >
+                <p>{currentSlide.description}</p>
+                <p className="text-[14px] leading-6 text-[#36501e] sm:text-[16px] md:text-[18px]">
+                  {currentSlide.supportingText}
                 </p>
               </div>
-            ))}
-          </div>
+
+              <div className="mt-6 flex max-w-3xl flex-wrap items-center justify-center gap-3 text-[14px] font-semibold text-[#1f3210] sm:text-[16px]">
+                {currentSlide.tags.map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-full border border-[#b9de82] bg-[#f8ffe9]/85 px-4 py-2 shadow-[0_10px_24px_rgba(79,143,22,0.08)] backdrop-blur-sm"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+
+              <div
+                ref={actionsRef}
+                data-hero="actions"
+                className="mt-7 flex flex-wrap items-center justify-center gap-4"
+              >
+                <Link to={currentSlide.primaryTo}>
+                  <Button>{currentSlide.primaryLabel}</Button>
+                </Link>
+                <Link to={currentSlide.secondaryTo}>
+                  <Button variant="outline">{currentSlide.secondaryLabel}</Button>
+                </Link>
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }

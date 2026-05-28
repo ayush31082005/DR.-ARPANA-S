@@ -99,17 +99,17 @@ export default function Appointment() {
     <section className="bg-slate-50 py-10 md:py-14">
       <div className="container-padded">
         <div className="mx-auto max-w-6xl space-y-8">
-          <div className="flex w-full justify-center overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <div className="inline-flex min-w-max items-center gap-3 px-1 sm:gap-4 sm:px-2">
+          <div className="flex w-full justify-start overflow-x-auto px-1 pb-2 sm:justify-center [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="inline-flex min-w-max items-center gap-2 pr-3 sm:gap-4 sm:px-2">
               {steps.map((label, index) => {
                 const current = index + 1;
                 const isDone = step > current;
                 const isActive = step === current;
 
                 return (
-                  <div key={label} className="flex items-center gap-3 sm:gap-4">
+                  <div key={label} className="flex shrink-0 items-center gap-2 sm:gap-4">
                     <div
-                      className={`flex items-center gap-2 rounded-full px-3 py-2.5 text-xs font-semibold transition-colors sm:gap-3 sm:px-5 sm:py-3 sm:text-sm ${
+                      className={`flex items-center gap-1.5 rounded-full px-2.5 py-2 text-[11px] font-semibold transition-colors sm:gap-3 sm:px-5 sm:py-3 sm:text-sm ${
                         isDone
                           ? "bg-[#f6a04a] text-white"
                           : isActive
@@ -118,7 +118,7 @@ export default function Appointment() {
                       }`}
                     >
                       <span
-                        className={`grid h-6 w-6 place-items-center rounded-full border text-xs ${
+                        className={`grid h-5 w-5 place-items-center rounded-full border text-[11px] sm:h-6 sm:w-6 sm:text-xs ${
                           isDone || isActive ? "border-current" : "border-[#f0b56a]"
                         }`}
                       >
@@ -128,7 +128,7 @@ export default function Appointment() {
                     </div>
                     {index < steps.length - 1 ? (
                       <div
-                        className={`h-0.5 w-6 sm:w-8 ${
+                        className={`h-0.5 w-4 sm:w-8 ${
                           step > current ? "bg-[#f6bf80]" : "bg-[#f8d9b0]"
                         }`}
                       />

@@ -90,3 +90,13 @@
   bottom: -60px;
   right: -20px;
 }
+
+@keyframes whatsapp-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}

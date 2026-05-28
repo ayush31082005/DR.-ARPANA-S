@@ -1,5 +1,5 @@
 import api from "./api";
-import { createProductImage, productsData } from "../data/productsData";
+import { createProductImage } from "../data/productsData";
 
 const PRODUCT_UPDATE_EVENT = "products-updated";
 
@@ -33,17 +33,13 @@ function normalizeProduct(product) {
     };
 }
 
-function getFallbackProducts() {
-  return productsData.map(normalizeProduct);
-}
-
 export async function getAllProducts() {
   try {
     const response = await api.get("/products");
-    const backendProducts = (response.data.products || []).map(normalizeProduct);
-    return backendProducts.length ? backendProducts : getFallbackProducts();
-  } catch {
-    return getFallbackProducts();
+    return (response.data.products || []).map(normalizeProduct);
+  } catch (error) {
+    console.error("Failed to fetch products from backend:", error);
+    return [];
   }
 }
 

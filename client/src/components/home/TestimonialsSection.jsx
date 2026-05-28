@@ -17,12 +17,14 @@ export default function TestimonialsSection() {
     let frameId;
     let isPaused = false;
 
+    slider.scrollLeft = slider.scrollWidth / 2;
+
     const tick = () => {
       if (!isPaused) {
-        slider.scrollLeft += 0.6;
+        slider.scrollLeft -= 0.6;
 
-        if (slider.scrollLeft >= slider.scrollWidth / 2) {
-          slider.scrollLeft = 0;
+        if (slider.scrollLeft <= 0) {
+          slider.scrollLeft = slider.scrollWidth / 2;
         }
       }
 
@@ -70,13 +72,13 @@ export default function TestimonialsSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="mt-10 flex gap-6 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="mt-10 flex gap-4 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {loopedTestimonials.map((item, index) => (
             <motion.div
               key={`${item.id}-${index}`}
               variants={fadeUp}
-              className="surface min-w-[280px] p-6 md:min-w-[340px] lg:min-w-[380px]"
+              className="surface min-w-[260px] p-6 md:min-w-[280px] lg:min-w-[300px] xl:min-w-[320px]"
             >
               <div className="flex items-center gap-1 text-orange-500">
                 {Array.from({ length: item.rating }).map((_, index) => (

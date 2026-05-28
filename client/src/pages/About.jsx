@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
 import PageHero from "../components/common/PageHero";
 import SectionTitle from "../components/common/SectionTitle";
 
@@ -17,7 +19,35 @@ const fadeRight = {
   visible: { opacity: 1, x: 0 },
 };
 
+const stats = [
+  { value: 25, suffix: "K+", label: "Happy Users" },
+  { value: 40, suffix: "+", label: "Care Categories" },
+  { value: 12, suffix: "+", label: "Specialists" },
+  { value: 24, suffix: "/7", label: "Support" },
+];
+
 export default function About() {
+  const countRefs = useRef([]);
+
+  useEffect(() => {
+    countRefs.current.forEach((element, index) => {
+      if (!element) return;
+
+      const stat = stats[index];
+      const counter = { value: 0 };
+
+      gsap.to(counter, {
+        value: stat.value,
+        duration: 1.4,
+        ease: "power2.out",
+        snap: { value: 1 },
+        onUpdate: () => {
+          element.textContent = `${Math.round(counter.value)}${stat.suffix}`;
+        },
+      });
+    });
+  }, []);
+
   return (
     <>
       <PageHero
@@ -25,7 +55,35 @@ export default function About() {
         description="A trusted clinic and wellness destination built to deliver better care, better guidance, and a better patient experience."
         center
         image="https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1600&q=80"
+        imageOverlayClassName="bg-black/20"
+        imageGradientClassName="bg-gradient-to-r from-black/35 via-black/15 to-transparent"
+        descriptionClassName="text-white/90"
       />
+
+      <section className="section-space !py-8 sm:!py-10 bg-[linear-gradient(180deg,#f6ffe8_0%,#e7f8c7_55%,#ddf3b1_100%)]">
+        <div className="container-padded">
+          <div className="mx-auto grid w-full max-w-6xl grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
+            {stats.map((stat, index) => (
+              <div
+                key={stat.label}
+                className="rounded-[28px] border border-[#b9de82] bg-[linear-gradient(180deg,#fbffef_0%,#eefddb_100%)] px-5 py-6 text-center shadow-[0_16px_40px_rgba(79,143,22,0.14)]"
+              >
+                <p
+                  ref={(element) => {
+                    countRefs.current[index] = element;
+                  }}
+                  className="text-3xl font-extrabold tracking-tight text-[#35690d] sm:text-[2.1rem]"
+                >
+                  0{stat.suffix}
+                </p>
+                <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-[#4f6d33] sm:text-xs">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section className="section-space bg-white">
         <div className="container-padded grid items-center gap-12 lg:grid-cols-2">
@@ -213,7 +271,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="section-space bg-slate-950 text-white">
+      <section className="section-space bg-[linear-gradient(180deg,#eefddb_0%,#dcf6b4_100%)] text-slate-900">
         <div className="container-padded grid items-center gap-12 lg:grid-cols-2">
           <motion.div
             variants={fadeLeft}
@@ -222,14 +280,14 @@ export default function About() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.7 }}
           >
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-teal-300">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-[#4f8f16]">
               Our Commitment
             </p>
-            <h2 className="text-3xl font-bold leading-tight md:text-4xl">
+            <h2 className="text-3xl font-bold leading-tight text-[#17320a] md:text-4xl">
               We are committed to making healthcare more approachable and more
               reassuring for every patient.
             </h2>
-            <p className="mt-6 max-w-2xl text-[15px] leading-8 text-slate-300">
+            <p className="mt-6 max-w-2xl text-[15px] leading-8 text-[#4a5f38]">
               Whether someone is visiting for a consultation, exploring treatment
               options, or looking for trusted wellness products, our responsibility
               is to make that journey feel simple, supportive, and professionally managed.
@@ -243,11 +301,13 @@ export default function About() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.75 }}
           >
-            <img
-              src="https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1200&q=80"
-              alt="Doctor consultation"
-              className="h-[380px] w-full rounded-[32px] object-cover"
-            />
+            <div className="overflow-hidden rounded-[32px] border border-[#c9e89b] bg-[#f6ffe8] p-2 shadow-[0_20px_60px_rgba(79,143,22,0.12)]">
+              <img
+                src="https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1200&q=80"
+                alt="Doctor consultation"
+                className="h-[380px] w-full rounded-[26px] object-cover"
+              />
+            </div>
           </motion.div>
         </div>
       </section>

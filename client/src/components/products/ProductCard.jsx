@@ -26,8 +26,8 @@ export default function ProductCard({ product, theme, compact = false }) {
     ? `block overflow-hidden bg-[#c9f58e] ${compact ? "aspect-[5/4] p-1.5" : "aspect-[4/3] p-2"}`
     : `block overflow-hidden bg-slate-50 ${compact ? "aspect-[5/4] p-1.5" : "aspect-[4/3] p-2"}`;
   const descriptionBoxClass = isShopLime
-    ? `mt-2 px-2.5 ${compact ? "min-h-[44px] py-1.5" : "min-h-[56px] py-2"}`
-    : `mt-2 rounded-[10px] bg-slate-50 px-2.5 ${compact ? "min-h-[44px] py-1.5" : "min-h-[56px] py-2"}`;
+    ? `${compact ? "py-0" : "mt-1 py-0.5"}`
+    : `${compact ? "py-0" : "mt-1 py-0.5"}`;
   const discountClass = isShopLime
     ? "mt-1 text-sm font-semibold text-[#35690d]"
     : "mt-1 text-sm font-semibold text-fuchsia-600";
@@ -89,7 +89,7 @@ export default function ProductCard({ product, theme, compact = false }) {
         />
       </Link>
 
-      <div className={`flex flex-col ${compact ? "px-2.5 pb-2.5 pt-2" : "px-3 pb-3 pt-2"}`}>
+      <div className={`flex flex-col ${compact ? "px-2.5 pb-1.5 pt-1.5" : "px-3 pb-2 pt-1"}`}>
         <Link
           to={`/shop/${product.id}`}
           className={`font-semibold text-slate-950 transition ${compact ? "text-[13px] leading-5" : "text-[14px] leading-6"} ${titleClass}`}
@@ -98,16 +98,16 @@ export default function ProductCard({ product, theme, compact = false }) {
         </Link>
 
         {quantityText ? (
-          <p className={`mt-0.5 font-medium text-slate-600 ${compact ? "text-[13px]" : "text-sm"}`}>{quantityText}</p>
+          <p className={`font-medium text-slate-600 ${compact ? "mt-0.5 text-[13px] leading-4" : "text-sm leading-5"}`}>{quantityText}</p>
         ) : null}
 
         <div className={descriptionBoxClass}>
-          <p className={`text-slate-700 ${compact ? "text-[12px] leading-4.5" : "text-[13px] leading-5"}`}>
+          <p className={`text-slate-700 ${compact ? "mt-0.5 text-[12px] leading-4" : "text-[13px] leading-5"}`}>
             {descriptionText}
           </p>
         </div>
 
-        <div className={`mt-2 flex items-end gap-1.5 ${compact ? "text-[12px]" : ""}`}>
+        <div className={`flex items-end gap-1 ${compact ? "mt-0 text-[12px]" : "mt-1"}`}>
           <span className={`${compact ? "text-[12px]" : "text-sm"} text-slate-500 line-through`}>
             {formatPrice(originalPrice)}
           </span>
@@ -115,18 +115,18 @@ export default function ProductCard({ product, theme, compact = false }) {
         </div>
 
         {discountPercent > 0 ? (
-          <p className={discountClass}>{discountPercent}% OFF</p>
+          <p className={`${discountClass} ${compact ? "!mt-0" : "!mt-0"}`}>{discountPercent}% OFF</p>
         ) : null}
 
         <button
           type="button"
           onClick={handleBuyNow}
-          className={`${buyNowClass} ${compact ? "!mt-1.5 !py-1.5 !text-[13px]" : ""}`}
+          className={`${buyNowClass} ${compact ? "!mt-1 !py-1.5 !text-[13px]" : "!mt-1"}`}
         >
           Buy Now
         </button>
 
-        <div className={compact ? "mt-2" : "mt-3"}>
+        <div className={compact ? "mt-1" : "mt-1"}>
           {quantity > 0 ? (
             <div className={`${quantityBoxClass} ${compact ? "!py-1.5" : ""}`}>
               <button

@@ -20,7 +20,7 @@ function WhatsAppIcon() {
 }
 
 export default function WhatsAppChatBox() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith("/admin");
 
@@ -71,7 +71,7 @@ export default function WhatsAppChatBox() {
               className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-[#f6a04a] to-[#ee973f] px-5 py-3.5 text-sm font-semibold text-white shadow-[0_14px_30px_rgba(246,160,74,0.34)] transition duration-300 hover:-translate-y-0.5 hover:from-[#ee973f] hover:to-[#e48931]"
             >
               <MessageCircle size={18} />
-              Start WhatsApp Chat
+              Start Chat
             </a>
           </div>
         </div>
@@ -80,10 +80,12 @@ export default function WhatsAppChatBox() {
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
-        className="pointer-events-auto inline-flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-[#f6a04a] to-[#ee973f] text-white shadow-[0_18px_40px_rgba(246,160,74,0.4)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_22px_48px_rgba(246,160,74,0.46)]"
+        className="pointer-events-auto inline-flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-[#f6a04a] to-[#ee973f] text-white shadow-[0_16px_34px_rgba(246,160,74,0.34)] animate-[whatsapp-breathe_1.1s_ease-in-out_infinite]"
         aria-label={isOpen ? "Minimize WhatsApp chat" : "Open WhatsApp chat"}
       >
-        <WhatsAppIcon />
+        <div className="scale-90">
+          <WhatsAppIcon />
+        </div>
       </button>
     </div>
   );

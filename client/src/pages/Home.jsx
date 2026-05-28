@@ -6,7 +6,6 @@ import HomeopathyProducts from "../components/home/HomeopathyProducts";
 import SkinCareProducts from "../components/home/SkinCareProducts";
 import FeaturedProducts from "../components/home/FeaturedProducts";
 import TestimonialsSection from "../components/home/TestimonialsSection";
-import AppointmentCTA from "../components/home/AppointmentCTA";
 
 export default function Home() {
   return (
@@ -19,7 +18,6 @@ export default function Home() {
       <AyurvedaProducts />
       <HomeopathyProducts />
       <TestimonialsSection />
-      <AppointmentCTA />
     </>
   );
 }

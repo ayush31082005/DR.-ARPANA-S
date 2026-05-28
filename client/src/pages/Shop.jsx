@@ -72,9 +72,9 @@ export default function Shop() {
         description="Browse health, wellness, and personal care products."
         center
         image="https://images.unsplash.com/photo-1576602976047-174e57a47881?auto=format&fit=crop&w=1600&q=80"
-        imageOverlayClassName="bg-[#4f8f16]/70"
-        imageGradientClassName="bg-gradient-to-r from-[#365f10]/90 via-[#5ea918]/75 to-[#7BEA18]/60"
-        descriptionClassName="text-lime-50"
+        imageOverlayClassName="bg-black/20"
+        imageGradientClassName="bg-gradient-to-r from-black/35 via-black/15 to-transparent"
+        descriptionClassName="text-white/90"
       />
       <section className="section-space bg-gradient-to-b from-[#dff8bf] via-[#eefddb] to-[#d5f6a8]">
         <div className="container-padded">

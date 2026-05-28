@@ -9,6 +9,9 @@ export default function Services() {
         description="Show treatments, consultation types, and care categories."
         center
         image="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1600&q=80"
+        imageOverlayClassName="bg-black/20"
+        imageGradientClassName="bg-gradient-to-r from-black/35 via-black/15 to-transparent"
+        descriptionClassName="text-white/90"
       />
       <section className="section-space">
         <div className="container-padded">

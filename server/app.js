@@ -10,19 +10,37 @@ import adminRoutes from "./routes/adminRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import addressRoutes from "./routes/addressRoutes.js";
 
-
-
-
 const app = express();
 
-const allowedOrigins = [
-    "http://localhost:5173",
-    process.env.CLIENT_URL,
-].filter(Boolean);
+const exactAllowedOrigins = new Set(
+    [
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        process.env.CLIENT_URL,
+    ].filter(Boolean)
+);
+
+function isLocalDevOrigin(origin) {
+    if (!origin) return false;
+
+    try {
+        const parsedUrl = new URL(origin);
+        return ["localhost", "127.0.0.1"].includes(parsedUrl.hostname);
+    } catch {
+        return false;
+    }
+}
 
 app.use(
     cors({
-        origin: allowedOrigins,
+        origin(origin, callback) {
+            if (!origin || exactAllowedOrigins.has(origin) || isLocalDevOrigin(origin)) {
+                callback(null, true);
+                return;
+            }
+
+            callback(new Error("CORS origin not allowed"));
+        },
         credentials: true,
     })
 );

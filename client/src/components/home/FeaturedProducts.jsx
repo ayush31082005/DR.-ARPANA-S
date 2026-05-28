@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import MotionSection from "../common/MotionSection";
 import SectionTitle from "../common/SectionTitle";
 import ProductCard from "../products/ProductCard";
@@ -31,6 +32,10 @@ export default function FeaturedProducts() {
     });
   };
 
+  if (!products.length) {
+    return null;
+  }
+
   return (
     <section className="bg-white pt-4 pb-10 md:pt-6 md:pb-14">
       <div className="container-padded">
@@ -42,21 +47,30 @@ export default function FeaturedProducts() {
               description="Highlight your best sellers and recommended wellness products."
             />
 
-            <div className="hidden items-center gap-2 md:flex">
-              <button
-                type="button"
-                onClick={() => scrollSlider("prev")}
-                className="grid h-10 w-10 place-items-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:border-primary hover:text-primary"
+            <div className="flex items-center gap-3">
+              <div className="hidden items-center gap-2 md:flex">
+                <button
+                  type="button"
+                  onClick={() => scrollSlider("prev")}
+                  className="grid h-10 w-10 place-items-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:border-primary hover:text-primary"
+                >
+                  <ChevronLeft size={18} />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => scrollSlider("next")}
+                  className="grid h-10 w-10 place-items-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:border-primary hover:text-primary"
+                >
+                  <ChevronRight size={18} />
+                </button>
+              </div>
+
+              <Link
+                to="/shop"
+                className="inline-flex w-fit items-center justify-center rounded-[10px] border border-[#35690d] bg-[#f6a04a] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#ee973f]"
               >
-                <ChevronLeft size={18} />
-              </button>
-              <button
-                type="button"
-                onClick={() => scrollSlider("next")}
-                className="grid h-10 w-10 place-items-center rounded-full border border-slate-200 bg-white text-slate-700 transition hover:border-primary hover:text-primary"
-              >
-                <ChevronRight size={18} />
-              </button>
+                View All Products
+              </Link>
             </div>
           </div>
         </MotionSection>

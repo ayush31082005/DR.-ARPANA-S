@@ -12,7 +12,7 @@ export default function PageHero({
   descriptionClassName = "text-white/85",
 }) {
   return (
-    <section className={`relative overflow-hidden py-20 text-white ${sectionClassName}`}>
+    <section className={`relative overflow-hidden py-12 text-white sm:py-16 md:py-20 ${sectionClassName}`}>
       {image ? (
         <>
           <img
@@ -35,9 +35,11 @@ export default function PageHero({
           transition={{ duration: 0.7 }}
           className={center ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}
         >
-          <h1 className="text-4xl font-bold md:text-6xl">{title}</h1>
+          <h1 className="max-w-[12ch] text-3xl font-bold leading-tight break-words sm:max-w-none sm:text-4xl md:text-6xl">
+            {title}
+          </h1>
           {description ? (
-            <p className={`mt-5 text-base leading-8 md:text-lg ${descriptionClassName}`}>
+            <p className={`mt-4 max-w-2xl text-sm leading-7 sm:mt-5 sm:text-base sm:leading-8 md:text-lg ${descriptionClassName}`}>
               {description}
             </p>
           ) : null}
