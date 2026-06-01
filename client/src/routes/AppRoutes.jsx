@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
-import ShopLayout from "../layouts/ShopLayout";
 import AuthLayout from "../layouts/AuthLayout";
 import DashboardLayout from "../layouts/DashboardLayout";
 import ScrollToTop from "./ScrollToTop";
@@ -10,11 +9,6 @@ import Home from "../pages/Home";
 import About from "../pages/About";
 import Services from "../pages/Services";
 import ServiceDetails from "../pages/ServiceDetails";
-import Shop from "../pages/Shop";
-import ProductDetails from "../pages/ProductDetails";
-import Cart from "../pages/Cart";
-import Checkout from "../pages/Checkout";
-import OrderSuccess from "../pages/OrderSuccess";
 
 import MyAppointments from "../pages/MyAppointments";
 import Contact from "../pages/Contact";
@@ -26,7 +20,6 @@ import ForgotPassword from "../pages/ForgotPassword";
 import Appointment from "../pages/Appointment";
 
 import PrivacyPolicy from "../pages/PrivacyPolicy";
-import ShippingPolicy from "../pages/ShippingPolicy";
 import TermsConditions from "../pages/TermsConditions";
 import MyPrescription from "../pages/Prescription";
 import NotFound from "../pages/NotFound";
@@ -38,8 +31,6 @@ import AdminAppointments from "../pages/admin/AdminAppointments";
 import AdminDashboard from "../pages/admin/AdminDashboard";
 import AdminContacts from "../pages/admin/AdminContact";
 import AdminPrescriptions from "../pages/admin/AdminPrescription";
-import AdminOrders from "../pages/admin/AdminOrders";
-import AdminProducts from "../pages/admin/AdminProducts";
 import AdminSettings from "../pages/admin/AdminSettings";
 
 export default function AppRoutes() {
@@ -56,14 +47,7 @@ export default function AppRoutes() {
         <Route path="/gallery" element={<MainLayout><Gallery /></MainLayout>} />
         <Route path="/faq" element={<MainLayout><FAQ /></MainLayout>} />
         <Route path="/privacy-policy" element={<MainLayout><PrivacyPolicy /></MainLayout>} />
-        <Route path="/shipping-policy" element={<MainLayout><ShippingPolicy /></MainLayout>} />
         <Route path="/terms-conditions" element={<MainLayout><TermsConditions /></MainLayout>} />
-
-        <Route path="/shop" element={<ShopLayout><Shop /></ShopLayout>} />
-        <Route path="/shop/:id" element={<ShopLayout><ProductDetails /></ShopLayout>} />
-        <Route path="/cart" element={<ShopLayout><Cart /></ShopLayout>} />
-        <Route path="/checkout" element={<ShopLayout><Checkout /></ShopLayout>} />
-        <Route path="/order-success" element={<ShopLayout><OrderSuccess /></ShopLayout>} />
         <Route path="/my-prescriptions" element={<MainLayout><MyPrescription /></MainLayout>} />
 
         <Route path="/login" element={<AuthLayout><Login /></AuthLayout>} />
@@ -91,8 +75,6 @@ export default function AppRoutes() {
           <Route path="contacts" element={<AdminContacts />} />
           <Route path="appointments" element={<AdminAppointments />} />
           <Route path="prescriptions" element={<AdminPrescriptions />} />
-          <Route path="orders" element={<AdminOrders />} />
-          <Route path="products" element={<AdminProducts />} />
           <Route path="settings" element={<AdminSettings />} />
         </Route>
 

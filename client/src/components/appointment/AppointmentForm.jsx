@@ -41,7 +41,7 @@ export default function AppointmentForm() {
           className={`rounded-2xl border px-4 py-3 text-sm ${
             feedback.type === "error"
               ? "border-red-200 bg-red-50 text-red-700"
-              : "border-emerald-200 bg-emerald-50 text-emerald-700"
+              : "border-rose-200 bg-rose-50 text-rose-700"
           }`}
         >
           {feedback.message}
@@ -69,3 +69,4 @@ export default function AppointmentForm() {
     </form>
   );
 }
+

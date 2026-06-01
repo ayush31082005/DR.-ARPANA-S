@@ -2,7 +2,6 @@ import { createContext, useEffect, useMemo, useState } from "react";
 import { getMe } from "../services/authService";
 
 export const AuthContext = createContext(null);
-const CART_STORAGE_KEY = "cart_items";
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
@@ -22,7 +21,6 @@ export function AuthProvider({ children }) {
         setUser(response.user);
       } catch (error) {
         localStorage.removeItem("token");
-        localStorage.removeItem(CART_STORAGE_KEY);
         setUser(null);
       } finally {
         setIsLoading(false);
@@ -42,7 +40,6 @@ export function AuthProvider({ children }) {
   const logoutUser = () => {
     setUser(null);
     localStorage.removeItem("token");
-    localStorage.removeItem(CART_STORAGE_KEY);
   };
 
   const updateUser = (userData) => {

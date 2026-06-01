@@ -1,6 +1,5 @@
 import Appointment from "../models/Appointment.js";
 import Contact from "../models/Contact.js";
-import Order from "../models/Order.js";
 import Otp from "../models/Otp.js";
 import Prescription from "../models/Prescription.js";
 import User from "../models/User.js";
@@ -34,29 +33,28 @@ const getLastSixMonthBuckets = () => {
 
 export const getAdminStats = async (req, res) => {
     try {
-        const [contacts, prescriptions, orders, users, allContacts, allPrescriptions, allOrders, allUsers] = await Promise.all([
+        const [contacts, prescriptions, appointments, users, allContacts, allPrescriptions, allAppointments, allUsers] = await Promise.all([
             Contact.countDocuments(),
             Prescription.countDocuments(),
-            Order.countDocuments(),
+            Appointment.countDocuments(),
             User.countDocuments(),
             Contact.find().select("status createdAt"),
             Prescription.find().select("status createdAt"),
-            Order.find().select("total orderStatus createdAt"),
+            Appointment.find().select("status createdAt"),
             User.find().select("role createdAt"),
         ]);
 
         const monthBuckets = getLastSixMonthBuckets();
 
-        const orderChart = monthBuckets.map((bucket) => {
-            const matchingOrders = allOrders.filter((order) => {
-                const date = new Date(order.createdAt);
+        const appointmentChart = monthBuckets.map((bucket) => {
+            const matchingAppointments = allAppointments.filter((appointment) => {
+                const date = new Date(appointment.createdAt);
                 return `${date.getFullYear()}-${date.getMonth()}` === bucket.key;
             });
 
             return {
                 month: bucket.label,
-                orders: matchingOrders.length,
-                revenue: matchingOrders.reduce((sum, order) => sum + (order.total || 0), 0),
+                appointments: matchingAppointments.length,
             };
         });
 
@@ -94,11 +92,11 @@ export const getAdminStats = async (req, res) => {
             stats: {
                 contacts,
                 prescriptions,
-                orders,
+                appointments,
                 users,
             },
             charts: {
-                orders: orderChart,
+                appointments: appointmentChart,
                 prescriptions: prescriptionChart,
                 users: userChart,
                 contacts: contactChart,
@@ -109,23 +107,6 @@ export const getAdminStats = async (req, res) => {
         return res.status(500).json({
             success: false,
             message: "Failed to fetch admin stats",
-        });
-    }
-};
-
-export const getAdminOrders = async (req, res) => {
-    try {
-        const orders = await Order.find().sort({ createdAt: -1 });
-
-        return res.status(200).json({
-            success: true,
-            orders,
-        });
-    } catch (error) {
-        console.error("Admin orders error:", error);
-        return res.status(500).json({
-            success: false,
-            message: "Failed to fetch admin orders",
         });
     }
 };
@@ -182,45 +163,6 @@ export const updateAdminAppointmentStatus = async (req, res) => {
         return res.status(500).json({
             success: false,
             message: "Failed to update appointment status",
-        });
-    }
-};
-
-export const updateAdminOrderStatus = async (req, res) => {
-    try {
-        const { orderStatus } = req.body;
-        const allowedStatuses = ["pending", "processing", "shipped", "delivered", "cancelled"];
-
-        if (!allowedStatuses.includes(orderStatus)) {
-            return res.status(400).json({
-                success: false,
-                message: "Invalid order status",
-            });
-        }
-
-        const order = await Order.findByIdAndUpdate(
-            req.params.id,
-            { orderStatus },
-            { new: true }
-        );
-
-        if (!order) {
-            return res.status(404).json({
-                success: false,
-                message: "Order not found",
-            });
-        }
-
-        return res.status(200).json({
-            success: true,
-            message: "Order status updated",
-            order,
-        });
-    } catch (error) {
-        console.error("Admin order status error:", error);
-        return res.status(500).json({
-            success: false,
-            message: "Failed to update order status",
         });
     }
 };

@@ -109,7 +109,7 @@ export default function ForgotPasswordForm() {
       className="mx-auto w-full max-w-md"
     >
       <div className="relative overflow-hidden rounded-[32px] border border-white/40 bg-white/80 p-6 shadow-xl backdrop-blur-xl sm:p-8">
-        <div className="absolute inset-0 bg-gradient-to-br from-lime-50 via-white to-[#eefddb]" />
+        <div className="absolute inset-0 bg-gradient-to-br from-rose-50 via-white to-[#fdeef5]" />
 
         <div className="relative z-10">
           <h2 className="text-2xl font-bold text-slate-900">
@@ -124,7 +124,7 @@ export default function ForgotPasswordForm() {
               className={`mt-4 rounded-2xl border px-4 py-3 text-sm ${
                 feedback.type === "error"
                   ? "border-red-200 bg-red-50 text-red-700"
-                  : "border-emerald-200 bg-emerald-50 text-emerald-700"
+                  : "border-rose-200 bg-rose-50 text-rose-700"
               }`}
             >
               {feedback.message}
@@ -233,3 +233,5 @@ export default function ForgotPasswordForm() {
     </motion.div>
   );
 }
+
+

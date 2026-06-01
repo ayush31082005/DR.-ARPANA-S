@@ -2,7 +2,7 @@ import formatDate from "../../utils/formatDate";
 
 const statusStyles = {
   pending: "bg-amber-100 text-amber-700",
-  confirmed: "bg-emerald-100 text-emerald-700",
+  confirmed: "bg-rose-100 text-rose-700",
   cancelled: "bg-red-100 text-red-700",
   completed: "bg-sky-100 text-sky-700",
 };
@@ -14,7 +14,7 @@ export default function AppointmentCard({ item }) {
     <div className="surface p-5 sm:p-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-teal-700">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[#a94672]">
             {item?.service || "Appointment"}
           </p>
           <h3 className="mt-2 text-xl font-semibold text-slate-900">
@@ -69,3 +69,4 @@ export default function AppointmentCard({ item }) {
     </div>
   );
 }
+

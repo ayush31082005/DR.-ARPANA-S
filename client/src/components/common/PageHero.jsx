@@ -8,7 +8,7 @@ export default function PageHero({
   image,
   sectionClassName = "",
   imageOverlayClassName = "bg-slate-950/55",
-  imageGradientClassName = "bg-gradient-to-r from-slate-950/80 via-slate-950/55 to-[#4f8f16]/55",
+  imageGradientClassName = "bg-gradient-to-r from-slate-950/80 via-slate-950/55 to-[#a94672]/55",
   descriptionClassName = "text-white/85",
 }) {
   return (
@@ -48,3 +48,4 @@ export default function PageHero({
     </section>
   );
 }
+

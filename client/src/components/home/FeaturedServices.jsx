@@ -30,7 +30,7 @@ export default function FeaturedServices() {
         <div className="mt-8 flex justify-center">
           <Link
             to="/services"
-            className="rounded-2xl bg-primary px-6 py-3 text-sm font-semibold text-white transition hover:bg-teal-700"
+            className="rounded-2xl bg-primary px-6 py-3 text-sm font-semibold text-white transition hover:bg-secondary"
           >
             See All Services
           </Link>

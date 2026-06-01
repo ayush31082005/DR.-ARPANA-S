@@ -4,7 +4,7 @@ import { fadeUp, staggerWrap } from "../../utils/motion";
 
 const aboutItems = [
   "Patient-first consultation experience",
-  "Clinic and shop in one seamless platform",
+  "Clinic and prescription support in one seamless platform",
   "Clean service flow ready for API integration",
   "Responsive design for mobile and desktop"
 ];
@@ -25,8 +25,8 @@ export default function ClinicIntro() {
         >
           <SectionTitle
             eyebrow="About Clinic"
-            title="A polished clinic experience with the convenience of ecommerce."
-            description="This upgraded UI is designed to feel modern, responsive, and conversion-friendly across all screen sizes."
+            title="A polished clinic experience built around care and clarity."
+            description="This upgraded UI is designed to feel modern, responsive, and patient-friendly across all screen sizes."
           />
 
           <motion.div

@@ -82,7 +82,7 @@ export default function ServiceCard({
             mobileImageOnly ? "hidden sm:block" : "block"
           }`}
         >
-          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-teal-200">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-rose-200">
             {service.category}
           </p>
           <div className="mt-3 overflow-hidden">
@@ -106,7 +106,7 @@ export default function ServiceCard({
               <Link
                 to="/appointment"
                 onClick={(event) => event.stopPropagation()}
-                className="inline-flex items-center text-[13px] font-semibold text-teal-200 transition hover:text-white"
+                className="inline-flex items-center text-[13px] font-semibold text-rose-200 transition hover:text-white"
               >
                 {"Book Appointment ->"}
               </Link>
@@ -145,7 +145,7 @@ export default function ServiceCard({
 
       <Link
         to="/appointment"
-        className="mt-5 inline-flex text-sm font-semibold text-primary transition hover:text-teal-700"
+        className="mt-5 inline-flex text-sm font-semibold text-primary transition hover:text-[#8f355f]"
       >
         {"Book Appointment ->"}
       </Link>

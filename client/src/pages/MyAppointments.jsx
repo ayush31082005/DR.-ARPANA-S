@@ -23,10 +23,10 @@ export default function MyAppointments() {
 
   return (
     <div className="space-y-8">
-      <section className="rounded-[32px] border border-slate-200 bg-[linear-gradient(135deg,#ecfeff_0%,#ffffff_48%,#f0fdf4_100%)] px-6 py-10 shadow-card sm:px-10">
+      <section className="rounded-[32px] border border-slate-200 bg-[linear-gradient(135deg,#fff1f6_0%,#ffffff_48%,#fde7ef_100%)] px-6 py-10 shadow-card sm:px-10">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-2xl">
-            <span className="text-sm font-semibold uppercase tracking-[0.28em] text-teal-700">
+            <span className="text-sm font-semibold uppercase tracking-[0.28em] text-[#a94672]">
               Appointments
             </span>
             <h1 className="mt-3 text-4xl font-bold text-slate-900 sm:text-5xl">

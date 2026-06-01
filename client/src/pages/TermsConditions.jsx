@@ -4,7 +4,7 @@ const sections = [
   {
     heading: "Website Use",
     content:
-      "By using this website, you agree to provide accurate information during registration, appointment booking, checkout, and prescription upload. Misuse of forms, false submissions, or interference with site functionality may result in access restrictions.",
+      "By using this website, you agree to provide accurate information during registration, appointment booking, and prescription upload. Misuse of forms, false submissions, or interference with site functionality may result in access restrictions.",
   },
   {
     heading: "Appointments and Consultations",
@@ -15,14 +15,14 @@ const sections = [
     ],
   },
   {
-    heading: "Prescription Orders",
+    heading: "Prescription Uploads",
     content:
-      "Certain products may be purchased only after valid prescription review. The clinic or pharmacy team may reject or delay an order if the uploaded prescription is incomplete, unclear, expired, or does not match the requested medicine.",
+      "Prescription files uploaded through the website should be clear, valid, and related to the medical guidance being requested. Incomplete or unreadable files may delay review or require resubmission.",
   },
   {
-    heading: "Payments and Pricing",
+    heading: "Website Content",
     content:
-      "Product pricing, availability, and promotional offers may change without prior notice. Orders will be processed according to the prices shown at the time of checkout, subject to verification and stock availability.",
+      "Service descriptions, health information, and clinic details are provided to help users understand available care options. Final medical advice should always come from a qualified professional during consultation.",
   },
   {
     heading: "Liability and Support",
@@ -38,7 +38,7 @@ export default function TermsConditions() {
   return (
     <PolicyPage
       title="Terms & Conditions"
-      description="Review the key terms related to appointments, orders, payments, prescription uploads, and website usage."
+      description="Review the key terms related to appointments, prescription uploads, and website usage."
       lastUpdated="April 18, 2026"
       sections={sections}
     />

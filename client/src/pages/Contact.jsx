@@ -146,7 +146,7 @@ export default function Contact() {
             </h2>
 
             {submittedMessage ? (
-              <div className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-700">
+              <div className="mt-6 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm font-medium text-rose-700">
                 {submittedMessage}
               </div>
             ) : null}
@@ -220,7 +220,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full rounded-2xl bg-[#f6a04a] px-6 py-4 text-base font-semibold text-white transition hover:bg-[#ee973f] disabled:cursor-not-allowed disabled:opacity-70"
+                className="w-full rounded-2xl bg-[#d66f9f] px-6 py-4 text-base font-semibold text-white transition hover:bg-[#c45a8d] disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {isSubmitting ? "Sending..." : "Send Message"}
               </button>
@@ -231,3 +231,5 @@ export default function Contact() {
     </section>
   );
 }
+
+

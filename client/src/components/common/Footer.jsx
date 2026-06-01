@@ -4,7 +4,7 @@ import { policyLinks } from "../../data/policyLinks";
 
 export default function Footer() {
   return (
-    <footer className="mt-0 bg-[#35690d] py-14 text-lime-100">
+    <footer className="mt-0 bg-[#8f355f] py-14 text-rose-100">
       <div className="container-padded">
         <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-[1.2fr_1.1fr_1fr]">
           <div>
@@ -19,21 +19,21 @@ export default function Footer() {
               <h3 className="text-3xl font-bold text-white">DR. ARPANA'S</h3>
             </div>
 
-            <p className="mt-6 max-w-sm text-[15px] leading-8 text-lime-100/85">
+            <p className="mt-6 max-w-sm text-[15px] leading-8 text-rose-100/85">
               Your health is our highest priority. We are available for you 24/7.
             </p>
 
-            <div className="mt-6 space-y-3 text-[15px] text-lime-100/85">
+            <div className="mt-6 space-y-3 text-[15px] text-rose-100/85">
               <p className="flex items-center gap-3">
-                <MapPin size={16} className="text-[#dff8bf]" />
+                <MapPin size={16} className="text-[#fff7fa]" />
                 <span>12, Health Street, Delhi - 110001</span>
               </p>
               <p className="flex items-center gap-3">
-                <Phone size={16} className="text-[#dff8bf]" />
+                <Phone size={16} className="text-[#fff7fa]" />
                 <span>+91 98765 43210</span>
               </p>
               <p className="flex items-center gap-3">
-                <Mail size={16} className="text-[#f7ffef]" />
+                <Mail size={16} className="text-[#fff8fb]" />
                 <span>care@lifeclinic.in</span>
               </p>
             </div>
@@ -46,7 +46,6 @@ export default function Footer() {
                 <Link to="/" className="transition hover:text-white">Home</Link>
                 <Link to="/about" className="transition hover:text-white">About Us</Link>
                 <Link to="/services" className="transition hover:text-white">Services</Link>
-                <Link to="/shop" className="transition hover:text-white">Shop</Link>
                 <Link to="/appointment" className="transition hover:text-white">Book Appointment</Link>
               </div>
             </div>
@@ -67,23 +66,23 @@ export default function Footer() {
             <h4 className="text-2xl font-bold text-white">Clinic Timings</h4>
             <div className="mt-6 space-y-3 text-[15px]">
               <div className="flex items-center justify-between gap-4">
-                <span className="text-lime-100/85">Mon - Fri</span>
+                <span className="text-rose-100/85">Mon - Fri</span>
                 <span className="font-semibold text-white">8am - 8pm</span>
               </div>
               <div className="flex items-center justify-between gap-4">
-                <span className="text-lime-100/85">Saturday</span>
+                <span className="text-rose-100/85">Saturday</span>
                 <span className="font-semibold text-white">9am - 6pm</span>
               </div>
               <div className="flex items-center justify-between gap-4">
-                <span className="text-lime-100/85">Sunday</span>
+                <span className="text-rose-100/85">Sunday</span>
                 <span className="font-semibold text-white">10am - 4pm</span>
               </div>
             </div>
 
-            <div className="mt-6 rounded-2xl border border-[#92ee43] bg-[#4f8f16] px-4 py-4">
+            <div className="mt-6 rounded-2xl border border-[#e4b5ca] bg-[#a94672] px-4 py-4">
               <div className="flex items-start gap-3">
-                <ShieldAlert size={18} className="mt-0.5 text-[#f7ffef]" />
-                <div className="text-sm leading-6 text-lime-50">
+                <ShieldAlert size={18} className="mt-0.5 text-[#fff8fb]" />
+                <div className="text-sm leading-6 text-rose-50">
                   <p className="font-semibold text-white">Emergency: 24/7 Available</p>
                   <p>Helpline: 1800-XXX-XXXX</p>
                 </div>
@@ -103,3 +102,4 @@ export default function Footer() {
     </footer>
   );
 }
+

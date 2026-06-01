@@ -111,9 +111,9 @@ export default function Appointment() {
                     <div
                       className={`flex items-center gap-1.5 rounded-full px-2.5 py-2 text-[11px] font-semibold transition-colors sm:gap-3 sm:px-5 sm:py-3 sm:text-sm ${
                         isDone
-                          ? "bg-[#f6a04a] text-white"
+                          ? "bg-[#d66f9f] text-white"
                           : isActive
-                            ? "bg-[#f6a04a] text-white"
+                            ? "bg-[#d66f9f] text-white"
                             : "bg-[#ffe2bf] text-[#c7781f] shadow-sm"
                       }`}
                     >
@@ -142,7 +142,7 @@ export default function Appointment() {
           <div className="rounded-[32px] border border-slate-200 bg-white p-6 shadow-card sm:p-8 lg:p-10">
             {submitted ? (
               <div className="py-12 text-center">
-                <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-emerald-100 text-lg font-bold text-emerald-700">
+                <div className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-rose-100 text-lg font-bold text-rose-700">
                   OK
                 </div>
                 <h2 className="mt-5 text-3xl font-bold text-slate-900">
@@ -178,7 +178,7 @@ export default function Appointment() {
                 <button
                   type="button"
                   onClick={resetForm}
-                  className="mt-8 rounded-2xl bg-[#f6a04a] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#ee973f]"
+                  className="mt-8 rounded-2xl bg-[#d66f9f] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#c45a8d]"
                 >
                   Book Another Appointment
                 </button>
@@ -259,7 +259,7 @@ export default function Appointment() {
                       type="button"
                       onClick={() => setStep(2)}
                       disabled={!form.name || !form.phone}
-                      className="w-full rounded-2xl bg-[#f6a04a] px-6 py-4 text-base font-semibold text-white transition hover:bg-[#ee973f] disabled:bg-[#f7b26a] disabled:text-white"
+                      className="w-full rounded-2xl bg-[#d66f9f] px-6 py-4 text-base font-semibold text-white transition hover:bg-[#c45a8d] disabled:bg-[#e7a7c3] disabled:text-white"
                     >
                       Continue
                     </button>
@@ -338,7 +338,7 @@ export default function Appointment() {
                         type="button"
                         onClick={() => setStep(3)}
                         disabled={!form.service || !form.doctor}
-                        className="rounded-2xl bg-[#f6a04a] px-6 py-4 text-base font-semibold text-white transition hover:bg-[#ee973f] disabled:bg-[#f7b26a] disabled:text-white"
+                        className="rounded-2xl bg-[#d66f9f] px-6 py-4 text-base font-semibold text-white transition hover:bg-[#c45a8d] disabled:bg-[#e7a7c3] disabled:text-white"
                       >
                         Continue
                       </button>
@@ -379,7 +379,7 @@ export default function Appointment() {
                             onClick={() => setForm((current) => ({ ...current, time: slot }))}
                             className={`rounded-2xl border px-4 py-4 text-sm font-medium transition-colors ${
                               form.time === slot
-                                ? "border-[#f6a04a] bg-[#f6a04a] text-white shadow-md"
+                                ? "border-[#d66f9f] bg-[#d66f9f] text-white shadow-md"
                                 : "border-slate-200 bg-white text-slate-700 hover:border-[#f0b56a]"
                             }`}
                           >
@@ -408,7 +408,7 @@ export default function Appointment() {
                         disabled={!canSubmit || isSubmitting}
                         className={`flex-1 rounded-2xl px-6 py-4 text-base font-semibold shadow-sm transition ${
                           canSubmit && !isSubmitting
-                            ? "bg-[#f6a04a] text-white hover:bg-[#ee973f]"
+                            ? "bg-[#d66f9f] text-white hover:bg-[#c45a8d]"
                             : "cursor-not-allowed bg-slate-200 text-slate-400"
                         }`}
                       >
@@ -425,3 +425,5 @@ export default function Appointment() {
     </section>
   );
 }
+
+

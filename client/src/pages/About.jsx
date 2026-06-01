@@ -60,23 +60,23 @@ export default function About() {
         descriptionClassName="text-white/90"
       />
 
-      <section className="section-space !py-8 sm:!py-10 bg-[linear-gradient(180deg,#f6ffe8_0%,#e7f8c7_55%,#ddf3b1_100%)]">
+      <section className="section-space !py-8 sm:!py-10 bg-[linear-gradient(180deg,#fff7fa_0%,#fdeef5_55%,#f8dfe9_100%)]">
         <div className="container-padded">
           <div className="mx-auto grid w-full max-w-6xl grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
             {stats.map((stat, index) => (
               <div
                 key={stat.label}
-                className="rounded-[28px] border border-[#b9de82] bg-[linear-gradient(180deg,#fbffef_0%,#eefddb_100%)] px-5 py-6 text-center shadow-[0_16px_40px_rgba(79,143,22,0.14)]"
+                className="rounded-[28px] border border-[#efcad9] bg-[linear-gradient(180deg,#fffafd_0%,#fdeef5_100%)] px-5 py-6 text-center shadow-[0_16px_40px_rgba(169,70,114,0.14)]"
               >
                 <p
                   ref={(element) => {
                     countRefs.current[index] = element;
                   }}
-                  className="text-3xl font-extrabold tracking-tight text-[#35690d] sm:text-[2.1rem]"
+                  className="text-3xl font-extrabold tracking-tight text-[#8f355f] sm:text-[2.1rem]"
                 >
                   0{stat.suffix}
                 </p>
-                <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-[#4f6d33] sm:text-xs">
+                <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.28em] text-[#8f355f] sm:text-xs">
                   {stat.label}
                 </p>
               </div>
@@ -116,8 +116,9 @@ export default function About() {
 
               <p>
                 Alongside medical consultation, we also support everyday wellness
-                needs through a carefully planned product experience, making
-                ClinicCare a complete destination for care and convenience.
+                needs through better guidance, follow-up, and patient education,
+                making ClinicCare a complete destination for care and
+                convenience.
               </p>
             </div>
           </motion.div>
@@ -192,7 +193,7 @@ export default function About() {
             <SectionTitle
               eyebrow="Our Purpose"
               title="Built around people, not just processes."
-              description="We focus on making every part of the healthcare journey easier — from finding the right service to receiving the right support at the right time."
+              description="We focus on making every part of the healthcare journey easier, from finding the right service to receiving the right support at the right time."
             />
 
             <div className="mt-6 space-y-5 text-[15px] leading-8 text-slate-600">
@@ -203,10 +204,10 @@ export default function About() {
               </p>
 
               <p>
-                Every section of our brand — appointments, services, doctors,
-                and health products — is designed to reduce friction and increase
-                trust. That means better communication, better presentation, and
-                better confidence for the user.
+                Every section of our brand, including appointments, services,
+                doctors, and follow-up support, is designed to reduce friction
+                and increase trust. That means better communication, better
+                presentation, and better confidence for the user.
               </p>
             </div>
           </motion.div>
@@ -243,7 +244,7 @@ export default function About() {
               },
               {
                 title: "Complete Wellness Support",
-                text: "Services and product access together create a more complete health experience.",
+                text: "Services, guidance, and follow-up support together create a more complete health experience.",
               },
               {
                 title: "Premium Experience",
@@ -271,7 +272,7 @@ export default function About() {
         </div>
       </section>
 
-      <section className="section-space bg-[linear-gradient(180deg,#eefddb_0%,#dcf6b4_100%)] text-slate-900">
+      <section className="section-space bg-[linear-gradient(180deg,#fdeef5_0%,#f8dfe9_100%)] text-slate-900">
         <div className="container-padded grid items-center gap-12 lg:grid-cols-2">
           <motion.div
             variants={fadeLeft}
@@ -280,17 +281,18 @@ export default function About() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.7 }}
           >
-            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-[#4f8f16]">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-[#a94672]">
               Our Commitment
             </p>
-            <h2 className="text-3xl font-bold leading-tight text-[#17320a] md:text-4xl">
+            <h2 className="text-3xl font-bold leading-tight text-[#5f2442] md:text-4xl">
               We are committed to making healthcare more approachable and more
               reassuring for every patient.
             </h2>
-            <p className="mt-6 max-w-2xl text-[15px] leading-8 text-[#4a5f38]">
+            <p className="mt-6 max-w-2xl text-[15px] leading-8 text-[#8f355f]">
               Whether someone is visiting for a consultation, exploring treatment
-              options, or looking for trusted wellness products, our responsibility
-              is to make that journey feel simple, supportive, and professionally managed.
+              options, or looking for trusted wellness guidance, our
+              responsibility is to make that journey feel simple, supportive,
+              and professionally managed.
             </p>
           </motion.div>
 
@@ -301,7 +303,7 @@ export default function About() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.75 }}
           >
-            <div className="overflow-hidden rounded-[32px] border border-[#c9e89b] bg-[#f6ffe8] p-2 shadow-[0_20px_60px_rgba(79,143,22,0.12)]">
+            <div className="overflow-hidden rounded-[32px] border border-[#efcad9] bg-[#fff7fa] p-2 shadow-[0_20px_60px_rgba(169,70,114,0.12)]">
               <img
                 src="https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1200&q=80"
                 alt="Doctor consultation"

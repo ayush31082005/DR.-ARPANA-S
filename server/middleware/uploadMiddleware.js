@@ -66,19 +66,4 @@ export const uploadPrescriptionFile = (req, res, next) => {
     });
 };
 
-export const uploadProductImage = (req, res, next) => {
-    const handler = upload.single("productImage");
-
-    handler(req, res, (error) => {
-        if (error) {
-            return res.status(400).json({
-                success: false,
-                message: error.message,
-            });
-        }
-
-        next();
-    });
-};
-
 export default upload;

@@ -13,7 +13,7 @@ export default function AppointmentSteps() {
     >
       {steps.map((step, index) => (
         <motion.div key={step} variants={fadeUp} className="surface p-5 text-center">
-          <div className="mx-auto mb-3 grid h-10 w-10 place-items-center rounded-full bg-teal-100 font-semibold text-primary">
+          <div className="mx-auto mb-3 grid h-10 w-10 place-items-center rounded-full bg-rose-100 font-semibold text-primary">
             {index + 1}
           </div>
           <p className="text-sm font-medium text-slate-700">{step}</p>

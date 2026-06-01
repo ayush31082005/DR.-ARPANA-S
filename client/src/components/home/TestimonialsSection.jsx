@@ -80,7 +80,7 @@ export default function TestimonialsSection() {
               variants={fadeUp}
               className="surface min-w-[260px] p-6 md:min-w-[280px] lg:min-w-[300px] xl:min-w-[320px]"
             >
-              <div className="flex items-center gap-1 text-orange-500">
+              <div className="flex items-center gap-1 text-rose-500">
                 {Array.from({ length: item.rating }).map((_, index) => (
                   <Star key={`${item.id}-${index}`} size={16} className="fill-current" />
                 ))}
@@ -94,3 +94,4 @@ export default function TestimonialsSection() {
     </section>
   );
 }
+

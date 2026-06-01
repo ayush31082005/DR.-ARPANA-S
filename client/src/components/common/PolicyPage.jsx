@@ -81,8 +81,8 @@ export default function PolicyPage({
                   Need Help?
                 </h3>
                 <p className="mt-3 text-sm leading-7 text-slate-600">
-                  If you need clarification about appointments, delivery,
-                  returns, or privacy, our support team is here to help.
+                  If you need clarification about appointments, prescriptions,
+                  privacy, or website usage, our support team is here to help.
                 </p>
                 <div className="mt-5 flex flex-col gap-3">
                   <Link to="/contact" className="btn-primary">

@@ -4,13 +4,11 @@ import {
     createAdminByAdmin,
     getAllAdmins,
     getAdminAppointments,
-    getAdminOrders,
     getAdminProfile,
     getAdminStats,
     sendAdminCreationOtp,
     updateAdminProfile,
     updateAdminAppointmentStatus,
-    updateAdminOrderStatus,
     verifyAdminCreationOtp,
 } from "../controllers/adminController.js";
 import { authorizeRoles, protect } from "../middleware/authMiddleware.js";
@@ -28,8 +26,6 @@ router.post("/admins/send-otp", sendAdminCreationOtp);
 router.post("/admins/verify-otp", verifyAdminCreationOtp);
 router.get("/stats", getAdminStats);
 router.get("/appointments", getAdminAppointments);
-router.get("/orders", getAdminOrders);
 router.patch("/appointments/:id/status", updateAdminAppointmentStatus);
-router.patch("/orders/:id/status", updateAdminOrderStatus);
 
 export default router;

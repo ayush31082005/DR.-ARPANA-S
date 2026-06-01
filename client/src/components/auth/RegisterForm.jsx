@@ -101,16 +101,16 @@ export default function RegisterForm() {
       className="mx-auto w-full max-w-2xl"
     >
       <div className="relative overflow-hidden rounded-[32px] border border-white/40 bg-white/80 p-6 shadow-[0_20px_60px_rgba(15,23,42,0.10)] backdrop-blur-xl sm:p-8">
-        <div className="absolute inset-0 bg-gradient-to-br from-lime-50/80 via-white to-[#eefddb]/80" />
-        <div className="absolute -left-16 -top-16 h-40 w-40 rounded-full bg-lime-200/40 blur-3xl" />
-        <div className="absolute -bottom-16 -right-16 h-40 w-40 rounded-full bg-[#bdf37f]/40 blur-3xl" />
+        <div className="absolute inset-0 bg-gradient-to-br from-rose-50/90 via-white to-[#fdeef5]/80" />
+        <div className="absolute -left-16 -top-16 h-40 w-40 rounded-full bg-rose-200/50 blur-3xl" />
+        <div className="absolute -bottom-16 -right-16 h-40 w-40 rounded-full bg-[#f3bfd3]/45 blur-3xl" />
 
         <div className="relative z-10">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.1, duration: 0.45 }}
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-lime-200 bg-lime-50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#4f8f16]"
+            className="mb-6 inline-flex items-center gap-2 rounded-full border border-rose-200 bg-rose-50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#a94672]"
           >
             {step === 1 ? <UserPlus size={14} /> : <ShieldCheck size={14} />}
             {step === 1 ? "Create Account" : "Verify OTP"}
@@ -126,7 +126,7 @@ export default function RegisterForm() {
             </h2>
             <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base">
               {step === 1
-                ? "Create your account to manage appointments, orders, prescriptions, and your health profile from one place."
+                ? "Create your account to manage appointments, prescriptions, and your health profile from one place."
                 : `We sent an OTP to ${form.email}. Enter it below to finish creating your account.`}
             </p>
           </motion.div>
@@ -136,7 +136,7 @@ export default function RegisterForm() {
               className={`mt-6 rounded-2xl border px-4 py-3 text-sm ${
                 feedback.type === "error"
                   ? "border-red-200 bg-red-50 text-red-700"
-                  : "border-emerald-200 bg-emerald-50 text-emerald-700"
+                  : "border-rose-200 bg-rose-50 text-rose-700"
               }`}
             >
               {feedback.message}
@@ -161,7 +161,7 @@ export default function RegisterForm() {
                     value={form.fullName}
                     onChange={handleChange}
                     required
-                    className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-slate-800 outline-none transition duration-300 placeholder:text-slate-400 focus:border-primary focus:ring-4 focus:ring-lime-100"
+                    className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-slate-800 outline-none transition duration-300 placeholder:text-slate-400 focus:border-primary focus:ring-4 focus:ring-rose-100"
                     placeholder="Enter full name"
                   />
                 </div>
@@ -176,7 +176,7 @@ export default function RegisterForm() {
                     value={form.email}
                     onChange={handleChange}
                     required
-                    className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-slate-800 outline-none transition duration-300 placeholder:text-slate-400 focus:border-primary focus:ring-4 focus:ring-lime-100"
+                    className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-slate-800 outline-none transition duration-300 placeholder:text-slate-400 focus:border-primary focus:ring-4 focus:ring-rose-100"
                     placeholder="Enter email address"
                   />
                 </div>
@@ -192,7 +192,7 @@ export default function RegisterForm() {
                   value={form.phone}
                   onChange={handleChange}
                   required
-                  className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-slate-800 outline-none transition duration-300 placeholder:text-slate-400 focus:border-primary focus:ring-4 focus:ring-lime-100"
+                  className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-slate-800 outline-none transition duration-300 placeholder:text-slate-400 focus:border-primary focus:ring-4 focus:ring-rose-100"
                   placeholder="Enter phone number"
                 />
               </div>
@@ -210,7 +210,7 @@ export default function RegisterForm() {
                       value={form.password}
                       onChange={handleChange}
                       required
-                      className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 pr-12 text-sm text-slate-800 outline-none transition duration-300 placeholder:text-slate-400 focus:border-primary focus:ring-4 focus:ring-lime-100"
+                      className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 pr-12 text-sm text-slate-800 outline-none transition duration-300 placeholder:text-slate-400 focus:border-primary focus:ring-4 focus:ring-rose-100"
                       placeholder="Create password"
                     />
 
@@ -236,7 +236,7 @@ export default function RegisterForm() {
                       value={form.confirmPassword}
                       onChange={handleChange}
                       required
-                      className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 pr-12 text-sm text-slate-800 outline-none transition duration-300 placeholder:text-slate-400 focus:border-primary focus:ring-4 focus:ring-lime-100"
+                      className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 pr-12 text-sm text-slate-800 outline-none transition duration-300 placeholder:text-slate-400 focus:border-primary focus:ring-4 focus:ring-rose-100"
                       placeholder="Confirm password"
                     />
 
@@ -287,7 +287,7 @@ export default function RegisterForm() {
                 whileTap={{ scale: 0.99 }}
                 type="submit"
                 disabled={isSubmitting}
-                className="mt-2 inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-primary to-secondary px-5 py-3.5 text-sm font-semibold text-slate-900 shadow-[0_12px_30px_rgba(123,234,24,0.24)] transition duration-300 hover:from-secondary hover:to-[#4f8f16]"
+                className="mt-2 inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-primary to-secondary px-5 py-3.5 text-sm font-semibold text-slate-900 shadow-[0_12px_30px_rgba(169,70,114,0.24)] transition duration-300 hover:from-secondary hover:to-[#a94672]"
               >
                 {isSubmitting ? "Sending OTP..." : "Send OTP"}
               </motion.button>
@@ -320,7 +320,7 @@ export default function RegisterForm() {
                   value={form.otp}
                   onChange={handleChange}
                   required
-                  className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-slate-800 outline-none transition duration-300 placeholder:text-slate-400 focus:border-primary focus:ring-4 focus:ring-lime-100"
+                  className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3.5 text-sm text-slate-800 outline-none transition duration-300 placeholder:text-slate-400 focus:border-primary focus:ring-4 focus:ring-rose-100"
                   placeholder="Enter 6 digit OTP"
                 />
               </div>
@@ -330,7 +330,7 @@ export default function RegisterForm() {
                 whileTap={{ scale: 0.99 }}
                 type="submit"
                 disabled={isSubmitting}
-                className="inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-primary to-secondary px-5 py-3.5 text-sm font-semibold text-slate-900 shadow-[0_12px_30px_rgba(123,234,24,0.24)] transition duration-300 hover:from-secondary hover:to-[#4f8f16]"
+                className="inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-primary to-secondary px-5 py-3.5 text-sm font-semibold text-slate-900 shadow-[0_12px_30px_rgba(169,70,114,0.24)] transition duration-300 hover:from-secondary hover:to-[#a94672]"
               >
                 {isSubmitting ? "Verifying..." : "Verify OTP & Register"}
               </motion.button>
@@ -349,3 +349,4 @@ export default function RegisterForm() {
     </motion.div>
   );
 }
+

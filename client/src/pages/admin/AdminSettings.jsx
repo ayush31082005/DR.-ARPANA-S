@@ -247,8 +247,8 @@ export default function AdminSettings() {
       <div
         className={`border px-4 py-3 text-sm ${
           feedback.type === "error"
-            ? "border-orange-200 bg-orange-50 text-orange-700"
-            : "border-emerald-200 bg-emerald-50 text-emerald-700"
+            ? "border-rose-200 bg-rose-50 text-rose-700"
+            : "border-rose-200 bg-rose-50 text-rose-700"
         }`}
       >
         {feedback.message}
@@ -275,7 +275,7 @@ export default function AdminSettings() {
         <div className="border bg-white p-6 shadow-sm">
           <div className="flex items-start justify-between gap-4">
             <div className="flex items-start gap-4">
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-teal-100 text-teal-700">
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-rose-100 text-[#a94672]">
                 <UserCog size={28} />
               </div>
               <div>
@@ -285,39 +285,39 @@ export default function AdminSettings() {
                 </p>
               </div>
             </div>
-            <div className="border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
+            <div className="border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
               Signed in as <span className="font-semibold">{currentAdmin?.email || "admin"}</span>
             </div>
           </div>
 
-          <div className="mt-6 overflow-hidden border border-orange-200">
+          <div className="mt-6 overflow-hidden border border-rose-200">
             <div className="overflow-x-auto">
               <table className="w-full min-w-[760px] border-separate border-spacing-0 text-sm">
-                <thead className="bg-orange-500 text-white">
+                <thead className="bg-rose-500 text-white">
                   <tr>
-                    <th className="border-b border-r border-orange-200 p-4 text-left font-semibold">Admin Name</th>
-                    <th className="border-b border-r border-orange-200 p-4 text-left font-semibold">Email</th>
-                    <th className="border-b border-r border-orange-200 p-4 text-left font-semibold">Mobile Number</th>
-                    <th className="border-b border-r border-orange-200 p-4 text-left font-semibold">Role</th>
-                    <th className="border-b border-r border-orange-200 p-4 text-left font-semibold">Joined On</th>
-                    <th className="border-b border-orange-200 p-4 text-left font-semibold">Status</th>
+                    <th className="border-b border-r border-rose-200 p-4 text-left font-semibold">Admin Name</th>
+                    <th className="border-b border-r border-rose-200 p-4 text-left font-semibold">Email</th>
+                    <th className="border-b border-r border-rose-200 p-4 text-left font-semibold">Mobile Number</th>
+                    <th className="border-b border-r border-rose-200 p-4 text-left font-semibold">Role</th>
+                    <th className="border-b border-r border-rose-200 p-4 text-left font-semibold">Joined On</th>
+                    <th className="border-b border-rose-200 p-4 text-left font-semibold">Status</th>
                   </tr>
                 </thead>
                 <tbody>
                   {admins.length ? (
                     admins.map((item) => (
-                      <tr key={item.id} className="even:bg-orange-50/40">
-                        <td className="border-t border-r border-orange-100 p-4 font-semibold text-slate-900">{item.name}</td>
-                        <td className="border-t border-r border-orange-100 p-4 text-slate-600">{item.email}</td>
-                        <td className="border-t border-r border-orange-100 p-4 text-slate-600">{item.phone || "Not available"}</td>
-                        <td className="border-t border-r border-orange-100 p-4">
-                          <span className="inline-flex rounded-full bg-sky-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-sky-700">
+                      <tr key={item.id} className="even:bg-rose-50/40">
+                        <td className="border-t border-r border-rose-100 p-4 font-semibold text-slate-900">{item.name}</td>
+                        <td className="border-t border-r border-rose-100 p-4 text-slate-600">{item.email}</td>
+                        <td className="border-t border-r border-rose-100 p-4 text-slate-600">{item.phone || "Not available"}</td>
+                        <td className="border-t border-r border-rose-100 p-4">
+                          <span className="inline-flex rounded-full bg-rose-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-rose-700">
                             {item.role || "admin"}
                           </span>
                         </td>
-                        <td className="border-t border-r border-orange-100 p-4 text-slate-600">{formatJoinedDate(item.createdAt)}</td>
-                        <td className="border-t border-orange-100 p-4">
-                          <span className="inline-flex rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">
+                        <td className="border-t border-r border-rose-100 p-4 text-slate-600">{formatJoinedDate(item.createdAt)}</td>
+                        <td className="border-t border-rose-100 p-4">
+                          <span className="inline-flex rounded-full bg-rose-100 px-3 py-1 text-xs font-semibold text-rose-700">
                             Active Admin
                           </span>
                         </td>
@@ -384,7 +384,7 @@ export default function AdminSettings() {
             <button
               type="submit"
               disabled={isSavingProfile}
-              className="rounded-2xl bg-teal-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-teal-700 disabled:cursor-not-allowed disabled:opacity-70"
+              className="rounded-2xl bg-[#c45a8d] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#a94672] disabled:cursor-not-allowed disabled:opacity-70"
             >
               {isSavingProfile ? "Saving..." : "Save Profile"}
             </button>
@@ -543,7 +543,7 @@ export default function AdminSettings() {
               <button
                 type="submit"
                 disabled={isCreatingAdmin}
-                className="rounded-2xl bg-emerald-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-70"
+                className="rounded-2xl bg-rose-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-rose-700 disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {isCreatingAdmin
                   ? createAdminStep === 1
@@ -579,3 +579,5 @@ function Field({ label, children }) {
     </label>
   );
 }
+
+

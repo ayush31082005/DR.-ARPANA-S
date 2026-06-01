@@ -106,7 +106,7 @@ export default function MyPrescription() {
             </div>
 
             {submittedMessage ? (
-              <div className="mt-6 rounded-[24px] border border-emerald-200 bg-emerald-50 px-4 py-4 text-sm font-medium text-emerald-700 sm:rounded-[28px] sm:px-6">
+              <div className="mt-6 rounded-[24px] border border-rose-200 bg-rose-50 px-4 py-4 text-sm font-medium text-rose-700 sm:rounded-[28px] sm:px-6">
                 {submittedMessage}
               </div>
             ) : null}
@@ -168,7 +168,7 @@ export default function MyPrescription() {
                 required
               />
 
-              <div className="rounded-[24px] border-2 border-dashed border-emerald-300 bg-emerald-50/40 p-4 text-center sm:rounded-[28px] sm:p-8">
+              <div className="rounded-[24px] border-2 border-dashed border-rose-300 bg-rose-50/60 p-4 text-center sm:rounded-[28px] sm:p-8">
                 <h3 className="text-lg font-bold text-slate-900 sm:text-xl">
                   Upload prescription image or PDF
                 </h3>
@@ -203,3 +203,4 @@ export default function MyPrescription() {
     </>
   );
 }
+

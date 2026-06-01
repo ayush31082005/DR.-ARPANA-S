@@ -7,7 +7,7 @@ export default function AuthLayout({ children }) {
     <div className="theme-green-page">
       <Topbar />
       <Navbar />
-      <main className="bg-gradient-to-b from-[#dff8bf] via-[#eefddb] to-[#d5f6a8] pt-[72px] sm:pt-20 xl:pt-28">
+      <main className="bg-gradient-to-b from-[#fff7fa] via-[#fdeef5] to-[#f8dfe9] pt-[72px] sm:pt-20 xl:pt-28">
         <div className="grid min-h-[calc(100vh-72px)] place-items-center p-4 sm:min-h-[calc(100vh-160px)] sm:p-6">
           <div className="w-full max-w-xl">{children}</div>
         </div>
@@ -16,3 +16,4 @@ export default function AuthLayout({ children }) {
     </div>
   );
 }
+

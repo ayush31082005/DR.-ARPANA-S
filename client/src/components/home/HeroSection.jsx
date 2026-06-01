@@ -18,19 +18,19 @@ const heroSlides = [
     accent: "Modern Care",
     titleBottom: "for Everyday Wellness.",
     description:
-      "Online appointments, trusted doctor guidance, and a polished wellness shopping experience now come together in one clear and patient-friendly destination.",
+      "Online appointments, trusted doctor guidance, and a polished clinic experience now come together in one clear and patient-friendly destination.",
     supportingText:
       "Explore homeopathy, ayurveda, skin care, and clinic support with a smoother journey that feels calm, modern, and easy to trust from the very first visit.",
     tags: [
       "Easy Appointments",
       "Holistic Treatments",
-      "Wellness Products",
+      "Clinic Guidance",
       "Patient-First Support",
     ],
     primaryLabel: "Book Appointment",
     primaryTo: "/appointment",
-    secondaryLabel: "Shop Products",
-    secondaryTo: "/shop",
+    secondaryLabel: "Explore Services",
+    secondaryTo: "/services",
   },
   {
     eyebrow: "Care That Moves With Your Day",
@@ -182,7 +182,7 @@ export default function HeroSection() {
               <p
                 ref={eyebrowRef}
                 data-hero="eyebrow"
-                className="mb-4 rounded-full border border-[#a9df6a] bg-[#f6ffe8]/80 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#2f4f12] backdrop-blur-sm sm:text-xs"
+                className="mb-4 rounded-full border border-[#e8bfd0] bg-[#fff7fa]/80 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#7d2f53] backdrop-blur-sm sm:text-xs"
               >
                 {currentSlide.eyebrow}
               </p>
@@ -190,30 +190,30 @@ export default function HeroSection() {
               <h1
                 ref={titleRef}
                 data-hero="title"
-                className="max-w-3xl text-[clamp(1.2rem,2.8vw,2.3rem)] font-extrabold leading-[1.02] text-[#11180a]"
+                className="max-w-3xl text-[clamp(1.2rem,2.8vw,2.3rem)] font-extrabold leading-[1.02] text-[#5f2442]"
               >
                 {currentSlide.titleTop}
                 <br />
-                <span className="text-[#3f6e10]">{currentSlide.accent}</span>{" "}
+                <span className="text-[#d66f9f]">{currentSlide.accent}</span>{" "}
                 {currentSlide.titleBottom}
               </h1>
 
               <div
                 ref={descriptionRef}
                 data-hero="description"
-                className="mt-5 max-w-3xl space-y-3 text-[16px] leading-7 text-[#1e2d12] sm:text-[18px] md:text-[20px]"
+                className="mt-5 max-w-3xl space-y-3 text-[16px] leading-7 text-[#6f2849] sm:text-[18px] md:text-[20px]"
               >
                 <p>{currentSlide.description}</p>
-                <p className="text-[14px] leading-6 text-[#36501e] sm:text-[16px] md:text-[18px]">
+                <p className="text-[14px] leading-6 text-[#8f355f] sm:text-[16px] md:text-[18px]">
                   {currentSlide.supportingText}
                 </p>
               </div>
 
-              <div className="mt-6 flex max-w-3xl flex-wrap items-center justify-center gap-3 text-[14px] font-semibold text-[#1f3210] sm:text-[16px]">
+              <div className="mt-6 flex max-w-3xl flex-wrap items-center justify-center gap-3 text-[14px] font-semibold text-[#7d2f53] sm:text-[16px]">
                 {currentSlide.tags.map((item) => (
                   <span
                     key={item}
-                    className="rounded-full border border-[#b9de82] bg-[#f8ffe9]/85 px-4 py-2 shadow-[0_10px_24px_rgba(79,143,22,0.08)] backdrop-blur-sm"
+                    className="rounded-full border border-[#efcad9] bg-[#fff7fa]/85 px-4 py-2 shadow-[0_10px_24px_rgba(169,70,114,0.08)] backdrop-blur-sm"
                   >
                     {item}
                   </span>
@@ -239,3 +239,5 @@ export default function HeroSection() {
     </div>
   );
 }
+
+
