@@ -1,12 +1,11 @@
 import { Mail, MapPin, Phone, ShieldAlert } from "lucide-react";
 import { Link } from "react-router-dom";
-import { policyLinks } from "../../data/policyLinks";
 
 export default function Footer() {
   return (
     <footer className="mt-0 bg-[#8f355f] py-14 text-rose-100">
       <div className="container-padded">
-        <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-[1.2fr_1.1fr_1fr]">
+        <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-[1.2fr_0.8fr_1fr]">
           <div>
             <div className="flex items-center gap-3">
               <div className="flex h-14 w-14 items-center justify-center">
@@ -20,13 +19,14 @@ export default function Footer() {
             </div>
 
             <p className="mt-6 max-w-sm text-[15px] leading-8 text-rose-100/85">
-              Your health is our highest priority. We are available for you 24/7.
+              Compassionate homeopathic consultation, chronic care guidance, and follow-up support
+              for patients in Sahibabad, Ghaziabad.
             </p>
 
             <div className="mt-6 space-y-3 text-[15px] text-rose-100/85">
               <p className="flex items-center gap-3">
                 <MapPin size={16} className="text-[#fff7fa]" />
-                <span>12, Health Street, Delhi - 110001</span>
+                <span>Lajpat Nagar, Sector 4, Sahibabad, Ghaziabad</span>
               </p>
               <p className="flex items-center gap-3">
                 <Phone size={16} className="text-[#fff7fa]" />
@@ -34,12 +34,12 @@ export default function Footer() {
               </p>
               <p className="flex items-center gap-3">
                 <Mail size={16} className="text-[#fff8fb]" />
-                <span>care@lifeclinic.in</span>
+                <span>care@drarpanahomeocare.com</span>
               </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-6 sm:gap-10">
+          <div>
             <div>
               <h4 className="text-2xl font-bold text-white">Quick Links</h4>
               <div className="mt-6 flex flex-col gap-3 text-[15px]">
@@ -47,17 +47,7 @@ export default function Footer() {
                 <Link to="/about" className="transition hover:text-white">About Us</Link>
                 <Link to="/services" className="transition hover:text-white">Services</Link>
                 <Link to="/appointment" className="transition hover:text-white">Book Appointment</Link>
-              </div>
-            </div>
-
-            <div>
-              <h4 className="text-2xl font-bold text-white">Our Policy</h4>
-              <div className="mt-6 flex flex-col gap-3 text-[15px]">
-                {policyLinks.map((link) => (
-                  <Link key={link.path} to={link.path} className="transition hover:text-white">
-                    {link.label}
-                  </Link>
-                ))}
+                <Link to="/faq" className="transition hover:text-white">FAQ</Link>
               </div>
             </div>
           </div>
@@ -66,16 +56,16 @@ export default function Footer() {
             <h4 className="text-2xl font-bold text-white">Clinic Timings</h4>
             <div className="mt-6 space-y-3 text-[15px]">
               <div className="flex items-center justify-between gap-4">
-                <span className="text-rose-100/85">Mon - Fri</span>
-                <span className="font-semibold text-white">8am - 8pm</span>
+                <span className="text-rose-100/85">Mon - Sun</span>
+                <span className="font-semibold text-white">11:00 AM - 9:00 PM</span>
               </div>
               <div className="flex items-center justify-between gap-4">
-                <span className="text-rose-100/85">Saturday</span>
-                <span className="font-semibold text-white">9am - 6pm</span>
+                <span className="text-rose-100/85">Consultation Mode</span>
+                <span className="font-semibold text-white">In-clinic & Follow-up</span>
               </div>
               <div className="flex items-center justify-between gap-4">
-                <span className="text-rose-100/85">Sunday</span>
-                <span className="font-semibold text-white">10am - 4pm</span>
+                <span className="text-rose-100/85">Booking</span>
+                <span className="font-semibold text-white">Prior Appointment</span>
               </div>
             </div>
 
@@ -83,8 +73,8 @@ export default function Footer() {
               <div className="flex items-start gap-3">
                 <ShieldAlert size={18} className="mt-0.5 text-[#fff8fb]" />
                 <div className="text-sm leading-6 text-rose-50">
-                  <p className="font-semibold text-white">Emergency: 24/7 Available</p>
-                  <p>Helpline: 1800-XXX-XXXX</p>
+                  <p className="font-semibold text-white">Consultation Support</p>
+                  <p>Call for appointment booking, follow-up guidance, and clinic assistance.</p>
                 </div>
               </div>
             </div>

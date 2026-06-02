@@ -47,15 +47,15 @@ export default function ServiceCard({
         initial="hidden"
         whileInView="visible"
         viewport={{ once: false, amount: 0.2 }}
-        className="group relative overflow-hidden rounded-none bg-slate-950 shadow-card"
+        className="group relative overflow-hidden rounded-[20px] bg-slate-950 shadow-card"
         onClick={() => {
-          if (mobileImageOnly || typeof window === "undefined") return;
+          if (typeof window === "undefined") return;
           if (window.matchMedia("(hover: none)").matches) {
             setIsTouchExpanded((current) => !current);
           }
         }}
       >
-        <div className="aspect-[16/10] overflow-hidden sm:aspect-[6/5] xl:aspect-[5/6]">
+        <div className="aspect-[5/4] overflow-hidden sm:aspect-[6/5] xl:aspect-[5/6]">
           <img
             src={service.image}
             alt={`${service.title} service`}
@@ -66,21 +66,19 @@ export default function ServiceCard({
         <div
           className={`absolute inset-0 transition duration-500 ${
             mobileImageOnly
-              ? "bg-gradient-to-t from-slate-950/15 via-transparent to-transparent sm:from-slate-950 sm:via-slate-950/35 group-hover:sm:from-slate-950 group-hover:sm:via-slate-950/60"
+              ? "bg-gradient-to-t from-slate-950/85 via-slate-950/28 to-transparent sm:from-slate-950 sm:via-slate-950/35 group-hover:sm:from-slate-950 group-hover:sm:via-slate-950/60"
               : "bg-gradient-to-t from-slate-950/75 via-slate-950/20 to-transparent group-hover:from-slate-950 group-hover:via-slate-950/50"
           }`}
         />
 
         <div className="absolute inset-x-0 top-0 flex items-center justify-between p-3.5 sm:p-4">
-          <span className="rounded-full bg-white/90 px-3 py-1 text-[9px] font-semibold uppercase tracking-[0.16em] text-primary shadow-sm sm:text-[10px]">
+          <span className="bg-transparent px-0 py-0 text-[11px] font-semibold uppercase tracking-[0.12em] text-white sm:text-[10px]">
             {service.title}
           </span>
         </div>
 
         <div
-          className={`absolute inset-x-0 bottom-0 p-4 text-white sm:p-4.5 ${
-            mobileImageOnly ? "hidden sm:block" : "block"
-          }`}
+          className="absolute inset-x-0 bottom-0 block p-4 text-white sm:p-5"
         >
           <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-rose-200">
             {service.category}
@@ -89,7 +87,7 @@ export default function ServiceCard({
             <p
               className={`max-w-[29ch] overflow-hidden text-slate-200 transition-all duration-500 group-hover:max-h-56 ${
                 mobileImageOnly
-                  ? "max-h-28 text-[13px] leading-6"
+                  ? "max-h-24 text-[14px] leading-6"
                   : "max-h-10 text-[12px] leading-5 sm:max-h-28 sm:text-[13px] sm:leading-6"
               }`}
             >
@@ -98,10 +96,12 @@ export default function ServiceCard({
 
             <div
               className={`overflow-hidden transition-all duration-500 ${
-                isTouchExpanded
-                  ? "mt-3 max-h-16 opacity-100 sm:mt-0 sm:max-h-0 sm:opacity-0"
-                  : "max-h-0 opacity-0"
-              } sm:block sm:max-h-0 sm:opacity-0 sm:group-hover:mt-3 sm:group-hover:max-h-16 sm:group-hover:opacity-100`}
+                mobileImageOnly
+                  ? "mt-3 max-h-16 opacity-100 sm:mt-0 sm:max-h-0 sm:opacity-0 sm:group-hover:mt-3 sm:group-hover:max-h-16 sm:group-hover:opacity-100"
+                  : isTouchExpanded
+                    ? "mt-3 max-h-16 opacity-100 sm:mt-0 sm:max-h-0 sm:opacity-0"
+                    : "max-h-0 opacity-0"
+              }`}
             >
               <Link
                 to="/appointment"

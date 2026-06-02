@@ -7,22 +7,22 @@ const contactCards = [
   {
     icon: MapPin,
     title: "Address",
-    lines: ["12, Health Street, Connaught Place, New Delhi - 110001"],
+    lines: ["Dr. Arpana's Homeo Care Clinic", "Delhi, India"],
   },
   {
     icon: Phone,
     title: "Phone",
-    lines: ["+91 98765 43210", "Emergency: 1800-XXX-XXXX"],
+    lines: ["+91 98765 43210", "Appointment & Consultation"],
   },
   {
     icon: Mail,
     title: "Email",
-    lines: ["care@lifecclinic.in", "info@lifecclinic.in"],
+    lines: ["care@drarpanahomeocare.com", "info@drarpanahomeocare.com"],
   },
   {
     icon: Clock,
     title: "Timings",
-    lines: ["Mon-Fri: 8am - 8pm", "Sat: 9am - 6pm", "Sun: 10am - 4pm"],
+    lines: ["Mon-Sat: 10am - 7pm", "Sun: By Appointment Only"],
   },
 ];
 
@@ -70,8 +70,9 @@ export default function Contact() {
 
       setSubmittedMessage(
         response.message ||
-          "Your message has been sent successfully. Our team will contact you shortly."
+        "Your message has been sent successfully. Our team will contact you shortly."
       );
+
       setForm({
         ...initialForm,
         name: user?.name || "",
@@ -81,7 +82,7 @@ export default function Contact() {
     } catch (submitError) {
       setError(
         submitError.response?.data?.message ||
-          "Unable to send your message right now. Please try again."
+        "Unable to send your message right now. Please try again."
       );
     } finally {
       setIsSubmitting(false);
@@ -130,10 +131,11 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-[#d97706]">
-                    Emergency Services
+                    Important Note
                   </h3>
                   <p className="mt-1 text-sm text-[#ea8c2f]">
-                    24/7 available - Ambulance: 1800-XXX-XXXX
+                    For urgent health concerns, please call directly or visit
+                    the nearest emergency medical facility.
                   </p>
                 </div>
               </div>
@@ -168,7 +170,7 @@ export default function Contact() {
                     value={form.name}
                     onChange={handleChange}
                     required
-                    placeholder="Ramesh Kumar"
+                    placeholder="Enter your name"
                     className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-[#f6b26b] focus:ring-4 focus:ring-[#fde6c7]"
                   />
                 </div>
@@ -231,5 +233,3 @@ export default function Contact() {
     </section>
   );
 }
-
-

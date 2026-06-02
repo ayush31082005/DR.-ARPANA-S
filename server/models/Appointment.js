@@ -16,8 +16,24 @@ const appointmentSchema = new mongoose.Schema(
             type: String,
             trim: true,
         },
+        clinic: {
+            type: String,
+            trim: true,
+        },
+        clinicAddress: {
+            type: String,
+            trim: true,
+        },
         dob: {
             type: String,
+        },
+        zipCode: {
+            type: String,
+            trim: true,
+        },
+        gender: {
+            type: String,
+            trim: true,
         },
         service: {
             type: String,

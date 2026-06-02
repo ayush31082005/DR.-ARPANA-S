@@ -87,6 +87,7 @@ export default function AdminAppointments() {
               <tr>
                 <th className="border-b border-r border-rose-200 p-4 text-left">Patient</th>
                 <th className="border-b border-r border-rose-200 p-4 text-left">Contact</th>
+                <th className="border-b border-r border-rose-200 p-4 text-left">Clinic</th>
                 <th className="border-b border-r border-rose-200 p-4 text-left">Service</th>
                 <th className="border-b border-r border-rose-200 p-4 text-left">Doctor</th>
                 <th className="border-b border-r border-rose-200 p-4 text-left">Date & Time</th>
@@ -98,13 +99,13 @@ export default function AdminAppointments() {
             <tbody>
               {isLoading ? (
                 <tr>
-                  <td colSpan="7" className="p-8 text-center text-slate-500">
+                  <td colSpan="8" className="p-8 text-center text-slate-500">
                     Loading appointments...
                   </td>
                 </tr>
               ) : appointments.length === 0 ? (
                 <tr>
-                  <td colSpan="7" className="p-8 text-center text-slate-500">
+                  <td colSpan="8" className="p-8 text-center text-slate-500">
                     No appointments found
                   </td>
                 </tr>
@@ -123,6 +124,12 @@ export default function AdminAppointments() {
                       <div>{item.phone || "No phone"}</div>
                       <div className="text-xs text-slate-500">
                         {item.email || "No email"}
+                      </div>
+                    </td>
+                    <td className="border-t border-r border-rose-100 p-4 text-slate-600">
+                      <div>{item.clinic || "No clinic selected"}</div>
+                      <div className="text-xs text-slate-500">
+                        {item.clinicAddress || "No address"}
                       </div>
                     </td>
                     <td className="border-t border-r border-rose-100 p-4 text-slate-600">

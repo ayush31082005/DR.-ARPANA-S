@@ -36,7 +36,7 @@ export default function Navbar() {
   const headerClass =
     "fixed inset-x-0 top-0 z-50 w-full border-b border-[#ecc4d4] backdrop-blur-xl xl:top-8";
   const mobilePanelClass =
-    "container-padded border-t border-[#ecc4d4] py-4 xl:hidden";
+    "absolute left-3 top-full mt-2 w-[78vw] max-w-[260px] rounded-[24px] border border-[#ecc4d4] px-3 py-3 shadow-[0_18px_40px_rgba(111,40,73,0.18)] xl:hidden sm:left-4";
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
@@ -96,7 +96,7 @@ export default function Navbar() {
 
       {isMobileMenuOpen ? (
         <div className={mobilePanelClass} style={navbarGradientStyle}>
-          <nav className="flex flex-col gap-2">
+          <nav className="flex flex-col gap-1.5">
             {navLinks.map((item) => (
               <NavLink
                 key={item.path}
@@ -121,7 +121,7 @@ export default function Navbar() {
                   ? "Login"
                   : authCtaLabel}
             </Link>
-            <Link to="/my-prescriptions" className="pt-2">
+            <Link to="/my-prescriptions" className="pt-1.5">
               <Button className={`w-full ${prescriptionsButtonClass}`}>My Prescriptions</Button>
             </Link>
           </nav>

@@ -36,6 +36,12 @@ export default function AppointmentCard({ item }) {
 
       <div className="mt-5 grid gap-3 text-sm text-slate-600 sm:grid-cols-2">
         <p>
+          Clinic:{" "}
+          <span className="font-semibold text-slate-900">
+            {item?.clinic || "Not provided"}
+          </span>
+        </p>
+        <p>
           Patient:{" "}
           <span className="font-semibold text-slate-900">
             {item?.name || "Not provided"}
@@ -57,6 +63,18 @@ export default function AppointmentCard({ item }) {
           DOB:{" "}
           <span className="font-semibold text-slate-900">
             {item?.dob ? formatDate(item.dob) : "Not provided"}
+          </span>
+        </p>
+        <p>
+          Gender:{" "}
+          <span className="font-semibold text-slate-900">
+            {item?.gender || "Not provided"}
+          </span>
+        </p>
+        <p>
+          Pincode:{" "}
+          <span className="font-semibold text-slate-900">
+            {item?.zipCode || "Not provided"}
           </span>
         </p>
       </div>

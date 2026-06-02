@@ -1,13 +1,141 @@
 import Appointment from "../models/Appointment.js";
+import Otp from "../models/Otp.js";
+import generateOtp from "../utils/generateOtp.js";
+import { sendOtpEmail } from "../utils/Email.js";
+
+const APPOINTMENT_OTP_PURPOSE = "appointment-booking";
+
+export const sendAppointmentOtp = async (req, res) => {
+    try {
+        const { email, phone } = req.body;
+
+        if (!email || !phone) {
+            return res.status(400).json({
+                success: false,
+                message: "Email and phone are required",
+            });
+        }
+
+        const normalizedEmail = email.trim().toLowerCase();
+        const normalizedPhone = phone.trim();
+        const otp = generateOtp();
+
+        await Otp.deleteMany({ email: normalizedEmail, purpose: APPOINTMENT_OTP_PURPOSE });
+
+        await Otp.create({
+            email: normalizedEmail,
+            phone: normalizedPhone,
+            purpose: APPOINTMENT_OTP_PURPOSE,
+            otp,
+            expiresAt: Date.now() + 5 * 60 * 1000,
+        });
+
+        await sendOtpEmail(normalizedEmail, otp);
+
+        return res.status(200).json({
+            success: true,
+            message: "OTP sent successfully to your email",
+        });
+    } catch (error) {
+        console.error("Send Appointment OTP Error:", error);
+        return res.status(500).json({
+            success: false,
+            message: error.message || "Server error while sending appointment OTP",
+        });
+    }
+};
+
+export const verifyAppointmentOtp = async (req, res) => {
+    try {
+        const { email, otp } = req.body;
+
+        if (!email || !otp) {
+            return res.status(400).json({
+                success: false,
+                message: "Email and OTP are required",
+            });
+        }
+
+        const normalizedEmail = email.trim().toLowerCase();
+        const otpData = await Otp.findOne({
+            email: normalizedEmail,
+            purpose: APPOINTMENT_OTP_PURPOSE,
+        });
+
+        if (!otpData) {
+            return res.status(400).json({
+                success: false,
+                message: "OTP not found. Please request a new OTP",
+            });
+        }
+
+        if (otpData.expiresAt < Date.now()) {
+            await Otp.deleteMany({ email: normalizedEmail, purpose: APPOINTMENT_OTP_PURPOSE });
+            return res.status(400).json({
+                success: false,
+                message: "OTP expired. Please request a new OTP",
+            });
+        }
+
+        if (otpData.otp !== otp.trim()) {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid OTP",
+            });
+        }
+
+        otpData.isVerified = true;
+        await otpData.save();
+
+        return res.status(200).json({
+            success: true,
+            message: "OTP verified successfully",
+        });
+    } catch (error) {
+        console.error("Verify Appointment OTP Error:", error);
+        return res.status(500).json({
+            success: false,
+            message: "Server error while verifying appointment OTP",
+        });
+    }
+};
 
 export const createAppointment = async (req, res) => {
     try {
-        const { name, phone, email, dob, service, doctor, date, time, notes } = req.body;
+        const {
+            name,
+            phone,
+            email,
+            clinic,
+            clinicAddress,
+            dob,
+            zipCode,
+            gender,
+            service,
+            doctor,
+            date,
+            time,
+            notes,
+        } = req.body;
 
         if (!name || !phone || !service || !doctor || !date || !time) {
             return res.status(400).json({
                 success: false,
                 message: "Name, phone, service, doctor, date and time are required",
+            });
+        }
+
+        const normalizedEmail = email?.trim().toLowerCase();
+        const otpData = await Otp.findOne({
+            email: normalizedEmail,
+            purpose: APPOINTMENT_OTP_PURPOSE,
+            isVerified: true,
+        });
+
+        if (!normalizedEmail || !otpData) {
+            return res.status(400).json({
+                success: false,
+                message: "Please verify your email with OTP before booking the appointment",
             });
         }
 
@@ -26,16 +154,22 @@ export const createAppointment = async (req, res) => {
         }
 
         const appointment = await Appointment.create({
-            name,
-            phone,
-            email,
+            name: name.trim(),
+            phone: phone.trim(),
+            email: normalizedEmail,
+            clinic: clinic?.trim(),
+            clinicAddress: clinicAddress?.trim(),
             dob,
-            service,
-            doctor,
+            zipCode: zipCode?.trim(),
+            gender: gender?.trim(),
+            service: service.trim(),
+            doctor: doctor.trim(),
             date,
-            time,
-            notes,
+            time: time.trim(),
+            notes: notes?.trim(),
         });
+
+        await Otp.deleteMany({ email: normalizedEmail, purpose: APPOINTMENT_OTP_PURPOSE });
 
         return res.status(201).json({
             success: true,
